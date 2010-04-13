@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--background gradient on a canvas can be done but not natively-->
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="520"  backgroundColor="#C9DEEF"> 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="662"  backgroundColor="#C9DEEF"> 
 
 	<!-- Need to script:  -->
 	<!--	1. number of choices to display after dropdown  - I THINK this works -->
-	<!--	2. population of the concepts dropdown -->
-	<!--	3. problem upload -->
+	<!--	2. population of the concepts dropdown - probably just hardcode -->
+	<!--	3. problem upload - need to use FileReference-->
 	<mx:Script>
 		<![CDATA[
 			import flash.events.Event;
+			import mx.controls.Alert;
+            import mx.utils.ObjectUtil;
+
 
 			private function changeEvt(event:Event):void {
 			 	var numChoices:int = event.currentTarget;
@@ -33,23 +36,46 @@
 			 			ch3.setVisible(True);
 			 			ch4.setVisible(True);
 			 			ch5.setVisible(False);
-			 			ch3oice.setVisible(True);
-			 			ch4oice.setVisible(True);
-			 			ch5oice.setVisible(False);
+			 			choice3.setVisible(True);
+			 			choice4.setVisible(True);
+			 			choice5.setVisible(False);
 			 			break;
 			 		case 5:
 			 			ch3.setVisible(True);
 			 			ch4.setVisible(True);
 			 			ch5.setVisible(True);
-			 			ch3oice.setVisible(True);
-			 			ch4oice.setVisible(True);
-			 			ch5oice.setVisible(True);
+			 			choice3.setVisible(True);
+			 			choice4.setVisible(True);
+			 			choice5.setVisible(True);
 			 			break;
 			}}
+			
+			private function btn_click(evt:MouseEvent):void {
+                var arr:Array = [];
+                arr.push(new FileFilter("Images", ".gif;*.jpeg;*.jpg;*.png"));
+                fileReference.browse(arr);
+            }
+
+            private function fileReference_select(evt:Event):void {
+                fileReference.load();
+            }
+
+            private function fileReference_complete(evt:Event):void {
+                img.source = fileReference.data;
+                Alert.show(ObjectUtil.toString(fileReference));
+            }
+
 		]]>
 	</mx:Script>
 	
-	<mx:Form x="10" y="10" width="380" height="500">
+	<Declarations>
+        <net:FileReference id="fileReference"
+                select="fileReference_select(event);"
+                complete="fileReference_complete(event);" />
+    </Declarations>
+
+	
+	<mx:Form x="10" y="10" width="380" height="650">
 		<mx:FormHeading label="Add New Problem"/>
 		
 		
@@ -59,6 +85,27 @@
         </mx:FormItem>
         
 		<!--need to figure out how to upload figures -->
+		<mx:FormItem height="235"><mx:Panel id="panel"
+            layout="absolute"
+            horizontalCenter="0"
+            verticalCenter="0"
+            width="240"
+            height="200">
+
+		<mx:Image id="img"
+                verticalCenter="0"
+                horizontalCenter="0"
+                maxWidth="200"
+                maxHeight="200" />
+        <mx:ControlBar>
+            <mx:Button id="btn"
+                    label="Browse and preview..."
+                    click="btn_click(event);" />
+            
+        </mx:ControlBar>
+		
+		</mx:Panel>
+		</mx:FormItem>
 	
 		<!-- problem description -->
 		<mx:FormItem label="Problem Text">
