@@ -1,4 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml"
+	pageTitle="Course Map"
+	layout="absolute" 
+	backgroundGradientAlphas="[1.0, 1.0]" 
+	backgroundGradientColors="[#E8E8E8, #FFFFFF]"
+	xmlns:ui="ui.*"
+	creationPolicy="all">
+	
+	
+	<mx:HBox width="100%" height="100%" paddingTop="10">
+		
+		<!-- Left column houses buttons to add concepts and problems -->
+		<mx:VBox height="100%" paddingLeft="10" width="200">
+			<mx:Button label="" 
+				width="160"
+				height="160"
+				icon="@Embed(source='assets/add_new_enabled.png')"
+				disabledIcon="@Embed(source='assets/add_new_disabled.png')"
+				enabled="true"
+				id="addNewConceptButton"
+				/>
+			<mx:Button label="Add Prerequisite" 
+				width="160"
+				height="160"
+				icon="@Embed(source='assets/add_pre_enabled.png')"
+				disabledIcon="@Embed(source='assets/add_pre_disabled.png')"
+				enabled="false"
+				id="addPrereqConceptButton"/>
+			<mx:Button label="Add Next Concept" 
+				width="160"
+				height="160"
+				icon="@Embed(source='assets/add_next_enabled.png')"
+				disabledIcon="@Embed(source='assets/add_next_disabled.png')"
+				enabled="false"
+				id="addNextConceptButton"/>	
+			
+			<mx:Label text="Problem Controls:"
+				paddingTop="50" />
+			
+			<mx:Button label="Add New Problem" 
+				width="160"
+				enabled="false"
+				textAlign="center"
+				id="addNewProblemButton"/>
+				
+			<mx:Button label="Tag Existing Problems" 
+				width="160"
+				enabled="false"
+				textAlign="center"
+				id="tagExistingProblemButton"/>				
+		</mx:VBox>
+		
+		
+		<!-- Right Column houses a status notifier on the top and the tree diagram on the bottom -->
+		
+		<mx:VBox>
+			<mx:Label text="Please Add an initial concept using the 'New Concept' button"
+				textAlign="center"
+				width="100%"
+				id="notificationBar"
+			/>	
+			
+			<!-- DRAW TREE HERE -->
+			
+		</mx:VBox>
+		
+	</mx:HBox>
+	
 	
 </mx:Application>
