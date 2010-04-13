@@ -5,7 +5,7 @@ package model
 	public class Concept
 	{		
 		private var prereqs: ArrayCollection;
-		private var nextConcept: ArrayCollection;
+		private var nextConcepts: ArrayCollection;
 		private var name: String;
 				
 		//initialize all variables
@@ -14,6 +14,14 @@ package model
 			
 		}
 		
+		//get prereqs
+		private function getPrereqs():ArrayCollection{
+			return prereqs;
+		}
+		//getconcepts
+		private function getNextConcepts():ArrayCollection{
+			return nextConcepts; 
+		}
 		//add prereq
 		private function addPrereq(){
 			
