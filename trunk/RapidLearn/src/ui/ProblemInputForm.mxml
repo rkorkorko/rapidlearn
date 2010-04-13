@@ -1,4 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="300" > <!--background gradient on a canvas can be done but not natively>
+<!--background gradient on a canvas can be done but not natively-->
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="460"  backgroundColor="#C9DEEF"> 
+	<mx:Form x="10" y="10" width="380" height="440">
+		<mx:FormHeading label="Add New Problem"/>
+		
+		<mx:FormItem label="Problem Name">
+            <mx:TextInput id="pname" width="100%"/>
+        </mx:FormItem>
+        
+		<!--need to figure out how to upload figures -->
+	
+		<mx:FormItem label="Problem Text">
+            <mx:TextArea id="ptext" width="100%" height="92"/>
+        </mx:FormItem>
+        
+        <mx:FormItem label="nmChoices">
+        	<mx:ComboBox id="numChoices" width ="75">
+              <mx:ArrayCollection>
+                 <mx:String>2</mx:String>
+                 <mx:String>3</mx:String>
+                 <mx:String>4</mx:String>
+                 <mx:String>5</mx:String>
+              </mx:ArrayCollection>                     
+            </mx:ComboBox>
+		</mx:FormItem>
+		
+		<!-- display the answer choices -->
+		
+		<!-- add to concept -->
+		
+		<mx:FormItem>
+            <mx:HRule width="200" height="1"/>
+            <mx:Button label="Submit Form" click="submitForm();"/>
+        </mx:FormItem>
+
+
+	</mx:Form>
 	
 </mx:Canvas>
