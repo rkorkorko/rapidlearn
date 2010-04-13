@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--background gradient on a canvas can be done but not natively-->
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="460"  backgroundColor="#C9DEEF"> 
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="520"  backgroundColor="#C9DEEF"> 
 
-	<!-- Need to script: 
-		1. number of choices to display after dropdown  -- I THINK this works
-		2. population of the concepts dropdown
-		3. problem upload -->
+	<!-- Need to script:  -->
+	<!--	1. number of choices to display after dropdown  - I THINK this works -->
+	<!--	2. population of the concepts dropdown -->
+	<!--	3. problem upload -->
 	<mx:Script>
 		<![CDATA[
 			import flash.events.Event;
@@ -16,28 +16,40 @@
 			 		case 2:
 			 			ch3.setVisible(False);
 			 			ch4.setVisible(False);
-			 			ch4.setVisible(False);
+			 			ch5.setVisible(False);
+			 			choice3.setVisible(False);
+			 			choice4.setVisible(False);
+			 			choice5.setVisible(False);
 			 			break;
 			 		case 3:
 			 			ch3.setVisible(True);
 			 			ch4.setVisible(False);
-			 			ch4.setVisible(False);
+			 			ch5.setVisible(False);
+			 			choice3.setVisible(True);
+			 			choice4.setVisible(False);
+			 			choice5.setVisible(False);
 			 			break;
 			 		case 4:
 			 			ch3.setVisible(True);
 			 			ch4.setVisible(True);
-			 			ch4.setVisible(False);
+			 			ch5.setVisible(False);
+			 			ch3oice.setVisible(True);
+			 			ch4oice.setVisible(True);
+			 			ch5oice.setVisible(False);
 			 			break;
 			 		case 5:
 			 			ch3.setVisible(True);
 			 			ch4.setVisible(True);
-			 			ch4.setVisible(True);
+			 			ch5.setVisible(True);
+			 			ch3oice.setVisible(True);
+			 			ch4oice.setVisible(True);
+			 			ch5oice.setVisible(True);
 			 			break;
-			}
+			}}
 		]]>
 	</mx:Script>
 	
-	<mx:Form x="10" y="10" width="380" height="440">
+	<mx:Form x="10" y="10" width="380" height="500">
 		<mx:FormHeading label="Add New Problem"/>
 		
 		
@@ -89,24 +101,27 @@
 	        	id="ch3"
 	        	label="" 
 	        	width="10" 
+	        	visible="false"
 	        	click=""/>
-	        	<mx:TextInput id="choice3" width="100%" />
+	        	<mx:TextInput id="choice3" width="100%" visible="false"/>
 	        	</mx:HBox>
 	    <mx:HBox>
 			<mx:RadioButton groupName="choices" 
 	        	id="ch4"
 	        	label="" 
 	        	width="10" 
+	        	visible="false"
 	        	click=""/>
-	        	<mx:TextInput id="choice4" width="100%" />
+	        	<mx:TextInput id="choice4" width="100%" visible="false"/>
 	        	</mx:HBox>
 	    <mx:HBox>
 			<mx:RadioButton groupName="choices" 
 	        	id="ch5"
 	        	label="" 
 	        	width="10" 
+	        	visible="false"
 	        	click=""/>
-	        	<mx:TextInput id="choice5" width="100%" />
+	        	<mx:TextInput id="choice5" width="100%" visible="false"/>
 	        	</mx:HBox>    	    	
 		</mx:FormItem>
 		
