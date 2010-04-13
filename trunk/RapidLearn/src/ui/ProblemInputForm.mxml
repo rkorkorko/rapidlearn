@@ -1,22 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--background gradient on a canvas can be done but not natively-->
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="460"  backgroundColor="#C9DEEF"> 
+
+	<!-- Need to script: 
+		1. number of choices to display after dropdown
+		2. population of the concepts dropdown
+		3. problem upload -->
+	
+	
 	<mx:Form x="10" y="10" width="380" height="440">
 		<mx:FormHeading label="Add New Problem"/>
 		
+		
+		<!-- problem name -->
 		<mx:FormItem label="Problem Name">
             <mx:TextInput id="pname" width="100%"/>
         </mx:FormItem>
         
 		<!--need to figure out how to upload figures -->
 	
+		<!-- problem description -->
 		<mx:FormItem label="Problem Text">
             <mx:TextArea id="ptext" width="100%" height="92"/>
         </mx:FormItem>
         
-        <mx:FormItem label="nmChoices">
-        	<mx:ComboBox id="numChoices" width ="75">
+        <!-- dropdown for number of choices -->
+        <mx:FormItem label="Number of Choices">
+        	<mx:ComboBox id="numChoices" width ="55">
               <mx:ArrayCollection>
+              	 <mx:String>1</mx:String>
                  <mx:String>2</mx:String>
                  <mx:String>3</mx:String>
                  <mx:String>4</mx:String>
@@ -26,10 +38,62 @@
 		</mx:FormItem>
 		
 		<!-- display the answer choices -->
+		<mx:FormItem>
+		<mx:HBox>
+			<mx:RadioButton groupName="choices" 
+	        	id="ch1"
+	        	label="" 
+	        	width="10" 
+	        	click=""/>
+	        	<mx:TextInput id="choice1" width="100%" />
+	        	</mx:HBox>
+	    <mx:HBox>
+			<mx:RadioButton groupName="choices" 
+	        	id="ch2"
+	        	label="" 
+	        	width="10" 
+	        	click=""/>
+	        	<mx:TextInput id="choice2" width="100%" />
+	        	</mx:HBox>
+	    <mx:HBox>
+			<mx:RadioButton groupName="choices" 
+	        	id="ch3"
+	        	label="" 
+	        	width="10" 
+	        	click=""/>
+	        	<mx:TextInput id="choice3" width="100%" />
+	        	</mx:HBox>
+	    <mx:HBox>
+			<mx:RadioButton groupName="choices" 
+	        	id="ch4"
+	        	label="" 
+	        	width="10" 
+	        	click=""/>
+	        	<mx:TextInput id="choice4" width="100%" />
+	        	</mx:HBox>
+	    <mx:HBox>
+			<mx:RadioButton groupName="choices" 
+	        	id="ch5"
+	        	label="" 
+	        	width="10" 
+	        	click=""/>
+	        	<mx:TextInput id="choice5" width="100%" />
+	        	</mx:HBox>    	    	
+		</mx:FormItem>
+		
+		
 		
 		<!-- add to concept -->
+		<mx:FormItem label="Add to concept">
+			<mx:ComboBox id="concepts" width ="155">
+              <mx:ArrayCollection>
+              </mx:ArrayCollection>                     
+            </mx:ComboBox>
+		</mx:FormItem>
 		
-		<mx:FormItem>
+		
+		<!-- submit button -->
+		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
             <mx:Button label="Submit Form" click="submitForm();"/>
         </mx:FormItem>
