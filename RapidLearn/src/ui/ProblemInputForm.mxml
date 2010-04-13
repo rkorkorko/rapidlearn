@@ -3,10 +3,39 @@
 <mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="460"  backgroundColor="#C9DEEF"> 
 
 	<!-- Need to script: 
-		1. number of choices to display after dropdown
+		1. number of choices to display after dropdown  -- I THINK this works
 		2. population of the concepts dropdown
 		3. problem upload -->
-	
+	<mx:Script>
+		<![CDATA[
+			import flash.events.Event;
+
+			private function changeEvt(event:Event):void {
+			 	var numChoices:int = event.currentTarget;
+			 	switch (numChoices){
+			 		case 2:
+			 			ch3.visible == False;
+			 			ch4.visible == False;
+			 			ch5.visible == False;
+			 			break;
+			 		case 3:
+			 			ch3.visible == True;
+			 			ch4.visible == False;
+			 			ch5.visible == False;
+			 			break;
+			 		case 4:
+			 			ch3.visible == True;
+			 			ch4.visible == True;
+			 			ch5.visible == False;
+			 			break;
+			 		case 5:
+			 			ch3.visible == True;
+			 			ch4.visible == True;
+			 			ch5.visible == True;
+			 			break;
+			}
+		]]>
+	</mx:Script>
 	
 	<mx:Form x="10" y="10" width="380" height="440">
 		<mx:FormHeading label="Add New Problem"/>
@@ -26,9 +55,9 @@
         
         <!-- dropdown for number of choices -->
         <mx:FormItem label="Number of Choices">
-        	<mx:ComboBox id="numChoices" width ="55">
+        	<mx:ComboBox id="numChoices" width ="55" change="changeEvt(event)">
               <mx:ArrayCollection>
-              	 <mx:String>1</mx:String>
+              	 
                  <mx:String>2</mx:String>
                  <mx:String>3</mx:String>
                  <mx:String>4</mx:String>
