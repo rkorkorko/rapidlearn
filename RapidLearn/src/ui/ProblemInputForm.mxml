@@ -11,6 +11,9 @@
 			import flash.events.Event;
 			import mx.controls.Alert;
             import mx.utils.ObjectUtil;
+			import flash.net.FileReference;
+			var fileRef:FileReference = new FileReference();
+		
 
 
 			private function changeEvt(event:Event):void {
@@ -51,31 +54,27 @@
 			}}
 			
 			private function btn_click(evt:MouseEvent):void {
-                var arr:Array = [];
-                arr.push(new FileFilter("Images", ".gif;*.jpeg;*.jpg;*.png"));
-                fileReference.browse(arr);
+                fileRef.addEventListener(Event.SELECT, selectHandler);
+				fileRef.addEventListener(Event.COMPLETE, completeHandler);
+				fileRef.browse();
+
             }
 
-            private function fileReference_select(evt:Event):void {
-                fileReference.load();
-            }
+            function selectHandler(event:Event):void{
+            	fileRef.load();
+   				img.source=fileRef.data;
+			}
+			function completeHandler(event:Event):void{
+    			trace("preview shown");
+			}
 
-            private function fileReference_complete(evt:Event):void {
-                img.source = fileReference.data;
-                Alert.show(ObjectUtil.toString(fileReference));
-            }
 
 		]]>
 	</mx:Script>
 	
-	<Declarations>
-        <net:FileReference id="fileReference"
-                select="fileReference_select(event);"
-                complete="fileReference_complete(event);" />
-    </Declarations>
-
 	
-	<mx:Form x="10" y="10" width="380" height="650">
+	
+	<mx:Form x="10" y="10" width="380" height="642">
 		<mx:FormHeading label="Add New Problem"/>
 		
 		
@@ -85,7 +84,7 @@
         </mx:FormItem>
         
 		<!--need to figure out how to upload figures -->
-		<mx:FormItem height="235"><mx:Panel id="panel"
+		<mx:FormItem height="216"><mx:Panel id="panel"
             layout="absolute"
             horizontalCenter="0"
             verticalCenter="0"
