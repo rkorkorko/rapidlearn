@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="800" height="600">
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="800" height="800"
+	clipContent="false"
+	creationComplete="onLoad()">
 	<mx:Script>
 		<![CDATA[
 			import model.CourseMap;
@@ -15,6 +17,20 @@
 		     * Called the first time this component loads.
 		     */
 		    protected function onLoad():void {
+		    	var g:Graphics = this.graphics;
+				g.beginFill(0xFF0000);				
+				g.drawCircle(100,100,40);
+		    }   
+		    
+		    //storing from locations of concept being dragged. 
+		    private var fromX:int; 
+		    private var fromY:int;
+		    
+		    protected function drag(mouseEvent:MouseEvent):void{
+				fromX = this.mouseY;
+				fromY = this.mouseX;
+												
+						
 		    	
 		    }
 			
