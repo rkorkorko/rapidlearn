@@ -1,6 +1,9 @@
 package model
 {
-	public class CourseMap
+	import flash.events.EventDispatcher;
+	import model.Concept;
+	
+	public class CourseMap extends EventDispatcher
 	{
 		private var selectedConcept: Concept;
 		
@@ -10,7 +13,7 @@ package model
 		}
 
 		public function getSelectedConcept:Concept {
-			
+			return this.selectedConcept;
 		}
 
 	}
