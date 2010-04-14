@@ -1,6 +1,8 @@
 package model
 {
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -19,6 +21,14 @@ package model
 			previousSelectedConcept = null;
 			concepts = new ArrayCollection();
 			relations = new ArrayCollection();
+		}
+		
+		public function getConcepts():ArrayCollection {
+			return this.concepts;
+		}
+		
+		public function getRelations():ArrayCollection {
+			return this.relations;
 		}
 
 
@@ -41,24 +51,31 @@ package model
 		
 		/**
 		 * Adds the passed concept object to the list of prerequisites for the selected concept.  
-		 * It first checks if the concept is already in the list.  If not, then it is added to 
-		 * the list.
 		 */
-		public function addConceptAsPrerequisite():void {
+		public function addConceptAsPrerequisite(event:MouseEvent):void {
 			if(this.selectedConcept != null) {
-				// DO THIS LATER
+				var cPrev:Concept = new Concept(event.localX,event.localY);
+				var crPrev:ConceptRelation = new ConceptRelation(cPrev,this.selectedConcept);
+				this.concepts.addItem(cPrev);
+				this.relations.addItem(crPrev);
+				dispatchEvent(new Event("prereqAdded"));
 			}
 			
 		}
 		
 		/**
-		 * Adds the passed concept object to the list of next concepts for the selected concept.  
-		 * It first checks if the concept is already in the list.  If not, then it is added to 
-		 * the list.
+		 * Adds the passed concept object to the list of next concepts for the selected concept. 
 		 */
-		public function addConceptAsNext():void {
-			
+		public function addConceptAsNext(event:MouseEvent):void {
+			if(this.selectedConcept != null) {
+				var cNext:Concept = new Concept(event.localX,event.localY);
+				var crNext:ConceptRelation = new ConceptRelation(this.selectedConcept,cNext);
+				this.concepts.addItem(cNext);
+				this.relations.addItem(crNext);
+				dispatchEvent(new Event("nextAdded"));
+			}
 		}
+		
 
 	}
 }
