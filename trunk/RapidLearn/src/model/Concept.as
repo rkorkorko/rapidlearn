@@ -20,11 +20,11 @@ package model
 			this.name = name;
 		}
 		
-		public function getX():void{
+		public function getX():int{
 			return x;
 		}
 		
-		public function getY():void{
+		public function getY():int{
 			return y;
 		}
 		 
