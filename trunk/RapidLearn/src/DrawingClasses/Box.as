@@ -196,6 +196,7 @@ package DrawingClasses
       	this.priorSelected=this.isSelected;
       	if(!this.isSelected){
       		this.source=boxPicture;trace('deselected');
+      		designer.currentSelectedBox=null;
       	}else{
       		this.source=boxSelectedPicture;trace('selected');
       		if((designer.currentSelectedBox!=null)&&(designer.currentSelectedBox!=this)){
