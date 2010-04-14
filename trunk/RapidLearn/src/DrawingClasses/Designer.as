@@ -171,5 +171,10 @@ package DrawingClasses
       isDrawing = false;
       lineButton.setStyle("icon", lineOffPicture);
     }
+    public function redrawAllTexts():void{
+    	for(var i=0;i<boxes.length;i++){
+    		boxes[i].redrawText();
+    	}
+    }
   }
 }

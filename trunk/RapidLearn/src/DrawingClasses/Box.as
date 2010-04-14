@@ -135,7 +135,7 @@ package DrawingClasses
     		this.text.x=this.x+this.width/2-this.text.width/2;
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
-      	designer.getDesignArea().addChildAt(this.text,0);
+      	designer.getDesignArea().addChildAt(this.text,1);
     	}
       if (fromLines.length>0){
         drawFromLines();
@@ -212,7 +212,14 @@ package DrawingClasses
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
-      	this.isMouseDown=false;   
+      	this.isMouseDown=false;
+      	designer.redrawAllTexts();   
+    }
+    public function redrawText():void{
+    	this.text.x=this.x+this.width/2-this.text.width/2;
+      	this.text.y=this.y+this.height/2-this.text.height/2;
+      	designer.getDesignArea().removeChild(this.text);
+      	designer.getDesignArea().addChild(this.text);
     }
   }
 }
