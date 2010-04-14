@@ -170,6 +170,10 @@ package DrawingClasses
       	this.priorSelected=true;
       	this.dragged=false;
       	this.source=boxSelectedPicture;
+		if((designer.currentSelectedBox!=null)&&(designer.currentSelectedBox!=this)){
+      		designer.currentSelectedBox.source=boxPicture;
+      	}
+      	designer.currentSelectedBox=this;
       	trace('selected');
       }else{
       	this.isSelected=!this.priorSelected;
@@ -178,6 +182,12 @@ package DrawingClasses
       		this.source=boxPicture;trace('deselected');
       	}else{
       		this.source=boxSelectedPicture;trace('selected');
+      		if((designer.currentSelectedBox!=null)&&(designer.currentSelectedBox!=this)){
+      			designer.currentSelectedBox.source=boxPicture;
+      			designer.currentSelectedBox.isSelected=false;
+      		}
+      		designer.currentSelectedBox=this;
+      		this.source=boxSelectedPicture;
       	}
       	
 
