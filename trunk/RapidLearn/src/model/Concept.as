@@ -5,11 +5,11 @@ package model
 	public class Concept
 	{		
 		private var name: String;
-		private var x:int;
-		private var y:int;
+		private var x:Number;
+		private var y:Number;
 				
 		//initialize all variables
-		public function Concept(x:int, y:int)
+		public function Concept(x:Number, y:Number)
 		{
 			this.x = x;
 			this.y = y;
@@ -20,11 +20,11 @@ package model
 			this.name = name;
 		}
 		
-		public function getX():int{
+		public function getX():Number{
 			return x;
 		}
 		
-		public function getY():int{
+		public function getY():Number{
 			return y;
 		}
 		 
