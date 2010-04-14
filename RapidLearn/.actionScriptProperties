@@ -10,7 +10,6 @@
   </compiler>
   <applications>
     <application path="FlexDrawing.mxml"/>
-    <application path="RapidLearn.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
