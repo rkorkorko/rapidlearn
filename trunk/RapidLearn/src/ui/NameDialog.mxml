@@ -14,8 +14,22 @@
 			[Bindable]
             public var selectedItem:Object;
 
+			private var conceptName:String;
+			
+			public function getName():String{
+				return this.conceptName;
+			}
             private function titleWindow_close(evt:CloseEvent):void {
                 PopUpManager.removePopUp(this);
+                
+            
+            }
+            
+            private function handleNameDialogClick():void{
+            	if (inputName.text!=null || inputName.text!=""){
+            		this.conceptName = inputName.text; 
+            		
+            	}
             }
             ]]>
             </mx:Script>
@@ -30,7 +44,9 @@
 	<!-- submit button -->
 		
             
-            <mx:Button label="OK" labelPlacement="left" textAlign="center" x="72.5" y="68"/>
+            <mx:Button label="OK" labelPlacement="left" 
+            	textAlign="center" x="72.5" y="68"
+            	click="handleNameDialogClick()"/>
         
 	
 </mx:TitleWindow>
