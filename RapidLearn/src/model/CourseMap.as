@@ -1,26 +1,22 @@
 package model
 {
-	import flash.events.Event;
 	import flash.events.EventDispatcher;
-	import flash.events.MouseEvent;
+	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
 	
 	public class CourseMap extends EventDispatcher
-	{
-		private var selectedConcept: Concept;
-		private var previousSelectedConcept: Concept;
-		
+	{		
 		private var concepts:ArrayCollection;
 		private var relations:ArrayCollection;
 		
+		private var xyToConcept:Dictionary;
 		
 		public function CourseMap()
 		{
-			selectedConcept = null;
-			previousSelectedConcept = null;
 			concepts = new ArrayCollection();
 			relations = new ArrayCollection();
+			xyToConcept = new Dictionary();
 		}
 		
 		public function getConcepts():ArrayCollection {
@@ -31,57 +27,27 @@ package model
 			return this.relations;
 		}
 
-
-		/**
-		 * Returns the concept that is currently selected, or null if no concept is
-		 * selected.
-		 */
-		public function getSelectedConcept():Concept {
-			return this.selectedConcept;
-		}
-		
-		/**
-		 * Returns the concept that was previously selected, or null if no concept is
-		 * selected.
-		 */
-		public function getPreviousSelectedConcept():Concept {
-			return this.previousSelectedConcept;
-		}
-		
-		/**add concept**/
-		
-		public function addConcept(x:int, y:int):void{
-			var c: Concept = new Concept(x, y);
-			this.concepts.addItem(c);	
-		} 
-		
-		/**
-		 * Adds the passed concept object to the list of prerequisites for the selected concept.  
-		 */
-		public function addConceptAsPrerequisite(event:MouseEvent):void {
-			if(this.selectedConcept != null) {
-				var cPrev:Concept = new Concept(event.localX,event.localY);
-				var crPrev:ConceptRelation = new ConceptRelation(cPrev,this.selectedConcept);
-				this.concepts.addItem(cPrev);
-				this.relations.addItem(crPrev);
-				dispatchEvent(new Event("prereqAdded"));
-			}
+		/**add concept**/ 
+		public function addConcept(c:Concept):void{			
+			this.concepts.addItem(c);
 			
+			var l:Array = new Array();
+			l.addChild(c.getX());
+			l.addChild(c.getY());
+			xyToConcept[l] = c;	
 		}
-		
-		/**
-		 * Adds the passed concept object to the list of next concepts for the selected concept. 
-		 */
-		public function addConceptAsNext(event:MouseEvent):void {
-			if(this.selectedConcept != null) {
-				var cNext:Concept = new Concept(event.localX,event.localY);
-				var crNext:ConceptRelation = new ConceptRelation(this.selectedConcept,cNext);
-				this.concepts.addItem(cNext);
-				this.relations.addItem(crNext);
-				dispatchEvent(new Event("nextAdded"));
-			}
+				 
+		/**add relation**/
+		public function addRelation(r:ConceptRelation):void{
+			this.relations.addItem(r);			
+		}	
+			 
+		public function getConcept(x:Number, y:Number):Concept{
+			var l:Array = new Array();
+			l.addChild(x);
+			l.addChild(y);
+			return xyToConcept[l];		
 		}
-		
-
+				
 	}
 }
