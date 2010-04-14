@@ -4,51 +4,22 @@ package model
 	
 	public class Concept
 	{		
-		private var prereqs: ArrayCollection;
-		private var nextConcepts: ArrayCollection;
 		private var name: String;
+		private var x:int;
+		private var y:int;
 				
 		//initialize all variables
-		public function Concept(name:String)
+		public function Concept(x:int, y:int)
 		{
-			
+			this.x = x;
+			this.y = y;
+			this.name = "Add Name"; 
 		}
 		
-		//get prereqs
-		public function getPrereqs():ArrayCollection{
-			return prereqs;
-		}
-		//getconcepts
-		public function getNextConcepts():ArrayCollection{
-			return nextConcepts; 
-		}
-		//add prereq
-		private function addPrereq(){
-			
-			//fire event listener to update view. 
+		public function setName(name:String) {
+			this.name = name;
 		}
 		
-		//remove nextConcept		
-		private function removeConcept(concept:Concept){
-			
-			//fire event listener to update view. 
-		}
-		//remove prereq
-		private function removePrereq(concept:Concept){
-			
-			//fire event listener to update view. 
-		}
-		
-		//add nextConcept		
-		private function addNextConcept(){
-			
-			//fire event listener to update view. 
-		}
-	
-		//set resources.
-		private function addResource (resource: Resource){
-			
-			//only update model.
-		} 
+		 
 	}
 }
