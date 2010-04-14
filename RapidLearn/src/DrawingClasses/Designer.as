@@ -2,6 +2,10 @@ package DrawingClasses
 {
   import flash.events.MouseEvent;
   
+  import model.Concept;
+  import model.ConceptRelation;
+  import model.CourseMap;
+  
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
   import mx.controls.Button;
@@ -18,14 +22,16 @@ package DrawingClasses
     private var currentFromBox:Box;
     private var currentToBox:Box;
     public var currentSelectedBox:Box;
+    private var courseMap:CourseMap;
     
     [Bindable]
     [Embed(source="/assets/box.png")] 
     public var lineOffPicture:Class; 
-
+	
     // designer is a manager class. 
     public function Designer(){     
       createTemplateLine();   
+      courseMap = new CourseMap();
     }
     
     public function getDesignArea():Canvas{
@@ -110,6 +116,9 @@ package DrawingClasses
       boxes.addItem(newBox);     
       designArea.addChild(newBox);
       designArea.addChild(newBox.text);
+      
+      //update model
+      courseMap.addConcept(new Concept(x,y));
     } 
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
@@ -144,6 +153,11 @@ package DrawingClasses
         lines.addItem(newLine);
         designArea.addChild(newLine);
         cancelDrawing();
+        
+        //update model
+        var fromConcept:Concept = courseMap.getConcept(currentFromBox.getX(), currentFromBox.getY());
+        var toConcept:Concept = courseMap.getConcept(currentToBox.getX(), currentToBox.getY());
+        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept));    
       }
       else{
         cancelDrawing();
