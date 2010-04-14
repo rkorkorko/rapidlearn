@@ -9,78 +9,66 @@
 	creationComplete="onLoad()">
 	
 	
-	<mx:HBox width="100%" height="100%" paddingTop="10">
+	<mx:Canvas id="MainArea" width="100%" height="100%" paddingTop="10">
+
+		<mx:Image 
+			id="addNew" 
+			source="@Embed(source='assets/addnew.png')" 
+			width="100" height="50" 
+			x="10" y="20"
+			/>
 		
-		<!-- Left column houses buttons to add concepts and problems -->
-		<mx:VBox height="100%" paddingLeft="10" paddingTop="30" width="150">
-			<mx:Image 
-				id="addNew" 
-				source="@Embed(source='assets/addnew.png')" 
-				width="100" height="50" 
-				/>
-			
-			<mx:Image 
-				id="addNext" 
-				source="@Embed(source='assets/addnext.png')" 
-				width="100" height="100" 
-				/>
-			
-			<mx:Image 
-				id="addPrereq" 
-				source="@Embed(source='assets/addprereq.png')" 
-				width="100" height="100" 
-				/>		
-			
-			<mx:Label text="Problem Controls:"
-				paddingTop="50" />
-			
-			<mx:Button label="Add New Problem" 
-				width="140"
-				enabled="false"
-				textAlign="center"
-				id="addNewProblemButton"
-				click="showAddProblemForm();"
-				/>
-				
-			<mx:Button label="Tag Existing Problems" 
-				width="140"
-				enabled="false"
-				textAlign="center"
-				id="tagExistingProblemButton"
-				click="showTagExistingProbsForm();"/>				
-		</mx:VBox>
+		<mx:Image 
+			id="addNext" 
+			source="@Embed(source='assets/addnext.png')" 
+			width="100" height="100"
+			x="10" y="150" 
+			/>
 		
+		<mx:Image 
+			id="addPrereq" 
+			source="@Embed(source='assets/addprereq.png')" 
+			width="100" height="100"
+			x="10" y="250" 
+			/>		
 		
-		<!-- Right Column houses a status notifier on the top and the tree diagram on the bottom -->
+		<mx:Label text="Problem Controls:"
+			paddingTop="50" />
 		
-		<mx:VBox>
-			<mx:Label text="Please Add an initial concept using the 'New Concept' button"
-				textAlign="center"
-				width="100%"
-				id="notificationBar"
-			/>	
+		<mx:Button label="Add New Problem" 
+			width="140"
+			enabled="false"
+			textAlign="center"
+			id="addNewProblemButton"
+			click="showAddProblemForm();"
+			/>
 			
-			<ui:CourseMapView
-				name="coursemap"
-				id="courseMap"
-				/>
-			
-		</mx:VBox>
+		<mx:Button label="Tag Existing Problems" 
+			width="140"
+			enabled="false"
+			textAlign="center"
+			id="tagExistingProblemButton"
+			click="showTagExistingProbsForm();"/>				
+
+		<mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="55" width="100%" height="100%" backgroundColor="#FFFFFF">      
+	    </mx:Canvas> 
 		
-	</mx:HBox>
+	
+	</mx:Canvas>
 	
 	<mx:Script>
 		<![CDATA[
-			import mx.states.AddChild;
+		import mx.states.AddChild;
 		import ui.ProblemInputForm;
 		import mx.managers.PopUpManager;
-		import ui.CourseMapView;
+		import drawing.Designer;
 
 		import ui.TagExistingProbsForm;
 
 		import mx.controls.Image;
 		import mx.core.BitmapAsset;
 
+		private var designer:Designer = new Designer(); 
 		
 		private function showAddProblemForm():void{
 			var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
@@ -92,58 +80,10 @@
 		}
 		
 		private function onLoad():void {
-			this.addEventListener(MouseEvent.MOUSE_UP, endDrag);
+			 
 		}
 		
-		[Embed(source="assets/Square.png")]
-			public var Square: Class;
-		private var child:Image;
-		private var dragEnabled:Boolean = false;
-		private var fromX:int;
-		private var fromY:int;
 		
-		private function beginDrag():void{
-			trace("begin drag");
-			child = new Image();
-			child.source = new Square() as BitmapAsset;
-			child.x = fromX = this.mouseX-60;
-			child.y = fromY = this.mouseY-25;
-			this.addChild(child); 
-			dragEnabled = true; 	
-			child.startDrag();		
-		} 
-		
-		private function endDrag(mouseEvent:MouseEvent):void{
-			trace("ending drag");
-			//check if something is being dragged
-			if (dragEnabled){
-				//check if the drop location is valid
-				if (validLocation(this.mouseX, this.mouseY))
-				{
-					child.stopDrag();
-					dragEnabled = false;
-					 
-					trace("drawing line");
-					var g:Graphics = this.graphics; 
-					g.lineStyle(20, 0x990000, .75);
-					g.beginFill(0xFF0000);
-					g.moveTo(this.mouseX, this.mouseY);
-					g.lineTo(this.mouseX+500, this.mouseY);
-					
-					trace("done");
-					//update model
-				}
-				else{ 
-					child.stopDrag();
-					this.removeChild(child);
-					//show to user "Invalid Location"
-				} 				
-			}
-		}
-		
-		private function validLocation(x:int, y:int):Boolean{
-			return true;
-		}
 		
 		]]>
 		</mx:Script>
