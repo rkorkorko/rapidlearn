@@ -17,9 +17,14 @@
 		     * Called the first time this component loads.
 		     */
 		    protected function onLoad():void {
-		    	var g:Graphics = this.graphics;
+		    	/*var g:Graphics = this.graphics;
 				g.beginFill(0xFF0000);				
-				g.drawCircle(100,100,40);
+				g.drawCircle(100,100,40);*/
+					var g:Graphics = this.graphics; 
+					g.lineStyle(2, 0x990000, .75);
+					g.beginFill(0xFF0000);
+					g.moveTo(100, 100);
+					g.lineTo(200, 200);
 		    }   
 		    
 		    //storing from locations of concept being dragged. 
@@ -28,10 +33,7 @@
 		    
 		    protected function drag(mouseEvent:MouseEvent):void{
 				fromX = this.mouseY;
-				fromY = this.mouseX;
-												
-						
-		    	
+				fromY = this.mouseX;		    	
 		    }
 			
 		]]>
