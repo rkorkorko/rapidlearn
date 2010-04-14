@@ -17,7 +17,7 @@ package DrawingClasses
     private var templateLine:Line;
     private var currentFromBox:Box;
     private var currentToBox:Box;
-    private var currentSelectedBox:Box;
+    public var currentSelectedBox:Box;
     
     [Bindable]
     [Embed(source="/assets/box.png")] 
