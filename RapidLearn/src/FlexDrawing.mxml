@@ -10,10 +10,10 @@
     import com.adobe.viewsource.ViewSource;
     
     [Bindable]
-    [Embed(source="/assets/box.png")] 
+    [Embed(source="/assets/arrow_green.png")] 
     public var lineOnPicture:Class; 
     [Bindable]
-    [Embed(source="/assets/box.png")] 
+    [Embed(source="/assets/addnew.png")] 
     public var boxPicture:Class; 
     
     private var xOff:Number;
@@ -61,14 +61,16 @@
     ]]>
   </mx:Script>
   <mx:Canvas id="MainArea" width="100%" height="100%">
-      <mx:Image id="box" source="@Embed(source='assets/box.png')" mouseMove="dragPicture(event, box, 'img');myoffset(box);" width="43" height="37" x="10" y="10"></mx:Image>
-      <mx:Label text="Drag and drop this picture on " x="49" y="10"></mx:Label>
-      <mx:Label text="Click the button on the left" x="283" y="10"></mx:Label>
-    <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="55" width="100%" height="100%" backgroundColor="#c0c0c0">      
+      <mx:Image id="box" source="@Embed(source='assets/box.png')" mouseMove="dragPicture(event, box, 'img');myoffset(box);" x="10" y="10"></mx:Image>
+      <mx:Label text="Drag and drop this picture on " x="10" y="60"></mx:Label>
+      <mx:Label text="Click the button above to" x="225" y="60"></mx:Label>
+    <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="100" width="100%" height="100%" backgroundColor="#c0c0c0">      
     </mx:Canvas>    
-    <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/box.png')" click="doDrawEnable()" height="37" width="46" creationComplete="designer.setLineButton(line);"/>
-    <mx:Label x="49" y="23" text="the gray area to draw a box" height="20"/>
-    <mx:Label x="283" y="24" text=" to draw a line between two boxes."/>
-    <mx:Button x="503" y="9" label="Reset" height="39" click="designer.reset()"/>
+    <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);"/>
+    <mx:Label x="10" y="75" text="the gray area to draw a box" height="20"/>
+    <mx:Label x="225" y="75" text="draw a line between two boxes."/>
+    <mx:Button x="503" y="9" label="Reset" height="50" click="designer.reset()"/>
+    <mx:Button x="603" y="9" label="Add Problem" height="50" id="addProblemButton"/>
+    <mx:Button x="733" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton"/>
   </mx:Canvas>
 </mx:Application>
