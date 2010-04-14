@@ -20,7 +20,7 @@
 				disabledIcon="@Embed(source='assets/add_new_disabled.png')"
 				enabled="true"
 				id="addNewConceptButton"
-				
+				mouseDown="beginDrag()"
 				/>
 			<mx:Button label="Add Prerequisite" 
 				width="160"
@@ -76,9 +76,12 @@
 	
 	<mx:Script>
 		<![CDATA[
+			import mx.states.AddChild;
 		import ui.ProblemInputForm;
 		import mx.managers.PopUpManager;
 		import ui.CourseMapView;
+		import mx.controls.Image;
+		import mx.core.BitmapAsset;
 		
 		private function showAddProblemForm():void{
 			var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
@@ -86,9 +89,58 @@
 		}
 		
 		private function onLoad():void {
-			
+			this.addEventListener(MouseEvent.MOUSE_UP, endDrag);
 		}
 		
+		[Embed(source="assets/Square.png")]
+			public var Square: Class;
+		private var child:Image;
+		private var dragEnabled:Boolean = false;
+		private var fromX:int;
+		private var fromY:int;
+		
+		private function beginDrag():void{
+			trace("begin drag");
+			child = new Image();
+			child.source = new Square() as BitmapAsset;
+			child.x = fromX = this.mouseX-60;
+			child.y = fromY = this.mouseY-25;
+			this.addChild(child); 
+			dragEnabled = true; 	
+			child.startDrag();		
+		}  
+		
+		private function endDrag(mouseEvent:MouseEvent):void{
+			trace("ending drag");
+			//check if something is being dragged
+			if (dragEnabled){
+				//check if the drop location is valid
+				if (validLocation(this.mouseX, this.mouseY))
+				{
+					child.stopDrag();
+					dragEnabled = false;
+					 
+					trace("drawing line");
+					var g:Graphics = this.graphics; 
+					g.lineStyle(20, 0x990000, .75);
+					g.beginFill(0xFF0000);
+					g.moveTo(this.mouseX, this.mouseY);
+					g.lineTo(this.mouseX+500, this.mouseY);
+					
+					trace("done");
+					//update model
+				}
+				else{ 
+					child.stopDrag();
+					this.removeChild(child);
+					//show to user "Invalid Location"
+				} 				
+			}
+		}
+		
+		private function validLocation(x:int, y:int):Boolean{
+			return true;
+		}
 		
 		]]>
 		</mx:Script>
