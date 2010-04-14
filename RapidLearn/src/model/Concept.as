@@ -20,6 +20,13 @@ package model
 			this.name = name;
 		}
 		
+		public function getX():void{
+			return x;
+		}
+		
+		public function getY():void{
+			return y;
+		}
 		 
 	}
 }
