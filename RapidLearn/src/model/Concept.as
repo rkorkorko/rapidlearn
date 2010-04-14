@@ -16,7 +16,7 @@ package model
 			this.name = "Add Name"; 
 		}
 		
-		public function setName(name:String) {
+		public function setName(name:String):void {
 			this.name = name;
 		}
 		

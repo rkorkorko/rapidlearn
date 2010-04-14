@@ -13,11 +13,11 @@ package model
 			this.next = next;	
 		}
 		
-		public function getPrevious:Concept {
+		public function getPrevious():Concept {
 			return this.previous;
 		}
 		
-		public function getNext:Concept {
+		public function getNext():Concept {
 			return this.next;
 		}
 
