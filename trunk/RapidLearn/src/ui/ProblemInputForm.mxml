@@ -150,7 +150,7 @@
 	        	id="ch1"
 	        	label="" 
 	        	width="20" 
-	        	click=""/>
+	        	/>
 	        	<mx:TextInput id="choice1" width="100%" />
 	        	</mx:HBox>
 	    <mx:HBox>
@@ -158,7 +158,7 @@
 	        	id="ch2"
 	        	label="" 
 	        	width="20" 
-	        	click=""/>
+	        	/>
 	        	<mx:TextInput id="choice2" width="100%" />
 	        	</mx:HBox>
 	    <mx:HBox>
@@ -167,7 +167,7 @@
 	        	label="" 
 	        	width="20" 
 	        	visible="false"
-	        	click=""/>
+	        	/>
 	        	<mx:TextInput id="choice3" width="100%" visible="false"/>
 	        	</mx:HBox>
 	    <mx:HBox>
@@ -176,7 +176,7 @@
 	        	label="" 
 	        	width="20" 
 	        	visible="false"
-	        	click=""/>
+	        	/>
 	        	<mx:TextInput id="choice4" width="100%" visible="false"/>
 	        	</mx:HBox>
 	    <mx:HBox>
@@ -185,7 +185,7 @@
 	        	label="" 
 	        	width="20" 
 	        	visible="false"
-	        	click=""/>
+	        	/>
 	        	<mx:TextInput id="choice5" width="100%" visible="false"/>
 	        	</mx:HBox>    	    	
 		</mx:FormItem>
@@ -204,7 +204,7 @@
 		<!-- submit button -->
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
-            <mx:Button label="Submit Form" click=""/>
+            <mx:Button label="Submit Form" />
         </mx:FormItem>
 
 
