@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	width="400" height="300"
+	showCloseButton="true" 
+	backgroundColor="#C9DEEF"
+	close="titleWindow_close(event);">
+	<mx:Script>
+		<![CDATA[
+			
+			import mx.events.CloseEvent;
+            import mx.managers.PopUpManager;
+            
+			[Bindable]
+            public var selectedItem:Object;
+
+            private function titleWindow_close(evt:CloseEvent):void {
+                PopUpManager.removePopUp(this);
+            }
+            ]]>
+            </mx:Script>
+	<mx:Model id="problems">
+      <problems>
+        <problem label="Double Pendulum" />
+        <problem label="Racecar on Banked Track" />
+        <problem label="Block Party" />
+        <problem label="Loop the Loop" />
+        <problem label="Fun with Rockets "/>
+        
+      </problems>
+    </mx:Model>
+
+	
+	<mx:Form width="100%" height="100%">
+		<mx:FormHeading label="Tag Existing Problems"/>
+		<mx:FormItem label="Select Problems">
+			<mx:List width="228"
+				dataProvider="{problems.problem}"
+            change="this.selectedItem=List(event.target).selectedItem"/>
+
+		</mx:FormItem>
+		
+	<!-- submit button -->
+		<mx:FormItem height="34">
+            <mx:HRule width="200" height="1"/>
+            <mx:Button label="OK" />
+        </mx:FormItem>
+	</mx:Form>
+</mx:TitleWindow>
