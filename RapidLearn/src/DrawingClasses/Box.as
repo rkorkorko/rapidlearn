@@ -21,11 +21,11 @@ package DrawingClasses
 	public var text:Text;
 	private var isMouseDown:Boolean=false;
     [Bindable]
-    [Embed(source="/Images/box.png")] 
+    [Embed(source="/assets/box.png")] 
     public var boxPicture:Class; 
     
     [Bindable]
-    [Embed(source="/Images/box_selected.png")] 
+    [Embed(source="/assets/box_selected.png")] 
     public var boxSelectedPicture:Class; 
     
     public function Box(d:Designer){

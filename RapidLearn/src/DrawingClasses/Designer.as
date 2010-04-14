@@ -19,7 +19,7 @@ package DrawingClasses
     private var currentToBox:Box;
     
     [Bindable]
-    [Embed(source="/Images/lineOff.png")] 
+    [Embed(source="/assets/box.png")] 
     public var lineOffPicture:Class; 
 
     // designer is a manager class. 
