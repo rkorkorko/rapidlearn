@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	width="208" height="140"
+	showCloseButton="true" 
+	backgroundColor="#C9DEEF"
+	close="titleWindow_close(event);">
+	<mx:Script>
+		<![CDATA[
+			
+			import mx.events.CloseEvent;
+            import mx.managers.PopUpManager;
+            
+			[Bindable]
+            public var selectedItem:Object;
+
+            private function titleWindow_close(evt:CloseEvent):void {
+                PopUpManager.removePopUp(this);
+            }
+            ]]>
+            </mx:Script>
+
+
+	
+		<mx:FormHeading label="Enter Concept Name" x="17.5" y="10"/>
+		<mx:TextInput id="inputName" x="18" y="38">
+			
+		</mx:TextInput>
+		
+	<!-- submit button -->
+		
+            
+            <mx:Button label="OK" labelPlacement="left" textAlign="center" x="72.5" y="68"/>
+        
+	
+</mx:TitleWindow>
