@@ -48,6 +48,12 @@ package model
 			return this.previousSelectedConcept;
 		}
 		
+		/**add concept**/
+		
+		public function addConcept(event:MouseEvent):void{
+			var c: Concept = new Concept(event.localX, event.localY);
+			this.concepts.addItem(c);	
+		}
 		
 		/**
 		 * Adds the passed concept object to the list of prerequisites for the selected concept.  
