@@ -117,7 +117,7 @@
 			this.addChild(child); 
 			dragEnabled = true; 	
 			child.startDrag();		
-		}  
+		} 
 		
 		private function endDrag(mouseEvent:MouseEvent):void{
 			trace("ending drag");
