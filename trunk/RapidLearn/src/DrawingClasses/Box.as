@@ -120,7 +120,7 @@ package DrawingClasses
     		this.text.x=this.x+this.width/2-this.text.width/2;
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
-      	designer.getDesignArea().addChild(this.text);
+      	designer.getDesignArea().addChildAt(this.text,0);
     	}
       if (fromLines.length>0){
         drawFromLines();
@@ -148,6 +148,7 @@ package DrawingClasses
     //if finish drawing line it sets mouse coordinate as last points of line  
     //if stop draging it sets stop drag 
     private function mouseUp(event:MouseEvent):void{
+    	trace('mouseup');
       if (!designer.getIsDrawEnable()){
       	
         this.stopDrag();
