@@ -118,7 +118,7 @@ package DrawingClasses
       designArea.addChild(newBox.text);
       
       //update model
-      courseMap.addConcept(new Concept(x,y));
+      courseMap.addConcept(newBox.getConcept());
     } 
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
@@ -155,9 +155,10 @@ package DrawingClasses
         cancelDrawing();
         
         //update model
-        var fromConcept:Concept = courseMap.getConcept(currentFromBox.getX(), currentFromBox.getY());
-        var toConcept:Concept = courseMap.getConcept(currentToBox.getX(), currentToBox.getY());
-        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept));    
+        var fromConcept:Concept = currentFromBox.getConcept();
+        var toConcept:Concept = currentToBox.getConcept();
+        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept));   
+         
       }
       else{
         cancelDrawing();
