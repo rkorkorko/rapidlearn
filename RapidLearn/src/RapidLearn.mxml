@@ -12,45 +12,39 @@
 	<mx:HBox width="100%" height="100%" paddingTop="10">
 		
 		<!-- Left column houses buttons to add concepts and problems -->
-		<mx:VBox height="100%" paddingLeft="10" width="200">
-			<mx:Button label="" 
-				width="160"
-				height="160"
-				icon="@Embed(source='assets/add_new_enabled.png')"
-				disabledIcon="@Embed(source='assets/add_new_disabled.png')"
-				enabled="true"
-				id="addNewConceptButton"
-				mouseDown="beginDrag()"
+		<mx:VBox height="100%" paddingLeft="10" paddingTop="30" width="150">
+			<mx:Image 
+				id="addNew" 
+				source="@Embed(source='assets/addnew.png')" 
+				width="100" height="50" 
 				/>
-			<mx:Button label="Add Prerequisite" 
-				width="160"
-				height="160"
-				icon="@Embed(source='assets/add_pre_enabled.png')"
-				disabledIcon="@Embed(source='assets/add_pre_disabled.png')"
-				enabled="false"
-				id="addPrereqConceptButton"/>
-			<mx:Button label="Add Next Concept" 
-				width="160"
-				height="160"
-				icon="@Embed(source='assets/add_next_enabled.png')"
-				disabledIcon="@Embed(source='assets/add_next_disabled.png')"
-				enabled="false"
-				id="addNextConceptButton"/>	
+			
+			<mx:Image 
+				id="addNext" 
+				source="@Embed(source='assets/addnext.png')" 
+				width="100" height="100" 
+				/>
+			
+			<mx:Image 
+				id="addPrereq" 
+				source="@Embed(source='assets/addprereq.png')" 
+				width="100" height="100" 
+				/>		
 			
 			<mx:Label text="Problem Controls:"
 				paddingTop="50" />
 			
 			<mx:Button label="Add New Problem" 
-				width="160"
-				enabled="true"
+				width="140"
+				enabled="false"
 				textAlign="center"
 				id="addNewProblemButton"
 				click="showAddProblemForm();"
 				/>
 				
 			<mx:Button label="Tag Existing Problems" 
-				width="160"
-				enabled="true"
+				width="140"
+				enabled="false"
 				textAlign="center"
 				id="tagExistingProblemButton"
 				click="showTagExistingProbsForm();"/>				
