@@ -12,7 +12,7 @@ package drawing
     private var toLines:ArrayCollection = new ArrayCollection();
 
     [Bindable]
-    [Embed(source="/Images/box.png")] 
+    [Embed(source="/assets/box.png")] 
     public var boxPicture:Class; 
     
     public function Box(){
