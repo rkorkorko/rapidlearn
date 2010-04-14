@@ -17,6 +17,10 @@
 		import ui.TagExistingProbsForm;
 		import mx.controls.Image;
 		import mx.core.BitmapAsset;
+		import drawing.Designer;
+		import mx.events.DragEvent;
+		import mx.managers.DragManager;
+		import mx.core.DragSource;
 
 		private var designer:Designer = new Designer(); 
 		
@@ -29,10 +33,48 @@
 			PopUpManager.centerPopUp(win);
 		}
 		
-		private function onLoad():void {
-			 
-		}
 		
+		private var xOff:Number;
+	    private var yOff:Number;  
+	    
+	    public function onLoad():void{
+	    	designer.setDesignArea(designArea);
+	       	//ViewSource.addMenuItem(this, "SourceViews/index.html");
+	    }
+	    // this methods sets x,y coordinate of new box
+	    public function pictureDragDrop(event:DragEvent):void{	    	
+	      var x:int = event.currentTarget.mouseX - xOff;
+	      var y:int = event.currentTarget.mouseY - yOff;       
+	      designer.addBox(x,y); 	  
+	    } 
+	    // this method gets x and y coordinate of template box image
+	    private function myoffset(img:Image):void {
+	      xOff = img.mouseX;
+	      yOff = img.mouseY;
+	    }
+	
+	    // this method does acceptable draging box image
+	    public function pictureDragEnter(event:DragEvent):void{
+	      DragManager.acceptDragDrop(Canvas(event.target));        
+	    }
+	    
+	    // this method supply drag box when mose move on the design area 
+	    private function dragPicture(event:MouseEvent, img1:Image,format:String):void{
+	      var dragInitiator:Image=Image(event.currentTarget);
+	      var ds:DragSource = new DragSource();
+	      ds.addData(img1,format);
+	      var imageProxy:Image = new Image();
+	      imageProxy.source = img1.source;	    
+	      imageProxy.height= 100;
+	      imageProxy.width= 100;
+	      DragManager.doDrag(dragInitiator, ds, event,imageProxy, 0, 0, 1.00);
+	    }      
+	    // this method works when click on the line button 
+	    // it is make enable to draw line
+	   	//public function doDrawEnable():void{
+	   	//  designer.setIsDrawEnable(true);
+	   	//  line.setStyle("icon",lineOnPicture); 
+	   //	}
 		
 		
 		
@@ -42,10 +84,11 @@
 	<mx:Canvas id="MainArea" width="100%" height="100%" paddingTop="10">
 
 		<mx:Image 
-			id="addNew" 
+			id="box" 
 			source="@Embed(source='assets/addnew.png')" 
 			width="100" height="50" 
 			x="10" y="20"
+			mouseMove="dragPicture(event, box, 'img');myoffset(box);"
 			/>
 		
 		<mx:Image 
@@ -82,8 +125,8 @@
 			id="tagExistingProblemButton"
 			click="showTagExistingProbsForm();"/>				
 
-		<!--<mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="55" width="100%" height="100%" backgroundColor="#FFFFFF">      
-	    </mx:Canvas>-->
+		<mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="55" width="100%" height="100%" backgroundColor="#FFFFFF" x="200">      
+	    </mx:Canvas>
 		
 	
 	</mx:Canvas>
