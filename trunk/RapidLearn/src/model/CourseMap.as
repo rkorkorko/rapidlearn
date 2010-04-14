@@ -9,14 +9,18 @@ package model
 		private var selectedConcept: Concept;
 		private var previousSelectedConcept: Concept;
 		
+		private var concepts:ArrayCollection<Concept>;
+		private var relations:ArrayCollection<ConceptRelation>;
+		
 		
 		public function CourseMap()
 		{
 			selectedConcept = null;
 			previousSelectedConcept = null;
+			concepts = new ArrayCollection<Concept>();
+			relations = new ArrayCollection<ConceptRelation>();
 		}
 
-		
 
 		/**
 		 * Returns the concept that is currently selected, or null if no concept is
@@ -35,19 +39,14 @@ package model
 		}
 		
 		
-		
-		
-		
 		/**
 		 * Adds the passed concept object to the list of prerequisites for the selected concept.  
 		 * It first checks if the concept is already in the list.  If not, then it is added to 
 		 * the list.
 		 */
-		public function addConceptAsPrerequisite(c:Concept) {
+		public function addConceptAsPrerequisite() {
 			if(this.selectedConcept != null) {
-				this.selectedConcept.getPrereqs().addItem(c);
-				this.selectedConcept = c;
-				dispatchEvent(new Event("prerequisiteAdded"));
+				// DO THIS LATER
 			}
 			
 		}
@@ -57,15 +56,7 @@ package model
 		 * It first checks if the concept is already in the list.  If not, then it is added to 
 		 * the list.
 		 */
-		public function addConceptAsNext(c:Concept) {
-			if(this.selectedConcept != null) {
-				// Need to adjust levels and such here...
-				this.selectedConcept.getPrereqs().addItem(c);
-				
-				
-				this.selectedConcept = c;
-				dispatchEvent(new Event("nextConceptAdded"));
-			}
+		public function addConceptAsNext() {
 			
 		}
 
