@@ -50,10 +50,10 @@ package model
 		
 		/**add concept**/
 		
-		public function addConcept(event:MouseEvent):void{
-			var c: Concept = new Concept(event.localX, event.localY);
+		public function addConcept(x:int, y:int):void{
+			var c: Concept = new Concept(x, y);
 			this.concepts.addItem(c);	
-		}
+		} 
 		
 		/**
 		 * Adds the passed concept object to the list of prerequisites for the selected concept.  

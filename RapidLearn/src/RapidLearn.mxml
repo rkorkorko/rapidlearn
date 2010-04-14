@@ -46,6 +46,7 @@
 	      var x:int = event.currentTarget.mouseX - xOff;
 	      var y:int = event.currentTarget.mouseY - yOff;       
 	      designer.addBox(x,y); 	  
+	      
 	    } 
 	    // this method gets x and y coordinate of template box image
 	    private function myoffset(img:Image):void {

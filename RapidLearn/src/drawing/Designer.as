@@ -7,6 +7,7 @@ package drawing
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
   import mx.controls.Button;
+  import mx.events.DragEvent;
   
   public class Designer
   {
@@ -108,7 +109,9 @@ package drawing
       boxes.addItem(newBox);     
       designArea.addChild(newBox);
       // update model HERE
+      courseMap.addConcept(x,y);
       // make a new concept and add it to the course map
+      
     } 
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
