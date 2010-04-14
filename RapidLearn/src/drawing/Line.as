@@ -1,4 +1,4 @@
-package DrawingClasses
+package drawing
 {
   import flash.events.MouseEvent;
   import mx.core.UIComponent;
