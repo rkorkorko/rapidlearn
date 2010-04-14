@@ -2,12 +2,15 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
-      import mx.states.SetStyle;
+    import mx.states.SetStyle;
     import DrawingClasses.Designer;
     import mx.core.DragSource;
     import mx.managers.DragManager;
     import mx.events.DragEvent;
     import com.adobe.viewsource.ViewSource;
+    import ui.ProblemInputForm;
+	import mx.managers.PopUpManager;
+	import ui.TagExistingProbsForm;
     
     [Bindable]
     [Embed(source="/assets/arrow_green.png")] 
@@ -19,6 +22,16 @@
     private var xOff:Number;
     private var yOff:Number;	  
     private var designer:Designer = new Designer();   
+    
+    private function showAddProblemForm():void{
+		var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
+		PopUpManager.centerPopUp(win);
+	}
+	private function showTagExistingProbsForm():void{
+		var win:TagExistingProbsForm=PopUpManager.createPopUp(this,TagExistingProbsForm,true) as TagExistingProbsForm;
+		PopUpManager.centerPopUp(win);
+	}
+		
     
     public function initApp():void{
       designer.setDesignArea(designArea);
@@ -70,7 +83,7 @@
     <mx:Label x="10" y="75" text="the gray area to draw a box" height="20"/>
     <mx:Label x="225" y="75" text="draw a line between two boxes."/>
     <mx:Button x="503" y="9" label="Reset" height="50" click="designer.reset()"/>
-    <mx:Button x="603" y="9" label="Add Problem" height="50" id="addProblemButton"/>
-    <mx:Button x="733" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton"/>
+    <mx:Button x="603" y="9" label="Add Problem" height="50" id="addProblemButton" click="showAddProblemForm();"/>
+    <mx:Button x="733" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton" click="showTagExistingProbsForm();"/>
   </mx:Canvas>
 </mx:Application>
