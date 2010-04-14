@@ -8,6 +8,37 @@
 	creationPolicy="all"
 	creationComplete="onLoad()">
 	
+	<mx:Script>
+		<![CDATA[
+		import mx.states.AddChild;
+		import ui.ProblemInputForm;
+		import mx.managers.PopUpManager;
+		import drawing.Designer;
+
+		import ui.TagExistingProbsForm;
+
+		import mx.controls.Image;
+		import mx.core.BitmapAsset;
+
+		private var designer:Designer = new Designer(); 
+		
+		private function showAddProblemForm():void{
+			var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
+			PopUpManager.centerPopUp(win);
+		}
+		private function showTagExistingProbsForm():void{
+			var win:TagExistingProbsForm=PopUpManager.createPopUp(this,TagExistingProbsForm,true) as TagExistingProbsForm;
+			PopUpManager.centerPopUp(win);
+		}
+		
+		private function onLoad():void {
+			 
+		}
+		
+		
+		
+		]]>
+	</mx:Script>
 	
 	<mx:Canvas id="MainArea" width="100%" height="100%" paddingTop="10">
 
@@ -56,36 +87,6 @@
 	
 	</mx:Canvas>
 	
-	<mx:Script>
-		<![CDATA[
-		import mx.states.AddChild;
-		import ui.ProblemInputForm;
-		import mx.managers.PopUpManager;
-		import drawing.Designer;
-
-		import ui.TagExistingProbsForm;
-
-		import mx.controls.Image;
-		import mx.core.BitmapAsset;
-
-		private var designer:Designer = new Designer(); 
-		
-		private function showAddProblemForm():void{
-			var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
-			PopUpManager.centerPopUp(win);
-		}
-		private function showTagExistingProbsForm():void{
-			var win:TagExistingProbsForm=PopUpManager.createPopUp(this,TagExistingProbsForm,true) as TagExistingProbsForm;
-			PopUpManager.centerPopUp(win);
-		}
-		
-		private function onLoad():void {
-			 
-		}
-		
-		
-		
-		]]>
-		</mx:Script>
+	
 	
 </mx:Application>
