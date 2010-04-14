@@ -15,4 +15,11 @@
 		<nature>com.adobe.flexbuilder.project.flexnature</nature>
 		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/assets/Square.png</name>
+			<type>1</type>
+			<location>C:/Users/Akansha/Pictures/Square.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>
