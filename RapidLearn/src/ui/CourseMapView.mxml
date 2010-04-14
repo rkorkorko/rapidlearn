@@ -4,10 +4,18 @@
 	creationComplete="onLoad()">
 	<mx:Script>
 		<![CDATA[
+			import mx.controls.List;
+			import mx.collections.ArrayCollection;
+			import model.Concept;
+			import mx.controls.Image;
 			import model.CourseMap;
+			import mx.core.BitmapAsset;
 			
 			// Store the model of the course map
 			[Bindable] public var map:CourseMap;
+			
+			[Embed(source="assets/Square.png")]
+			public var Square: Class;
 			
 			/**
 			 * Define static variables like pixel spacing and colors here
@@ -16,15 +24,29 @@
 			/**
 		     * Called the first time this component loads.
 		     */
+		     
 		    protected function onLoad():void {
-		    	/*var g:Graphics = this.graphics;
-				g.beginFill(0xFF0000);				
-				g.drawCircle(100,100,40);*/
-					var g:Graphics = this.graphics; 
-					g.lineStyle(2, 0x990000, .75);
-					g.beginFill(0xFF0000);
-					g.moveTo(100, 100);
-					g.lineTo(200, 200);
+		    	
+		    	var child:Image = new Image();
+				child.source = new Square() as BitmapAsset;
+				child.x = fromX = 100;
+				child.y = fromY = 350;
+				child.width = 120;
+				child.height = 110;
+				this.addChild(child); 
+				
+				var child2:Image = new Image();
+				child2.source = new Square() as BitmapAsset;
+				child.width = 120;
+				child.height = 110;
+				child2.x = fromX = 100;
+				child2.y = fromY = 650;
+				this.addChild(child2); 
+				
+				trace(child.x, child.y, child2.x, child2.y);
+				var fromConcept:Concept = new Concept(child.x, child.y);
+				var toConcept:Concept = new Concept (child2.x, child2.y);
+				drawArrow(fromConcept, toConcept);		    			    	
 		    }   
 		    
 		    //storing from locations of concept being dragged. 
@@ -36,6 +58,78 @@
 				fromY = this.mouseX;		    	
 		    }
 			
+			protected function drawArrow(fromConcept: Concept, toConcept:Concept):void{
+				
+				var yOffset:ArrayCollection = new ArrayCollection();
+				//yOffset.addItem(0);
+				yOffset.addItem(35);
+				yOffset.addItem(50);				
+				
+				var fromX:int = fromConcept.getX()+60;
+				var fromY:int = fromConcept.getY();
+				var toX:int = toConcept.getX()+60;
+				var toY:int = toConcept.getY();
+				
+				var finalfromX:int = fromX;
+				var finalfromY:int = fromConcept.getY();
+				var finaltoX:int = toX;
+				var finaltoY:int = toConcept.getY();
+
+				var distance:Number = Math.sqrt(Math.pow((fromX-toX),2)+Math.pow((fromY-toY),2));
+				
+				//for every y						
+				for (var i:int=0; i<2; i++){
+					fromY = fromConcept.getY() + yOffset.getItemAt(i);				
+					for (var l:int=0; l<2; l++){
+						toY = toConcept.getY()+ yOffset.getItemAt(l);
+				
+						//calculte distance between new points and compare
+						var newDistance:Number = Math.sqrt(Math.pow((fromX-toX),2)+Math.pow((fromY-toY),2));
+						trace("newDistance", newDistance, fromX, fromY, toX, toY);								
+						if (newDistance < distance){
+							finalfromX = fromX;
+							finalfromY = fromY;
+							finaltoX = toX;
+							finaltoY = toY;
+							distance = newDistance;
+						}														
+					}		
+				}
+				trace(distance);
+				trace(finalfromX, finalfromY, finaltoX, finaltoY);
+				var g:Graphics = this.graphics; 
+				g.lineStyle(2, 0x990000, .75);
+				g.beginFill(0xFF0000);
+				g.moveTo(finalfromX, finalfromY);
+				g.lineTo(finaltoX, finaltoY);	
+				
+		 	/*// Calculating arrow edges.
+            var arrowSlope : Number = (finalfromY-finaltoY)/(finalfromX-finaltoX);
+            var arrowHeadLength : Number = 10;
+            var vector : Point = new Point(-(finaltoX - finalfromX), -(finaltoY - finalfromY));
+
+            // First edge of the head...
+            var edgeOneMatrix : Matrix = new Matrix();
+            edgeOneMatrix.rotate(arrowSlope * Math.PI / 180);
+            var edgeOneVector : Point = edgeOneMatrix.transformPoint(vector);
+            edgeOneVector.normalize(arrowHeadLength);
+            var edgeOne : Point = new Point();
+            edgeOne.x = finaltoX + edgeOneVector.x;
+            edgeOne.y = finaltoY + edgeOneVector.y;
+
+            // And second edge of the head.
+            var edgeTwoMatrix : Matrix = new Matrix();
+            edgeTwoMatrix.rotate((0 - arrowSlope) * Math.PI / 180);
+            var edgeTwoVector : Point = edgeTwoMatrix.transformPoint(vector);
+            edgeTwoVector.normalize(arrowHeadLength);
+            var edgeTwo : Point = new Point();
+            edgeTwo.x = finaltoX + edgeTwoVector.x;
+            edgeTwo.y = finaltoY + edgeTwoVector.y;			
+			
+			g.lineTo(edgeOne.x, edgeOne.y);
+            g.moveTo(finaltoX, finaltoY);
+            g.lineTo(edgeTwo.x, edgeTwo.y);*/
+		}
 		]]>
 	</mx:Script>
 </mx:Canvas>
