@@ -25,7 +25,7 @@ package DrawingClasses
     private var courseMap:CourseMap;
     
     [Bindable]
-    [Embed(source="/assets/box.png")] 
+    [Embed(source="/assets/arrow_black.png")] 
     public var lineOffPicture:Class; 
 	
     // designer is a manager class. 
