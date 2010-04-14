@@ -1,17 +1,18 @@
 package drawing
 {
+  import flash.events.MouseEvent;
+  
+  import model.CourseMap;
+  
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
-  import flash.events.MouseEvent;
-  import mx.core.UIComponent;
-  import mx.rpc.events.AbstractEvent;
-  import mx.controls.Alert;
   import mx.controls.Button;
   
   public class Designer
   {
     private var boxes:ArrayCollection = new ArrayCollection();
     private var lines:ArrayCollection = new ArrayCollection();
+    private var courseMap:CourseMap = new CourseMap();
     private var designArea:Canvas;
     private var lineButton:Button;
     private var isDrawEnable:Boolean = false;
@@ -106,7 +107,8 @@ package drawing
       newBox.create(x,y,id);
       boxes.addItem(newBox);     
       designArea.addChild(newBox);
-      
+      // update model HERE
+      // make a new concept and add it to the course map
     } 
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
