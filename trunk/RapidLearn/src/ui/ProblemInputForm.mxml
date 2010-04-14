@@ -69,22 +69,6 @@
 			 		}
 			}
 			
-/* 			private function btn_click(evt:MouseEvent):void {
-				var arr:Array = [];
-                arr.push(new FileFilter("Images", ".gif;*.jpeg;*.jpg;*.png"));
-                
-				fileRef.browse(arr);
-				fileRef.addEventListener(Event.SELECT, selectHandler);
-				fileRef.addEventListener(Event.CANCEL, cancelHandler);
-            }
-			public function selectHandler(event:Event){
-				img.source=fileRef.data;
-			}
-			public function cancelHandler(event:Event){
-				
-			} */
-
-
 
 		]]>
 	</mx:Script>
@@ -99,30 +83,7 @@
 		<mx:FormItem label="Problem Name">
             <mx:TextInput id="pname" width="100%"/>
         </mx:FormItem>
-        
-		<!--need to figure out how to upload figures -->
-<!--		<mx:FormItem height="216"><mx:Panel id="panel"
-            layout="absolute"
-            horizontalCenter="0"
-            verticalCenter="0"
-            width="240"
-            height="200">
-
-		<mx:Image id="img"
-                verticalCenter="0"
-                horizontalCenter="0"
-                maxWidth="200"
-                maxHeight="200" />
-        <mx:ControlBar>
-            <mx:Button id="btn"
-                    label="Browse and preview..."
-                    click="btn_click(event);" />
-            
-        </mx:ControlBar>
-		
-		</mx:Panel>
-		</mx:FormItem>-->
-	
+        	
 		<!-- problem description -->
 		<mx:FormItem label="Problem Text">
             <mx:TextArea id="ptext" width="100%" height="92"/>
@@ -131,8 +92,7 @@
         <!-- dropdown for number of choices -->
         <mx:FormItem label="Number of Choices">
         	<mx:ComboBox id="numChoices" width ="55" change="changeEvt(event)" height="23">
-              <mx:ArrayCollection>
-              	 
+              <mx:ArrayCollection>    	 
                  <mx:String>2</mx:String>
                  <mx:String>3</mx:String>
                  <mx:String>4</mx:String>
