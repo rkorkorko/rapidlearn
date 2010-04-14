@@ -1,72 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--background gradient on a canvas can be done but not natively-->
-<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="400" height="662"  backgroundColor="#C9DEEF"> 
+
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+	showCloseButton="true" 
+	backgroundColor="#C9DEEF"
+	close="titleWindow_close(event);"
+	 width="442"> 
 
 	<!-- Need to script:  -->
-	<!--	1. number of choices to display after dropdown  - I THINK this works -->
+	<!--	1. number of choices to display after dropdown  - I THINK this works,just need to validate data now -->
 	<!--	2. population of the concepts dropdown - probably just hardcode -->
-	<!--	3. problem upload - need to use FileReference-->
+	<!--	3. problem upload - i think this works too-->
 	<mx:Script>
 		<![CDATA[
 			import flash.events.Event;
 			import mx.controls.Alert;
             import mx.utils.ObjectUtil;
 			import flash.net.FileReference;
-			var fileRef:FileReference = new FileReference();
+			import mx.events.CloseEvent;
+            import mx.managers.PopUpManager;
+            var fileRef:FileReference;
+            
+
+            private function titleWindow_close(evt:CloseEvent):void {
+                PopUpManager.removePopUp(this);
+            }
+
 		
 
 
 			private function changeEvt(event:Event):void {
-			 	var numChoices:int = event.currentTarget;
-			 	switch (numChoices){
-			 		case 2:
-			 			ch3.setVisible(False);
-			 			ch4.setVisible(False);
-			 			ch5.setVisible(False);
-			 			choice3.setVisible(False);
-			 			choice4.setVisible(False);
-			 			choice5.setVisible(False);
-			 			break;
-			 		case 3:
-			 			ch3.setVisible(True);
-			 			ch4.setVisible(False);
-			 			ch5.setVisible(False);
-			 			choice3.setVisible(True);
-			 			choice4.setVisible(False);
-			 			choice5.setVisible(False);
-			 			break;
-			 		case 4:
-			 			ch3.setVisible(True);
-			 			ch4.setVisible(True);
-			 			ch5.setVisible(False);
-			 			choice3.setVisible(True);
-			 			choice4.setVisible(True);
-			 			choice5.setVisible(False);
-			 			break;
-			 		case 5:
-			 			ch3.setVisible(True);
-			 			ch4.setVisible(True);
-			 			ch5.setVisible(True);
-			 			choice3.setVisible(True);
-			 			choice4.setVisible(True);
-			 			choice5.setVisible(True);
-			 			break;
-			}}
+				
+			 	var numChoices:String = String(event.currentTarget.selectedItem.valueOf());
+			 	trace(numChoices);
+			 	
+			 		if(numChoices==String(2)){
+			 			ch3.setVisible(false);
+			 			ch4.setVisible(false);
+			 			ch5.setVisible(false);
+			 			choice3.setVisible(false);
+			 			choice4.setVisible(false);
+			 			choice5.setVisible(false);
+			 			return;
+			 		}
+			 		else if(numChoices==String(3)){
+			 			ch3.setVisible(true);
+			 			ch4.setVisible(false);
+			 			ch5.setVisible(false);
+			 			choice3.setVisible(true);
+			 			choice4.setVisible(false);
+			 			choice5.setVisible(false);
+			 			return;
+			 		}
+ 			 		else if(numChoices==String(4)){
+			 			ch3.setVisible(true);
+			 			ch4.setVisible(true);
+			 			ch5.setVisible(false);
+			 			choice3.setVisible(true);
+			 			choice4.setVisible(true);
+			 			choice5.setVisible(false);
+			 			return;
+			 			}
+			 		else if(numChoices==String(5)){
+			 			ch3.setVisible(true);
+			 			ch4.setVisible(true);
+			 			ch5.setVisible(true);
+			 			choice3.setVisible(true);
+			 			choice4.setVisible(true);
+			 			choice5.setVisible(true);
+			 			return; 
+			 		}
+			}
 			
-			private function btn_click(evt:MouseEvent):void {
-                fileRef.addEventListener(Event.SELECT, selectHandler);
-				fileRef.addEventListener(Event.COMPLETE, completeHandler);
-				fileRef.browse();
-
+/* 			private function btn_click(evt:MouseEvent):void {
+				var arr:Array = [];
+                arr.push(new FileFilter("Images", ".gif;*.jpeg;*.jpg;*.png"));
+                
+				fileRef.browse(arr);
+				fileRef.addEventListener(Event.SELECT, selectHandler);
+				fileRef.addEventListener(Event.CANCEL, cancelHandler);
             }
+			public function selectHandler(event:Event){
+				img.source=fileRef.data;
+			}
+			public function cancelHandler(event:Event){
+				
+			} */
 
-            function selectHandler(event:Event):void{
-            	fileRef.load();
-   				img.source=fileRef.data;
-			}
-			function completeHandler(event:Event):void{
-    			trace("preview shown");
-			}
 
 
 		]]>
@@ -74,7 +93,7 @@
 	
 	
 	
-	<mx:Form x="10" y="10" width="380" height="642">
+	<mx:Form x="10" y="10" width="418" height="413">
 		<mx:FormHeading label="Add New Problem"/>
 		
 		
@@ -84,7 +103,7 @@
         </mx:FormItem>
         
 		<!--need to figure out how to upload figures -->
-		<mx:FormItem height="216"><mx:Panel id="panel"
+<!--		<mx:FormItem height="216"><mx:Panel id="panel"
             layout="absolute"
             horizontalCenter="0"
             verticalCenter="0"
@@ -104,7 +123,7 @@
         </mx:ControlBar>
 		
 		</mx:Panel>
-		</mx:FormItem>
+		</mx:FormItem>-->
 	
 		<!-- problem description -->
 		<mx:FormItem label="Problem Text">
@@ -113,7 +132,7 @@
         
         <!-- dropdown for number of choices -->
         <mx:FormItem label="Number of Choices">
-        	<mx:ComboBox id="numChoices" width ="55" change="changeEvt(event)">
+        	<mx:ComboBox id="numChoices" width ="55" change="changeEvt(event)" height="23">
               <mx:ArrayCollection>
               	 
                  <mx:String>2</mx:String>
@@ -125,12 +144,12 @@
 		</mx:FormItem>
 		
 		<!-- display the answer choices -->
-		<mx:FormItem>
+		<mx:FormItem width="100%">
 		<mx:HBox>
 			<mx:RadioButton groupName="choices" 
 	        	id="ch1"
 	        	label="" 
-	        	width="10" 
+	        	width="20" 
 	        	click=""/>
 	        	<mx:TextInput id="choice1" width="100%" />
 	        	</mx:HBox>
@@ -138,7 +157,7 @@
 			<mx:RadioButton groupName="choices" 
 	        	id="ch2"
 	        	label="" 
-	        	width="10" 
+	        	width="20" 
 	        	click=""/>
 	        	<mx:TextInput id="choice2" width="100%" />
 	        	</mx:HBox>
@@ -146,7 +165,7 @@
 			<mx:RadioButton groupName="choices" 
 	        	id="ch3"
 	        	label="" 
-	        	width="10" 
+	        	width="20" 
 	        	visible="false"
 	        	click=""/>
 	        	<mx:TextInput id="choice3" width="100%" visible="false"/>
@@ -155,7 +174,7 @@
 			<mx:RadioButton groupName="choices" 
 	        	id="ch4"
 	        	label="" 
-	        	width="10" 
+	        	width="20" 
 	        	visible="false"
 	        	click=""/>
 	        	<mx:TextInput id="choice4" width="100%" visible="false"/>
@@ -164,7 +183,7 @@
 			<mx:RadioButton groupName="choices" 
 	        	id="ch5"
 	        	label="" 
-	        	width="10" 
+	        	width="20" 
 	        	visible="false"
 	        	click=""/>
 	        	<mx:TextInput id="choice5" width="100%" visible="false"/>
@@ -185,10 +204,10 @@
 		<!-- submit button -->
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
-            <mx:Button label="Submit Form" click="submitForm();"/>
+            <mx:Button label="Submit Form" click=""/>
         </mx:FormItem>
 
 
 	</mx:Form>
-	
-</mx:Canvas>
+	</mx:TitleWindow>
+
