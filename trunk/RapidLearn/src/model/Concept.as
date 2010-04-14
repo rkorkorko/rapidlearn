@@ -5,28 +5,16 @@ package model
 	public class Concept
 	{		
 		private var name: String;
-		private var x:Number;
-		private var y:Number;
 				
 		//initialize all variables
-		public function Concept(x:Number, y:Number)
+		public function Concept()
 		{
-			this.x = x;
-			this.y = y;
-			this.name = "Add Name"; 
+			this.name="test"; 
 		}
 		
 		public function setName(name:String):void {
 			this.name = name;
 		}
-		
-		public function getX():Number{
-			return x;
-		}
-		
-		public function getY():Number{
-			return y;
-		}
-		 
+				 
 	}
 }

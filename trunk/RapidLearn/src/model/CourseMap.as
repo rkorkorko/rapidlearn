@@ -29,25 +29,14 @@ package model
 
 		/**add concept**/ 
 		public function addConcept(c:Concept):void{			
-			this.concepts.addItem(c);
-			
-			var l:ArrayCollection = new ArrayCollection();
-			l.addItem(c.getX());
-			l.addItem(c.getY());
-			xyToConcept[l] = c;	
+			this.concepts.addItem(c);		
 		}
 				 
 		/**add relation**/
 		public function addRelation(r:ConceptRelation):void{
 			this.relations.addItem(r);			
 		}	
-			 
-		public function getConcept(x:Number, y:Number):Concept{
-			var l:ArrayCollection = new ArrayCollection();
-			l.addItem(x);
-			l.addItem(y);
-			return xyToConcept[l];		
-		}
+	
 				
 	}
 }

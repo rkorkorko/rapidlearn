@@ -2,6 +2,8 @@ package DrawingClasses
 {
   import flash.events.MouseEvent;
   
+  import model.Concept;
+  
   import mx.collections.ArrayCollection;
   import mx.controls.Image;
   import mx.controls.Text;
@@ -19,6 +21,9 @@ package DrawingClasses
 	private var endX;
 	private var endY;
 	public var text:Text;
+	
+	private var concept:Concept;
+	
 	private var isMouseDown:Boolean=false;
     [Bindable]
     [Embed(source="/assets/box.png")] 
@@ -33,10 +38,20 @@ package DrawingClasses
       this.isSelected = false;
       this.priorSelected=false;
       this.dragged=false;
+      this.concept = new Concept();
       text = new Text();
       text.text = "foo";
       this.designer=d;
     }
+    
+    public function getConcept():Concept{
+    	return this.concept;
+    }
+    
+    public function setConceptName(name:String):void{
+    	this.concept.setName(name);
+    }
+    
     public function addFromLine(fromLine:Line):void{
       this.fromLines.addItem(fromLine);
     }
