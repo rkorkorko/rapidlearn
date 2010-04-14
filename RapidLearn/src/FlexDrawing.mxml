@@ -13,7 +13,7 @@
     [Embed(source="/assets/arrow_green.png")] 
     public var lineOnPicture:Class; 
     [Bindable]
-    [Embed(source="/assets/addnew.png")] 
+    [Embed(source="/assets/add.png")] 
     public var boxPicture:Class; 
     
     private var xOff:Number;
@@ -61,7 +61,7 @@
     ]]>
   </mx:Script>
   <mx:Canvas id="MainArea" width="100%" height="100%">
-      <mx:Image id="box" source="@Embed(source='assets/box.png')" mouseMove="dragPicture(event, box, 'img');myoffset(box);" x="10" y="10"></mx:Image>
+      <mx:Image id="box" source="@Embed(source='assets/add.png')" mouseMove="dragPicture(event, box, 'img');myoffset(box);" x="10" y="10"></mx:Image>
       <mx:Label text="Drag and drop this picture on " x="10" y="60"></mx:Label>
       <mx:Label text="Click the button above to" x="225" y="60"></mx:Label>
     <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="100" width="100%" height="100%" backgroundColor="#c0c0c0">      
