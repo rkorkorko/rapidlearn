@@ -11,6 +11,7 @@
 		<![CDATA[
 		import ui.ProblemInputForm;
 		import mx.managers.PopUpManager;
+		import ui.CourseMapView;
 		
 		function showAddProblemForm():void{
 			var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
@@ -74,7 +75,10 @@
 				id="notificationBar"
 			/>	
 			
-			<!-- DRAW TREE HERE -->
+			<ui:CourseMapView
+				name="coursemap"
+				id="courseMap"
+				/>
 			
 		</mx:VBox>
 		

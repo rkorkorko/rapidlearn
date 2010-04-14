@@ -9,16 +9,16 @@ package model
 		private var selectedConcept: Concept;
 		private var previousSelectedConcept: Concept;
 		
-		private var concepts:ArrayCollection<Concept>;
-		private var relations:ArrayCollection<ConceptRelation>;
+		private var concepts:ArrayCollection;
+		private var relations:ArrayCollection;
 		
 		
 		public function CourseMap()
 		{
 			selectedConcept = null;
 			previousSelectedConcept = null;
-			concepts = new ArrayCollection<Concept>();
-			relations = new ArrayCollection<ConceptRelation>();
+			concepts = new ArrayCollection();
+			relations = new ArrayCollection();
 		}
 
 
@@ -26,7 +26,7 @@ package model
 		 * Returns the concept that is currently selected, or null if no concept is
 		 * selected.
 		 */
-		public function getSelectedConcept:Concept {
+		public function getSelectedConcept():Concept {
 			return this.selectedConcept;
 		}
 		
@@ -34,7 +34,7 @@ package model
 		 * Returns the concept that was previously selected, or null if no concept is
 		 * selected.
 		 */
-		public function getPreviousSelectedConcept:Concept {
+		public function getPreviousSelectedConcept():Concept {
 			return this.previousSelectedConcept;
 		}
 		
@@ -44,7 +44,7 @@ package model
 		 * It first checks if the concept is already in the list.  If not, then it is added to 
 		 * the list.
 		 */
-		public function addConceptAsPrerequisite() {
+		public function addConceptAsPrerequisite():void {
 			if(this.selectedConcept != null) {
 				// DO THIS LATER
 			}
@@ -56,7 +56,7 @@ package model
 		 * It first checks if the concept is already in the list.  If not, then it is added to 
 		 * the list.
 		 */
-		public function addConceptAsNext() {
+		public function addConceptAsNext():void {
 			
 		}
 
