@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Canvas xmlns:mx="http://www.adobe.com/2006/mxml" width="800" height="600">
+	<mx:Script>
+		<![CDATA[
+			import model.CourseMap;
+			
+			// Store the model of the course map
+			[Bindable] public var map:CourseMap;
+			
+			/**
+			 * Define static variables like pixel spacing and colors here
+			 * */
+			 
+			/**
+		     * Called the first time this component loads.
+		     */
+		    protected function onLoad():void {
+		    	
+		    }
+			
+		]]>
+	</mx:Script>
+</mx:Canvas>
