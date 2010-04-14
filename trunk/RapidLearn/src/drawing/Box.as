@@ -1,4 +1,4 @@
-package DrawingClasses
+package drawing
 {
   import flash.display.DisplayObject;
   import flash.events.MouseEvent;

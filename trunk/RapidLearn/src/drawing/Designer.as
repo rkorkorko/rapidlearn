@@ -1,4 +1,4 @@
-package DrawingClasses
+package drawing
 {
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
@@ -21,7 +21,7 @@ package DrawingClasses
     private var currentToBox:Box;
     
     [Bindable]
-    [Embed(source="/Images/lineOff.png")] 
+    [Embed(source="assets/box.png")] 
     public var lineOffPicture:Class; 
 
     // designer is a manager class. 
@@ -106,6 +106,7 @@ package DrawingClasses
       newBox.create(x,y,id);
       boxes.addItem(newBox);     
       designArea.addChild(newBox);
+      
     } 
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
