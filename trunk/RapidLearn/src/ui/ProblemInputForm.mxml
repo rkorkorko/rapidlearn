@@ -15,10 +15,8 @@
 			import flash.events.Event;
 			import mx.controls.Alert;
             import mx.utils.ObjectUtil;
-			import flash.net.FileReference;
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
-            var fileRef:FileReference;
             
 
             private function titleWindow_close(evt:CloseEvent):void {
@@ -204,7 +202,7 @@
 		<!-- submit button -->
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
-            <mx:Button label="Submit Form" />
+            <mx:Button label="OK" />
         </mx:FormItem>
 
 
