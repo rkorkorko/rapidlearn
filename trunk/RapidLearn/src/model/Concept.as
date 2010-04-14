@@ -15,11 +15,11 @@ package model
 		}
 		
 		//get prereqs
-		private function getPrereqs():ArrayCollection{
+		public function getPrereqs():ArrayCollection{
 			return prereqs;
 		}
 		//getconcepts
-		private function getNextConcepts():ArrayCollection{
+		public function getNextConcepts():ArrayCollection{
 			return nextConcepts; 
 		}
 		//add prereq
