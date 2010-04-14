@@ -31,9 +31,9 @@ package model
 		public function addConcept(c:Concept):void{			
 			this.concepts.addItem(c);
 			
-			var l:Array = new Array();
-			l.addChild(c.getX());
-			l.addChild(c.getY());
+			var l:ArrayCollection = new ArrayCollection();
+			l.addItem(c.getX());
+			l.addItem(c.getY());
 			xyToConcept[l] = c;	
 		}
 				 
@@ -43,9 +43,9 @@ package model
 		}	
 			 
 		public function getConcept(x:Number, y:Number):Concept{
-			var l:Array = new Array();
-			l.addChild(x);
-			l.addChild(y);
+			var l:ArrayCollection = new ArrayCollection();
+			l.addItem(x);
+			l.addItem(y);
 			return xyToConcept[l];		
 		}
 				
