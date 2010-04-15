@@ -9,6 +9,7 @@ package model
 	{		
 		private var concepts:ArrayCollection;
 		private var relations:ArrayCollection;
+		private var problems:ArrayCollection;
 		
 		private var xyToConcept:Dictionary;
 		
@@ -16,6 +17,7 @@ package model
 		{
 			concepts = new ArrayCollection();
 			relations = new ArrayCollection();
+			problems = new ArrayCollection();
 			xyToConcept = new Dictionary();
 		}
 		
@@ -25,6 +27,10 @@ package model
 		
 		public function getRelations():ArrayCollection {
 			return this.relations;
+		}
+		
+		public function getProblems():ArrayCollection {
+			return this.problems;
 		}
 
 		/**add concept**/ 
@@ -36,6 +42,11 @@ package model
 		public function addRelation(r:ConceptRelation):void{
 			this.relations.addItem(r);			
 		}	
+		
+		/**add problem**/
+		public function addProblem(p:Problem):void{
+			this.problems.addItem(p);
+		}
 	
 				
 	}
