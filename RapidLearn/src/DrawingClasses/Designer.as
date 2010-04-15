@@ -192,16 +192,7 @@ package DrawingClasses
         cancelDrawing(); 
       }
     }  
-    
-    public function findBox(name:Text):Box{  
-    	
-    	for (var i:int=0; i<this.boxes.length; i++){
-    		if (this.boxes.getItemAt(i).text == name)
-    			return Box(this.boxes.getItemAt(i)) 		
-    	}    	
-    	return null;    
-    }      
-     
+ 
     // this methods cancel drawing
     public function cancelDrawing():void{
       templateLine.visible = false;
