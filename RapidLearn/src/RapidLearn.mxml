@@ -25,7 +25,7 @@
     
     private var xOff:Number;
     private var yOff:Number;	  
-    private var designer:Designer = new Designer(FlexDrawing(this));   
+    private var designer:Designer = new Designer(RapidLearn(this));   
    
     private function showAddProblemForm():void{
 		var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
