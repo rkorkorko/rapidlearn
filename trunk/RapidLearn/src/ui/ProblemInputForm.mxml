@@ -12,18 +12,18 @@
 	<!--	3. problem upload - i think this works too-->
 	<mx:Script>
 		<![CDATA[
+			import model.Problem;
 			import flash.events.Event;
 			import mx.controls.Alert;
             import mx.utils.ObjectUtil;
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
+            import model.NewProblemEvent;
             
 
             private function titleWindow_close(evt:CloseEvent):void {
                 PopUpManager.removePopUp(this);
             }
-
-		
 
 
 			private function changeEvt(event:Event):void {
@@ -67,6 +67,56 @@
 			 			choice5.setVisible(true);
 			 			return; 
 			 		}
+			}
+			
+			public function getCorrectChoice():int {
+				if(this.ch1.selected) {
+					return 1;
+				}
+				else if(this.ch2.selected) {
+					return 2;
+				}
+				else if(this.ch3.selected) {
+					return 3;
+				}
+				else if(this.ch4.selected) {
+					return 4;
+				}
+				else {
+					return 5;
+				}
+					
+			}
+			
+			public function saveProblem():void {
+				var p:Problem = new Problem(this.pname.text,
+											this.ptext.text,
+											this.choice1.text,
+											this.choice2.text,
+											this.choice3.text,
+											this.choice4.text,
+											this.choice5.text,
+											int(String(this.numChoices.selectedItem)),
+											getCorrectChoice());
+				
+				dispatchEvent(new NewProblemEvent("newProblem",p));
+				
+				PopUpManager.removePopUp(this);
+				/**
+				 * Debug Statements for Problem storage
+				 * /
+				trace("Generating problem...");
+				trace(""+this.numChoices.selectedItem);
+				trace("Name: "+p.getName());
+				trace("Text: "+p.getText());
+				trace("Choice 1:"+p.getChoice1());
+				trace("Choice 2:"+p.getChoice2());
+				trace("Choice 3:"+p.getChoice3());
+				trace("Choice 4:"+p.getChoice4());
+				trace("Choice 5:"+p.getChoice5());
+				trace("Num Choices: "+p.getNumChoices());
+				trace("Correct Choice: "+p.getCorrectChoice());	
+				 **/						
 			}
 			
 
@@ -149,20 +199,10 @@
 		</mx:FormItem>
 		
 		
-		
-		<!-- add to concept -->
-		<mx:FormItem label="Add to concept">
-			<mx:ComboBox id="concepts" width ="155">
-              <mx:ArrayCollection>
-              </mx:ArrayCollection>                     
-            </mx:ComboBox>
-		</mx:FormItem>
-		
-		
 		<!-- submit button -->
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
-            <mx:Button label="OK" />
+            <mx:Button label="OK" click="saveProblem()"/>
         </mx:FormItem>
 
 
