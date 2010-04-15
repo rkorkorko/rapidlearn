@@ -15,6 +15,9 @@ package model
 		public function setName(name:String):void {
 			this.name = name;
 		}
-				 
+		
+		public function getName():String{
+			return this.name;
+		}
 	}
 }
