@@ -27,14 +27,14 @@ package DrawingClasses
     private var currentToBox:Box;
     public var currentSelectedBox:Box;
     private var courseMap:CourseMap;
-    private var flexDrawing:FlexDrawing;
+    private var flexDrawing:RapidLearn;
     
     [Bindable]
     [Embed(source="/assets/arrow_black.png")] 
     public var lineOffPicture:Class; 
 	
     // designer is a manager class. 
-    public function Designer(fd:FlexDrawing){ 
+    public function Designer(fd:RapidLearn){ 
     	this.flexDrawing = fd;
       createTemplateLine();   
       courseMap = new CourseMap();
