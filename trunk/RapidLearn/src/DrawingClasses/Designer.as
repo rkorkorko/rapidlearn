@@ -1,6 +1,7 @@
 package DrawingClasses
 {
   import flash.events.Event;
+  import flash.events.EventDispatcher;
   import flash.events.MouseEvent;
   
   import model.Concept;
@@ -10,11 +11,10 @@ package DrawingClasses
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
   import mx.controls.Button;
-  import mx.controls.Text;
   import mx.managers.PopUpManager;
   
   import ui.NameDialog;
-  public class Designer
+  public class Designer extends EventDispatcher
   {
     private var boxes:ArrayCollection = new ArrayCollection();
     private var lines:ArrayCollection = new ArrayCollection();
@@ -118,6 +118,13 @@ package DrawingClasses
         drawLine();  
       }
     }
+    
+    //forward event when selection changed
+    private function selectionChangedHandler(event:Event):void {
+    	dispatchEvent(new Event("selectionChanged"));
+    }
+    
+    
     // create box 
     private var newBox:Box;
     private var win:NameDialog;
@@ -126,6 +133,7 @@ package DrawingClasses
       var id:String = getId("Box");
       newBox.setDesigner(this);
       newBox.create(x,y,id);
+      newBox.addEventListener("selectionChanged",selectionChangedHandler);
       boxes.addItem(newBox);     
       
       win=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
