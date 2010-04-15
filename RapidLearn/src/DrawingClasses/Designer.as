@@ -9,7 +9,9 @@ package DrawingClasses
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
   import mx.controls.Button;
+  import mx.managers.PopUpManager;
   
+  import ui.NameDialog;
   public class Designer
   {
     private var boxes:ArrayCollection = new ArrayCollection();
@@ -23,13 +25,15 @@ package DrawingClasses
     private var currentToBox:Box;
     public var currentSelectedBox:Box;
     private var courseMap:CourseMap;
+    private var flexDrawing:FlexDrawing;
     
     [Bindable]
     [Embed(source="/assets/arrow_black.png")] 
     public var lineOffPicture:Class; 
 	
     // designer is a manager class. 
-    public function Designer(){     
+    public function Designer(fd:FlexDrawing){ 
+    	this.flexDrawing = fd;
       createTemplateLine();   
       courseMap = new CourseMap();
     }
@@ -114,11 +118,17 @@ package DrawingClasses
       newBox.setDesigner(this);
       newBox.create(x,y,id);
       boxes.addItem(newBox);     
-      designArea.addChild(newBox);
-      designArea.addChild(newBox.text);
       
+      var win:NameDialog=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
+		PopUpManager.centerPopUp(win);
+	
+		trace("in designer");
+		newBox.setConceptName(win.getName());
+		newBox.text.text=win.getName();
       //update model
       courseMap.addConcept(newBox.getConcept());
+      designArea.addChild(newBox);
+      designArea.addChild(newBox.text);
     } 
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
