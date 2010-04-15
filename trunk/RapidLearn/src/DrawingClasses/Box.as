@@ -1,5 +1,6 @@
 package DrawingClasses
 {
+  import flash.events.Event;
   import flash.events.MouseEvent;
   
   import model.Concept;
@@ -7,7 +8,6 @@ package DrawingClasses
   import mx.collections.ArrayCollection;
   import mx.controls.Image;
   import mx.controls.Text;
-  import ui.NameDialog;
   public class Box extends Image
   {
     private var designer:Designer;
@@ -127,6 +127,7 @@ package DrawingClasses
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
+      	addMouseUpEventListenerToText();
     	}
       if (fromLines.length>0){
         drawFromLines();
@@ -150,6 +151,21 @@ package DrawingClasses
       }
     }
     
+    public function addMouseUpEventListenerToText():void{
+    	this.text.addEventListener(MouseEvent.MOUSE_UP,handleMouseUpOverText);
+    	
+    }
+    public function handleMouseUpOverText(event:Event):void{
+    	trace('mouseup over text');
+    	if (!designer.getIsDrawEnable()){
+      	
+        this.stopDrag();
+      }
+      else{  
+        designer.setCurrentToBox(this);
+        designer.addLine();
+      }     
+    }
     //mouse up events define stop box dragging or finish drawing line
     //if finish drawing line it sets mouse coordinate as last points of line  
     //if stop draging it sets stop drag 
@@ -204,6 +220,7 @@ package DrawingClasses
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
+      	addMouseUpEventListenerToText();
       	this.isMouseDown=false;
       	designer.redrawAllTexts();
       	designer.fixAllMouseDowns();   
@@ -213,6 +230,7 @@ package DrawingClasses
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
+      	addMouseUpEventListenerToText();
     }
     public function fixMouseDown():void{
     	this.isMouseDown=false;

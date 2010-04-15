@@ -142,10 +142,12 @@ package DrawingClasses
     	designArea.addChild(newBox);
     	newBox.text.x=newBox.getX()+newBox.getWidth()/3;
     	newBox.text.y=newBox.getY()+newBox.getHeight()/3;
-      	designArea.addChild(newBox.text);    	
+      	designArea.addChild(newBox.text);
+      	newBox.addMouseUpEventListenerToText();   	
 	    courseMap.addConcept(newBox.getConcept());
 	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");
     } 
+    
     
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
