@@ -7,9 +7,10 @@ package DrawingClasses
   import mx.collections.ArrayCollection;
   import mx.controls.Image;
   import mx.controls.Text;
+  import ui.NameDialog;
   public class Box extends Image
   {
-    private var designer:Designer = new Designer();
+    private var designer:Designer;
 //  this line refrence arrays for drawing this box lines especialy when box moving
     private var fromLines:ArrayCollection = new ArrayCollection();
     private var toLines:ArrayCollection = new ArrayCollection();
@@ -23,6 +24,7 @@ package DrawingClasses
 	public var text:Text;
 	
 	private var concept:Concept;
+	
 	
 	private var isMouseDown:Boolean=false;
     [Bindable]
@@ -40,8 +42,9 @@ package DrawingClasses
       this.dragged=false;
       this.concept = new Concept();
       text = new Text();
-      text.text = "foo";
+      
       this.designer=d;
+      
     }
     
     public function getConcept():Concept{
