@@ -10,6 +10,7 @@ package DrawingClasses
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
   import mx.controls.Button;
+  import mx.controls.Text;
   import mx.managers.PopUpManager;
   
   import ui.NameDialog;
@@ -191,7 +192,16 @@ package DrawingClasses
         cancelDrawing(); 
       }
     }  
-        
+    
+    public function findBox(name:Text):Box{  
+    	
+    	for (var i:int=0; i<this.boxes.length; i++){
+    		if (this.boxes.getItemAt(i).text == name)
+    			return Box(this.boxes.getItemAt(i)) 		
+    	}    	
+    	return null;    
+    }      
+     
     // this methods cancel drawing
     public function cancelDrawing():void{
       templateLine.visible = false;
