@@ -180,22 +180,25 @@ package DrawingClasses
       	}else{
       		
       		if(designer.currentSelectedBox!=null){
-      			designer.currentSelectedBox.source=boxPicture;
+      			designer.currentSelectedBox.source=boxPicture;      			
       		}
       		designer.currentSelectedBox=this;
       		this.source=boxSelectedPicture;
+      		dispatchEvent(new Event("selectionChanged"));
       	}
 
       }else{//not dragged
 		if(designer.currentSelectedBox==this){
 			designer.currentSelectedBox=null;
 			this.source=boxPicture;
+			dispatchEvent(new Event("selectionChanged"));
 		}else{
 			if(designer.currentSelectedBox!=null){
 				designer.currentSelectedBox.source=boxPicture;
 			}
 			designer.currentSelectedBox=this;
 			this.source=boxSelectedPicture;
+			dispatchEvent(new Event("selectionChanged"));
 		}
       }
       	
