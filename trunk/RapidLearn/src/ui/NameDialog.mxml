@@ -26,10 +26,12 @@
             }
             
             private function handleNameDialogClick():void{
-            	if (inputName.text!=null || inputName.text!=""){
+            	//if (inputName.text!=null || inputName.text!=""){
             		this.conceptName = inputName.text; 
+            		PopUpManager.removePopUp(this);
+            		trace("tagged name");
             		
-            	}
+            	
             }
             ]]>
             </mx:Script>
