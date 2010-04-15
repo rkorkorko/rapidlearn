@@ -155,9 +155,9 @@ package DrawingClasses
     	this.text.addEventListener(MouseEvent.MOUSE_UP,handleMouseUpOverText);
     	
     }
-    public function handleMouseUpOverText(event:Event):void{
-    	trace('mouseup over text');
-    	if (!designer.getIsDrawEnable()){
+    public function handleMouseUpOverText(event:MouseEvent):void{
+    		trace('mouseup');
+      if (!designer.getIsDrawEnable()){
       	
         this.stopDrag();
       }
@@ -165,6 +165,50 @@ package DrawingClasses
         designer.setCurrentToBox(this);
         designer.addLine();
       }     
+      this.endX=event.stageX;
+      this.endY=event.stageY;
+      trace(this.startX);
+      trace(this.startY);
+      trace(this.endX);
+      trace(this.endY);
+      this.dragged=(!((this.startX==this.endX)&&(this.startY==this.endY)));
+      trace('dragged');
+      trace(this.dragged);
+      if(this.dragged){
+      	if(designer.currentSelectedBox==this){
+      		
+      	}else{
+      		
+      		if(designer.currentSelectedBox!=null){
+      			designer.currentSelectedBox.source=boxPicture;
+      		}
+      		designer.currentSelectedBox=this;
+      		this.source=boxSelectedPicture;
+      	}
+
+      }else{//not dragged
+		if(designer.currentSelectedBox==this){
+			designer.currentSelectedBox=null;
+			this.source=boxPicture;
+		}else{
+			if(designer.currentSelectedBox!=null){
+				designer.currentSelectedBox.source=boxPicture;
+			}
+			designer.currentSelectedBox=this;
+			this.source=boxSelectedPicture;
+		}
+      }
+      	
+
+      
+      this.text.x=this.x+this.width/2-this.text.width/2;
+      	this.text.y=this.y+this.height/2-this.text.height/2;
+      	designer.getDesignArea().removeChild(this.text);
+      	designer.getDesignArea().addChild(this.text);
+      	addMouseUpEventListenerToText();
+      	this.isMouseDown=false;
+      	designer.redrawAllTexts();
+      	designer.fixAllMouseDowns();   
     }
     //mouse up events define stop box dragging or finish drawing line
     //if finish drawing line it sets mouse coordinate as last points of line  
@@ -189,33 +233,32 @@ package DrawingClasses
       trace('dragged');
       trace(this.dragged);
       if(this.dragged){
-      	this.isSelected=true;
-      	this.priorSelected=true;
-      	this.dragged=false;
-      	this.source=boxSelectedPicture;
-		if((designer.currentSelectedBox!=null)&&(designer.currentSelectedBox!=this)){
-      		designer.currentSelectedBox.source=boxPicture;
-      	}
-      	designer.currentSelectedBox=this;
-      	trace('selected');
-      }else{
-      	this.isSelected=!this.priorSelected;
-      	this.priorSelected=this.isSelected;
-      	if(!this.isSelected){
-      		this.source=boxPicture;trace('deselected');
-      		designer.currentSelectedBox=null;
+      	if(designer.currentSelectedBox==this){
+      		
       	}else{
-      		this.source=boxSelectedPicture;trace('selected');
-      		if((designer.currentSelectedBox!=null)&&(designer.currentSelectedBox!=this)){
+      		
+      		if(designer.currentSelectedBox!=null){
       			designer.currentSelectedBox.source=boxPicture;
-      			designer.currentSelectedBox.isSelected=false;
       		}
       		designer.currentSelectedBox=this;
       		this.source=boxSelectedPicture;
       	}
+
+      }else{//not dragged
+		if(designer.currentSelectedBox==this){
+			designer.currentSelectedBox=null;
+			this.source=boxPicture;
+		}else{
+			if(designer.currentSelectedBox!=null){
+				designer.currentSelectedBox.source=boxPicture;
+			}
+			designer.currentSelectedBox=this;
+			this.source=boxSelectedPicture;
+		}
+      }
       	
 
-      }
+      
       this.text.x=this.x+this.width/2-this.text.width/2;
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
