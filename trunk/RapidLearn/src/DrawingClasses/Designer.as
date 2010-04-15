@@ -199,5 +199,10 @@ package DrawingClasses
     		boxes[i].redrawText();
     	}
     }
+    public function fixAllMouseDowns():void{
+    	for(var i=0;i<boxes.length;i++){
+    		boxes[i].fixMouseDown();
+    	}
+    }
   }
 }

@@ -205,13 +205,17 @@ package DrawingClasses
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
       	this.isMouseDown=false;
-      	designer.redrawAllTexts();   
+      	designer.redrawAllTexts();
+      	designer.fixAllMouseDowns();   
     }
     public function redrawText():void{
     	this.text.x=this.x+this.width/2-this.text.width/2;
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
+    }
+    public function fixMouseDown():void{
+    	this.isMouseDown=false;
     }
   }
 }
