@@ -43,6 +43,10 @@ package DrawingClasses
     public function getDesignArea():Canvas{
     	return this.designArea;
     }
+    
+    public function getCourseMap():CourseMap {
+    	return this.courseMap;
+    }
 
     public function setLineButton(value:Button):void{
       this.lineButton = value;      
