@@ -74,7 +74,7 @@ package DrawingClasses
     }
     public function setCurrentFromBox(value:Box):void{
       this.currentFromBox = value;      
-    }
+    } 
     public function setCurrentToBox(value:Box):void{
       this.currentToBox = value;  
     }
@@ -188,9 +188,10 @@ package DrawingClasses
          
       }
       else{
-        cancelDrawing();
+        cancelDrawing(); 
       }
-    }
+    }  
+        
     // this methods cancel drawing
     public function cancelDrawing():void{
       templateLine.visible = false;
