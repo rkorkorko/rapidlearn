@@ -126,7 +126,6 @@ package DrawingClasses
       win=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
       win.addEventListener("addCName", setConceptName);
 	  PopUpManager.centerPopUp(win);
-	  courseMap.addConcept(newBox.getConcept());
       designArea.addChild(newBox);      
     } 
     
@@ -138,7 +137,9 @@ package DrawingClasses
     	designArea.addChild(newBox);
     	newBox.text.x=newBox.getX()+newBox.getWidth()/3;
     	newBox.text.y=newBox.getY()+newBox.getHeight()/3;
-      	designArea.addChild(newBox.text);
+      	designArea.addChild(newBox.text);    	
+	    courseMap.addConcept(newBox.getConcept());
+	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");
     } 
     
     // this method works when mouse down on the box 
@@ -178,7 +179,8 @@ package DrawingClasses
         //update model
         var fromConcept:Concept = currentFromBox.getConcept();
         var toConcept:Concept = currentToBox.getConcept();
-        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept));   
+        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept)); 
+        trace("relation from", fromConcept.getName(), "to", toConcept.getName());  
          
       }
       else{
