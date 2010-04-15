@@ -1,5 +1,6 @@
 package DrawingClasses
 {
+  import flash.events.Event;
   import flash.events.MouseEvent;
   
   import model.Concept;
@@ -36,6 +37,7 @@ package DrawingClasses
     	this.flexDrawing = fd;
       createTemplateLine();   
       courseMap = new CourseMap();
+      addEventListener("addCName", setConceptName);
     }
     
     public function getDesignArea():Canvas{
@@ -112,24 +114,31 @@ package DrawingClasses
       }
     }
     // create box 
+    private var newBox:Box;
+    private var win:NameDialog;
     public function addBox(x:int, y:int):void{
-      var newBox:Box = new Box(this);
+      newBox = new Box(this);
       var id:String = getId("Box");
       newBox.setDesigner(this);
       newBox.create(x,y,id);
       boxes.addItem(newBox);     
       
-      var win:NameDialog=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
-		PopUpManager.centerPopUp(win);
-	
-		trace("in designer");
-		newBox.setConceptName(win.getName());
-		newBox.text.text=win.getName();
-      //update model
-      courseMap.addConcept(newBox.getConcept());
-      designArea.addChild(newBox);
-      designArea.addChild(newBox.text);
+      win=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
+      win.addEventListener("addCName", setConceptName);
+	  PopUpManager.centerPopUp(win);
+	  courseMap.addConcept(newBox.getConcept());
+      designArea.addChild(newBox);      
     } 
+    
+    public function setConceptName(event:Event):void{
+    	trace("name:", win.getName());
+    	var name:String = win.getName();
+    	newBox.setConceptName(name);
+    	newBox.text.text=name;
+    	designArea.addChild(newBox);
+      	designArea.addChild(newBox.text);
+    } 
+    
     // this method works when mouse down on the box 
     // it sets first point coordinae of template line
     public function prepareDrawing():void{    

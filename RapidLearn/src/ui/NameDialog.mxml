@@ -7,9 +7,11 @@
 	close="titleWindow_close(event);">
 	<mx:Script>
 		<![CDATA[
+			import mx.effects.effectClasses.DissolveInstance;
 			
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
+            import flash.events.Event;
             
 			[Bindable]
             public var selectedItem:Object;
@@ -29,8 +31,8 @@
             	//if (inputName.text!=null || inputName.text!=""){
             		this.conceptName = inputName.text; 
             		PopUpManager.removePopUp(this);
-            		trace("tagged name");
-            		
+            		trace("firing event");  	
+            		dispatchEvent(new Event("addCName"));	
             	
             }
             ]]>
