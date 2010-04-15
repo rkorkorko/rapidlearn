@@ -1,18 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
 	layout="absolute" 
-	width="400" height="300"
+	width="500" height="300"
 	showCloseButton="true" 
 	backgroundColor="#C9DEEF"
 	close="titleWindow_close(event);">
 	<mx:Script>
 		<![CDATA[
+			import model.Problem;
+			import mx.collections.ArrayCollection;
 			
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
+            import DrawingClasses.Designer;
             
 			[Bindable]
             public var selectedItem:Object;
+            private var designer:Designer;
+            
+            [Bindable]
+            private var problemNames:ArrayCollection;
+            
+            [Bindable]
+            private var titleString:String;
+
+			public function setDesigner(d:Designer):void {
+				this.designer = d;
+				this.problemNames = new ArrayCollection();
+				
+				var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
+				for(var i:int = 0; i < probs.length; i++) {
+					problemNames.addItem(Problem(probs.getItemAt(i)).getName());
+				}
+				
+				this.titleString = "Tag Existing Problems for Concept: "+this.designer.currentSelectedBox.getConcept().getName();
+			}
 
             private function titleWindow_close(evt:CloseEvent):void {
                 PopUpManager.removePopUp(this);
@@ -32,10 +54,10 @@
 
 	
 	<mx:Form width="100%" height="100%">
-		<mx:FormHeading label="Tag Existing Problems"/>
+		<mx:FormHeading label="{this.titleString}"/>
 		<mx:FormItem label="Select Problems">
 			<mx:List width="228"
-				dataProvider="{problems.problem}"
+				dataProvider="{this.problemNames}"
             change="this.selectedItem=List(event.target).selectedItem"/>
 
 		</mx:FormItem>
