@@ -136,6 +136,8 @@ package DrawingClasses
     	newBox.setConceptName(name);
     	newBox.text.text=name;
     	designArea.addChild(newBox);
+    	newBox.text.x=newBox.getX()+newBox.getWidth()/3;
+    	newBox.text.y=newBox.getY()+newBox.getHeight()/3;
       	designArea.addChild(newBox.text);
     } 
     

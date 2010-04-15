@@ -88,27 +88,15 @@ package DrawingClasses
     public function create(x:int,y:int,id:String):void{
       this.x = x;
       this.y = y;
-      this.text.x=x;
-      this.text.y=y;
+      
+      this.text.x=this.x+this.width/2;
+      	this.text.y=this.y+this.height/2;
       this.id = id;
       this.addEventListener(MouseEvent.MOUSE_DOWN,mouseDown);
       this.addEventListener(MouseEvent.MOUSE_MOVE,mouseMove);
       this.addEventListener(MouseEvent.MOUSE_UP,mouseUp);
     }
-/*       this.text.addEventListener(MouseEvent.MOUSE_DOWN,mouseDownText);
-      this.text.addEventListener(MouseEvent.MOUSE_UP,mouseUpText);
-    }
-    private function mouseDownText(event:MouseEvent):void{
-    	if(!designer.getIsDrawEnable()){
-    		this.text.startDrag();
-    	}
-    }
-    private function mouseUpText(event:MouseEvent):void{
-    	if(!designer.getIsDrawEnable()){
-    		this.text.stopDrag();
-    	}
-    } */
-    
+  
     // mouse down event define start drawing line or draging box 
     //if line button click before, it sets mouse coordinate as firt points of line
     //if line button dosen't click it sets dragable of box
