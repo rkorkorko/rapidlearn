@@ -4,7 +4,7 @@
 	showCloseButton="true" 
 	backgroundColor="#C9DEEF"
 	close="titleWindow_close(event);"
-	 width="442"> 
+	 width="500"> 
 
 	<!-- Need to script:  -->
 	<!--	1. number of choices to display after dropdown  - I THINK this works,just need to validate data now -->
@@ -125,18 +125,18 @@
 	
 	
 	
-	<mx:Form x="10" y="10" width="418" height="413">
+	<mx:Form x="10" y="10" width="450" height="450">
 		<mx:FormHeading label="Add New Problem"/>
 		
 		
 		<!-- problem name -->
 		<mx:FormItem label="Problem Name">
-            <mx:TextInput id="pname" width="100%"/>
+            <mx:TextInput id="pname" width="250"/>
         </mx:FormItem>
         	
 		<!-- problem description -->
 		<mx:FormItem label="Problem Text">
-            <mx:TextArea id="ptext" width="100%" height="92"/>
+            <mx:TextArea id="ptext" width="250" height="100"/>
         </mx:FormItem>
         
         <!-- dropdown for number of choices -->
@@ -150,6 +150,8 @@
               </mx:ArrayCollection>                     
             </mx:ComboBox>
 		</mx:FormItem>
+		
+		<mx:Label text="Enter Answer choices below and select the correct answer" />
 		
 		<!-- display the answer choices -->
 		<mx:FormItem width="100%">
