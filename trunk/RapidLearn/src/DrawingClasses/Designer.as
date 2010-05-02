@@ -2,6 +2,7 @@ package DrawingClasses
 {
   import flash.events.Event;
   import flash.events.EventDispatcher;
+  import flash.events.KeyboardEvent;
   import flash.events.MouseEvent;
   
   import model.Concept;
@@ -124,10 +125,10 @@ package DrawingClasses
     	dispatchEvent(new Event("selectionChanged"));
     }
     
-    
     // create box 
     private var newBox:Box;
     private var win:NameDialog;
+    private var enterKey:Boolean = false;
     public function addBox(x:int, y:int):void{
       newBox = new Box(this);
       var id:String = getId("Box");
@@ -137,9 +138,19 @@ package DrawingClasses
       boxes.addItem(newBox);     
       
       win=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
+      enterKey =true;
+      win.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
       win.addEventListener("addCName", setConceptName);
 	  PopUpManager.centerPopUp(win);
       designArea.addChild(newBox);      
+    } 
+    
+    public function enterKeyListener(event: KeyboardEvent):void{
+    	trace("enter in keyboard listner");
+    	if (event.charCode==13 && enterKey==true){
+    		win.handleNameDialogClick();
+    		trace("fired keyboard listner");
+    	}
     } 
     
     public function setConceptName(event:Event):void{
@@ -154,6 +165,7 @@ package DrawingClasses
       	newBox.addMouseUpEventListenerToText();   	
 	    courseMap.addConcept(newBox.getConcept());
 	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");
+	    enterKey=false;
     } 
     
     
