@@ -13,7 +13,7 @@ package DrawingClasses
   import mx.containers.Canvas;
   import mx.controls.Button;
   import mx.managers.PopUpManager;
-   
+  
   import ui.NameDialog;
   public class Designer extends EventDispatcher
   {
@@ -40,7 +40,10 @@ package DrawingClasses
       createTemplateLine();   
       courseMap = new CourseMap();
       addEventListener("addCName", setConceptName);
+      
     }
+    
+
     
     public function getDesignArea():Canvas{
     	return this.designArea;
@@ -236,6 +239,34 @@ package DrawingClasses
     	for(var i=0;i<boxes.length;i++){
     		boxes[i].fixMouseDown();
     	}
+    }
+    
+    public function whitespaceClickHandler(){
+    	trace("whitespace click");
+     	var x:int = flexDrawing.designArea.mouseX;
+    	var y:int = flexDrawing.designArea.mouseY;
+		//check if box on location
+		var onBox:Boolean;
+		for(var i=0;i<boxes.length;i++){
+    		var a:int = boxes[i].getX();
+    		var b:int = boxes[i].getY();
+    		var c:int = boxes[i].getX()+boxes[i].getWidth();
+    		var d:int = boxes[i].getY()+boxes[i].getHeight();
+    		trace(x);
+    		trace(y);
+    		trace(a);
+    		trace(b);
+    		trace(c);
+    		trace(d);
+    		if((x>=a) && (x<=c) && (y>=b) && (y<=d)){
+    			return;
+    		}
+    	}
+    	//if we get here then we know no boxes clicked. deselect all boxes
+    	for(var i=0;i<boxes.length;i++){
+    		currentSelectedBox.source=currentSelectedBox.boxPicture;
+    		currentSelectedBox = null;
+    	} 
     }
   }
 }
