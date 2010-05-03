@@ -263,10 +263,10 @@ package DrawingClasses
     		}
     	}
     	//if we get here then we know no boxes clicked. deselect all boxes
-    	for(var i=0;i<boxes.length;i++){
+
     		currentSelectedBox.source=currentSelectedBox.boxPicture;
     		currentSelectedBox = null;
-    	} 
+    	
     }
   }
 }
