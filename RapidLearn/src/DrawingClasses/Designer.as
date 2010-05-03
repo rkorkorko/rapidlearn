@@ -159,13 +159,18 @@ package DrawingClasses
     	newBox.setConceptName(name);
     	newBox.text.text=name;
     	designArea.addChild(newBox);
-    	newBox.text.x=newBox.getX()+newBox.getWidth()/3;
-    	newBox.text.y=newBox.getY()+newBox.getHeight()/3;
+    	
+    	
       	designArea.addChild(newBox.text);
-      	newBox.addMouseUpEventListenerToText();   	
+      	newBox.text.x = newBox.x+newBox.width/2-newBox.text.text.length*4;
+    	newBox.text.y = newBox.y+newBox.height/2-9;
+    	//trace("redraw");
+      	newBox.addMouseUpEventListenerToText();
+      	   	
 	    courseMap.addConcept(newBox.getConcept());
 	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");
-	    enterKey=false;
+	    enterKey=false;trace(newBox.text.height);
+    	trace(newBox.text.width);
     } 
     
     
