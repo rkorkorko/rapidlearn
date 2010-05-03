@@ -165,7 +165,7 @@ package DrawingClasses
       	newBox.text.x = newBox.x+newBox.width/2-newBox.text.text.length*4;
     	newBox.text.y = newBox.y+newBox.height/2-9;
     	//trace("redraw");
-      	newBox.addMouseUpEventListenerToText();
+   //   	newBox.addMouseUpEventListenerToText();
       	   	
 	    courseMap.addConcept(newBox.getConcept());
 	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");

@@ -116,7 +116,7 @@ package DrawingClasses
       }
       this.priorSelected=this.isSelected;
       trace('mouse down');
-      trace('prior');
+      trace('is this box selected?');
       trace(this.priorSelected);      
       this.startX=event.stageX;;
       this.startY=event.stageY;
@@ -130,11 +130,10 @@ package DrawingClasses
     		designer.getDesignArea().removeChild(this.text);
     		this.text.x=this.x+this.width/2-this.text.width/2;
       		this.text.y=this.y+this.height/2-this.text.height/2;
-      		trace(this.text.height);
-      	trace(this.text.width);
+
       		
       		designer.getDesignArea().addChild(this.text);
-      		addMouseUpEventListenerToText();
+      		//addMouseUpEventListenerToText();
     	}
       if (fromLines.length>0){
         drawFromLines();
@@ -158,11 +157,11 @@ package DrawingClasses
       }
     }
     
-    public function addMouseUpEventListenerToText():void{
-    	this.text.addEventListener(MouseEvent.MOUSE_UP,handleMouseUpOverText);
+  //  public function addMouseUpEventListenerToText():void{
+    //	this.text.addEventListener(MouseEvent.MOUSE_UP,handleMouseUpOverText);
     	
-    }
-    public function handleMouseUpOverText(event:MouseEvent):void{
+   // }
+/*     public function handleMouseUpOverText(event:MouseEvent):void{
     		trace('mouseup');
       if (!designer.getIsDrawEnable()){
       	
@@ -174,10 +173,6 @@ package DrawingClasses
       }     
       this.endX=event.stageX;
       this.endY=event.stageY;
-      trace(this.startX);
-      trace(this.startY);
-      trace(this.endX);
-      trace(this.endY);
       this.dragged=(!((this.startX==this.endX)&&(this.startY==this.endY)));
       trace('dragged');
       trace(this.dragged);
@@ -220,7 +215,7 @@ package DrawingClasses
       	this.isMouseDown=false;
       	designer.redrawAllTexts();
       	designer.fixAllMouseDowns();   
-    }
+    } */
     //mouse up events define stop box dragging or finish drawing line
     //if finish drawing line it sets mouse coordinate as last points of line  
     //if stop draging it sets stop drag 
@@ -236,10 +231,6 @@ package DrawingClasses
       }     
       this.endX=event.stageX;
       this.endY=event.stageY;
-      trace(this.startX);
-      trace(this.startY);
-      trace(this.endX);
-      trace(this.endY);
       this.dragged=(!((this.startX==this.endX)&&(this.startY==this.endY)));
       trace('dragged');
       trace(this.dragged);
@@ -277,7 +268,7 @@ package DrawingClasses
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
-      	addMouseUpEventListenerToText();
+    //  	addMouseUpEventListenerToText();
       	this.isMouseDown=false;
       	designer.redrawAllTexts();
       	designer.fixAllMouseDowns();   
@@ -287,7 +278,7 @@ package DrawingClasses
       	this.text.y=this.y+this.height/2-this.text.height/2;
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
-      	addMouseUpEventListenerToText();
+     // 	addMouseUpEventListenerToText();
     }
     public function fixMouseDown():void{
     	this.isMouseDown=false;
