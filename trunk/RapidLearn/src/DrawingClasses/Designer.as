@@ -252,20 +252,16 @@ package DrawingClasses
     		var b:int = boxes[i].getY();
     		var c:int = boxes[i].getX()+boxes[i].getWidth();
     		var d:int = boxes[i].getY()+boxes[i].getHeight();
-    		trace(x);
-    		trace(y);
-    		trace(a);
-    		trace(b);
-    		trace(c);
-    		trace(d);
+
     		if((x>=a) && (x<=c) && (y>=b) && (y<=d)){
     			return;
     		}
     	}
     	//if we get here then we know no boxes clicked. deselect all boxes
-
-    		currentSelectedBox.source=currentSelectedBox.boxPicture;
-    		currentSelectedBox = null;
+			if(currentSelectedBox!=null){
+    			currentSelectedBox.source=currentSelectedBox.boxPicture;
+    			currentSelectedBox = null;
+   			}
     	
     }
   }
