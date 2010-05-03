@@ -9,6 +9,7 @@
     import DrawingClasses.Designer;
     import mx.core.DragSource;
     import mx.managers.DragManager;
+    import mx.managers.CursorManager;
     import mx.events.DragEvent;
     import com.adobe.viewsource.ViewSource;
     import ui.ProblemInputForm;
@@ -25,7 +26,12 @@
     
     private var xOff:Number;
     private var yOff:Number;	  
-    private var designer:Designer = new Designer(RapidLearn(this));   
+    private var designer:Designer = new Designer(RapidLearn(this));  
+   
+   	//cursor manager
+    [Embed("/assets/grab.gif")]
+    private var customCursor:Class;
+    private var cursorID:int;
    
     private function showAddProblemForm():void{
 		var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
@@ -66,7 +72,8 @@
     // this methods sets x,y coordinate of new box
     public function pictureDragDrop(event:DragEvent):void{	    	
       var x:int = event.currentTarget.mouseX - xOff;
-      var y:int = event.currentTarget.mouseY - yOff;       
+      var y:int = event.currentTarget.mouseY - yOff;
+      CursorManager.removeAllCursors();      
       designer.addBox(x,y); 	  
     } 
     // this method gets x and y coordinate of template box image
@@ -77,8 +84,9 @@
 
     // this method does acceptable draging box image
     public function pictureDragEnter(event:DragEvent):void{
-      DragManager.acceptDragDrop(Canvas(event.target));        
-    }
+      DragManager.acceptDragDrop(Canvas(event.target));
+      
+    } 
     
     // Returns the concept that is currently selected in the view,
     // or null if no concept is selected.
@@ -126,6 +134,7 @@
       imageProxy.height= 100;
       imageProxy.width= 100;
       DragManager.doDrag(dragInitiator, ds, event,imageProxy, 0, 0, 1.00);
+	  cursorID = CursorManager.setCursor(customCursor);
     }      
     // this method works when click on the line button 
     // it is make enable to draw line
