@@ -36,6 +36,7 @@
     private function showAddProblemForm():void{
 		var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
 		win.addEventListener("newProblem",newProblemHandler);
+		win.init();
 		PopUpManager.centerPopUp(win);
 	}
 	

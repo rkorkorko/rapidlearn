@@ -19,7 +19,42 @@
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
             import model.NewProblemEvent;
+            import mx.validators.Validator;
+            import mx.controls.Alert;
+            import mx.events.ValidationResultEvent;
             
+            
+			[Bindbale] private var validatorArr:Array;
+			
+			public function init():void {
+				trace("initializing..."); 
+				validatorArr = new Array();
+				validatorArr.push(pname_validator);
+				validatorArr.push(ptext_validator);
+			
+			}
+			
+			private function validateForm():void {
+				trace("validating...")
+				var validatorErrorArray:Array = Validator.validateAll(validatorArr);
+				var isValidForm:Boolean = validatorErrorArray.length == 0;
+				if(isValidForm) {
+					trace("form is valid");
+					saveProblem();
+				}
+				else {
+					var err:ValidationResultEvent;
+                    var errorMessageArray:Array = [];
+                    for each (err in validatorErrorArray) {
+                        var errField:String = FormItem(err.currentTarget.source.parent).label
+                        errorMessageArray.push(errField + ": " + err.message);
+                    }
+                    Alert.show(errorMessageArray.join("\n\n"), "Invalid Problem...", Alert.OK);
+				}
+				
+			}
+				
+
 
             private function titleWindow_close(evt:CloseEvent):void {
                 PopUpManager.removePopUp(this);
@@ -123,6 +158,18 @@
 		]]>
 	</mx:Script>
 	
+	<!-- FORM VALIDATION CODE -->
+	
+	<mx:StringValidator id="pname_validator"
+        source="{pname}"
+        property="text"
+        minLength="1" />
+        
+    <mx:StringValidator id="ptext_validator"
+        source="{ptext}"
+        property="text"
+        minLength="1" />    
+	
 	
 	
 	<mx:Form x="10" y="10" width="450" height="450">
@@ -130,12 +177,12 @@
 		
 		
 		<!-- problem name -->
-		<mx:FormItem label="Problem Name">
+		<mx:FormItem label="Problem Name" required="true">
             <mx:TextInput id="pname" width="250"/>
         </mx:FormItem>
         	
 		<!-- problem description -->
-		<mx:FormItem label="Problem Text">
+		<mx:FormItem label="Problem Text" required="true">
             <mx:TextArea id="ptext" width="250" height="100"/>
         </mx:FormItem>
         
@@ -204,7 +251,7 @@
 		<!-- submit button -->
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
-            <mx:Button label="OK" click="saveProblem()"/>
+            <mx:Button label="OK" click="validateForm()"/>
         </mx:FormItem>
 
 
