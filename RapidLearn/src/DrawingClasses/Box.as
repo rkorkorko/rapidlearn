@@ -42,6 +42,7 @@ package DrawingClasses
       this.dragged=false;
       this.concept = new Concept();
       text = new Text();
+      text.selectable = false;
       
       this.designer=d;
       
@@ -95,6 +96,9 @@ package DrawingClasses
       this.addEventListener(MouseEvent.MOUSE_DOWN,mouseDown);
       this.addEventListener(MouseEvent.MOUSE_MOVE,mouseMove);
       this.addEventListener(MouseEvent.MOUSE_UP,mouseUp);
+      this.text.addEventListener(MouseEvent.MOUSE_DOWN,mouseDown);
+      this.text.addEventListener(MouseEvent.MOUSE_MOVE,mouseMove);
+      this.text.addEventListener(MouseEvent.MOUSE_UP,mouseUp);
     }
   
     // mouse down event define start drawing line or draging box 
@@ -123,11 +127,14 @@ package DrawingClasses
     private function mouseMove(event:MouseEvent):void{
     	trace('mouse move');
     	if(this.isMouseDown){
+    		designer.getDesignArea().removeChild(this.text);
     		this.text.x=this.x+this.width/2-this.text.width/2;
-      	this.text.y=this.y+this.height/2-this.text.height/2;
-      	designer.getDesignArea().removeChild(this.text);
-      	designer.getDesignArea().addChild(this.text);
-      	addMouseUpEventListenerToText();
+      		this.text.y=this.y+this.height/2-this.text.height/2;
+      		trace(this.text.height);
+      	trace(this.text.width);
+      		
+      		designer.getDesignArea().addChild(this.text);
+      		addMouseUpEventListenerToText();
     	}
       if (fromLines.length>0){
         drawFromLines();
@@ -206,6 +213,7 @@ package DrawingClasses
       
       this.text.x=this.x+this.width/2-this.text.width/2;
       	this.text.y=this.y+this.height/2-this.text.height/2;
+      	
       	designer.getDesignArea().removeChild(this.text);
       	designer.getDesignArea().addChild(this.text);
       	addMouseUpEventListenerToText();
