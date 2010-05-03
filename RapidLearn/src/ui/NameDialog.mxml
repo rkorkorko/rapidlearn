@@ -27,7 +27,7 @@
             
             }
             
-            private function handleNameDialogClick():void{
+            public function handleNameDialogClick():void{
             	//if (inputName.text!=null || inputName.text!=""){
             		this.conceptName = inputName.text; 
             		PopUpManager.removePopUp(this);
