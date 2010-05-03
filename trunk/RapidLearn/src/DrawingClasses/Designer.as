@@ -13,7 +13,7 @@ package DrawingClasses
   import mx.containers.Canvas;
   import mx.controls.Button;
   import mx.managers.PopUpManager;
-  
+   
   import ui.NameDialog;
   public class Designer extends EventDispatcher
   {
