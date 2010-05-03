@@ -148,7 +148,7 @@ package DrawingClasses
     public function enterKeyListener(event: KeyboardEvent):void{
     	trace("enter in keyboard listner");
     	if (event.charCode==13 && enterKey==true){
-    		win.handleNameDialogClick();
+    		//win.handleNameDialogClick();
     		trace("fired keyboard listner");
     	}
     } 
