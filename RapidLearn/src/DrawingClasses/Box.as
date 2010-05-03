@@ -37,8 +37,6 @@ package DrawingClasses
     
     public function Box(d:Designer){
       this.source =boxPicture;   
-      this.isSelected = false;
-      this.priorSelected=false;
       this.dragged=false;
       this.concept = new Concept();
       text = new Text();
@@ -114,10 +112,7 @@ package DrawingClasses
         designer.prepareDrawing(); 
         designer.setCurrentFromBox(this);
       }
-      this.priorSelected=this.isSelected;
-      trace('mouse down');
-      trace('is this box selected?');
-      trace(this.priorSelected);      
+      trace('mouse down');  
       this.startX=event.stageX;;
       this.startY=event.stageY;
     }
