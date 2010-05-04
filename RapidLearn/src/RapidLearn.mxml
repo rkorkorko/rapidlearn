@@ -232,12 +232,16 @@
       <mx:Image id="box" source="@Embed(source='assets/add.png')" mouseMove="dragPicture(event, box, 'img');myoffset(box);" x="10" y="10"></mx:Image>
       <mx:Label text="Drag and drop this picture on " x="10" y="60"></mx:Label>
       <mx:Label text="Click the button above to" x="225" y="60"></mx:Label>
-    <mx:Canvas id="notificationArea" top="100" bottom="130" backgroundColor="#c0c0c0" width="100%">
-    	<mx:Label id="statusNotification" textAlign="center" fontSize="12" text="No Concept Selected" paddingLeft="10"/>
-    </mx:Canvas>
     
-    <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="130" width="100%" height="100%" backgroundColor="#ffffff" click="designer.whitespaceClickHandler()" >      
-    </mx:Canvas>    
+    
+    
+    <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="100" width="100%" height="100%" backgroundColor="#ffffff" click="designer.whitespaceClickHandler()" >      
+    </mx:Canvas>   
+    
+    <mx:Box id="notificationArea" top="110" height="30" backgroundColor="#FFD24D" width="500" horizontalCenter="0" cornerRadius="5" borderStyle="solid" borderThickness="0">
+    	<mx:Label id="statusNotification" textAlign="center" color="#000000" width="100%" paddingTop="3" fontSize="14" text="No Concept Selected" paddingLeft="10"/>
+    </mx:Box>
+     
     <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);"/>
     <mx:Label x="10" y="75" text="the white area to draw a box" height="20"/>
     <mx:Label x="225" y="75" text="draw a line between two boxes."/>
