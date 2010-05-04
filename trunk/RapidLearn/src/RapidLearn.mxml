@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
+    	import model.TaggedExistingEvent;
     	import model.Problem;
     	import model.NewProblemEvent;
     	import model.Concept;
@@ -43,7 +44,16 @@
 	private function showTagExistingProbsForm():void{
 		var win:TagExistingProbsForm=PopUpManager.createPopUp(this,TagExistingProbsForm,true) as TagExistingProbsForm;
 		win.setDesigner(this.designer);
+		win.addEventListener("taggedExistingProblem",taggedExistingProblemHandler);
 		PopUpManager.centerPopUp(win);
+	}
+	
+	private function taggedExistingProblemHandler(event:TaggedExistingEvent):void {
+		if(selectedConcept() != null) {
+			var p:Problem = event.getProblem();
+			p.addConcept(selectedConcept());
+			this.statusNotification.text = "Tagged Existing Problem: "+p.getName()+" with Concept: "+selectedConcept().getName();
+		}
 	}
 	
 	private function newProblemHandler(event:NewProblemEvent):void {

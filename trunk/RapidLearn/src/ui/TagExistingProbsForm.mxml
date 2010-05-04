@@ -13,6 +13,7 @@
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
             import DrawingClasses.Designer;
+            import model.TaggedExistingEvent;
             
 			[Bindable]
             public var selectedItem:Object;
@@ -45,8 +46,8 @@
             		var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
 					for(var i:int = 0; i < probs.length; i++) {
 						if(String(selectedItem) == Problem(probs.getItemAt(i)).getName()) {
-							Problem(probs.getItemAt(i)).addConcept(this.designer.currentSelectedBox.getConcept());
-							trace("Successfully added selected concept to existing problem");
+							dispatchEvent(new TaggedExistingEvent("taggedExistingProblem",Problem(probs.getItemAt(i))));
+							PopUpManager.removePopUp(this);
 							return;
 						}
 					}
@@ -70,7 +71,7 @@
 	<!-- submit button -->
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
-            <mx:Button label="OK" />
+            <mx:Button label="OK" click="submitExistingProblem()"/>
         </mx:FormItem>
 	</mx:Form>
 </mx:TitleWindow>
