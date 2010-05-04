@@ -85,8 +85,8 @@
         	minLength="1" />
 	
 		<mx:FormHeading label="Enter Concept Name" x="10" y="10"/>
-		<mx:Label text="Max 7 characters" x="44.5" y="24"/>
-		<mx:TextInput id="inputName" x="47.5" y="41" maxChars="7">
+		<mx:Label text="Max 15 characters" x="44.5" y="24"/>
+		<mx:TextInput id="inputName" x="47.5" y="41" maxChars="15" width="120">
 			
 		</mx:TextInput>
 		
