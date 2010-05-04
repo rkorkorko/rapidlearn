@@ -17,6 +17,8 @@
 	import mx.managers.PopUpManager;
 	import ui.TagExistingProbsForm;
 	import mx.collections.ArrayCollection;
+	import mx.controls.Alert;
+	import mx.events.CloseEvent;
     
     [Bindable]
     [Embed(source="/assets/arrow_green.png")] 
@@ -199,11 +201,18 @@
    	  line.setStyle("icon",lineOnPicture); 
    	}
   	
+  	private function confirmHandler(event:CloseEvent):void {
+  		if (event.detail == Alert.YES) {
+			// what to do if user selected “yes”
+			this.addProblemButton.enabled = false;
+	  		this.tagProblemButton.enabled = false; 
+	  		trace("disabled buttons");
+	  		designer.reset();
+		}   		
+  	}
+  	
   	private function reset():void{
-  		this.addProblemButton.enabled = false;
-  		this.tagProblemButton.enabled = false; 
-  		trace("disabled buttons");
-  		designer.reset();
+  		var a:Alert = Alert.show("Resetting RapidLearn will clear ALL contents for this course. \nAre you sure you want to reset?", "Confirmation", Alert.YES|Alert.NO, this, confirmHandler, null, Alert.NO); 
   	} 	
   
     ]]>
