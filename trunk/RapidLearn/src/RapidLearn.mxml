@@ -32,7 +32,7 @@
     private var designer:Designer = new Designer(RapidLearn(this));  
    
    	//cursor manager
-    [Embed("/assets/grab.gif")]
+    [Embed("/assets/grab.png")]
     private var customCursor:Class;
     private var cursorID:int;
     
