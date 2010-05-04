@@ -128,6 +128,7 @@ package DrawingClasses
       designArea.addChild(templateLine);      
       designArea.addEventListener(MouseEvent.MOUSE_MOVE,mouseMove);
       designArea.addEventListener(MouseEvent.MOUSE_UP,mouseUp);
+      designArea.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
     }
 		// this method checks mouse up event on the box or not .
 		// if not cancel drawing. 
@@ -179,7 +180,7 @@ package DrawingClasses
     public function enterKeyListener(event: KeyboardEvent):void{
     	trace("enter in keyboard listner");
     	if (event.charCode==13 && enterKey==true){
-    		//win.handleNameDialogClick();
+    		win.handleNameDialogClick();
     		trace("fired keyboard listner");
     	}
     } 
