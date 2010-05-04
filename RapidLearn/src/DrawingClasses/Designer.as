@@ -127,7 +127,8 @@ package DrawingClasses
       designArea.removeAllChildren();
       lineButton.setStyle("icon", lineOffPicture);
       createTemplateLine();
-      designArea.addChild(templateLine);
+      designArea.addChild(templateLine);      
+      courseMap.clear();      
     }
     public function setIsDrawEnable(value:Boolean):void{
       this.isDrawEnable = value;

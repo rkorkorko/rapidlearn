@@ -20,6 +20,7 @@ package model
 		public function getNext():Concept {
 			return this.next;
 		}
+		
 
 	}
 }
