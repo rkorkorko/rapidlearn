@@ -212,7 +212,7 @@
   	}
   	
   	private function reset():void{
-  		var a:Alert = Alert.show("Resetting RapidLearn will clear ALL contents for this course. \nAre you sure you want to reset?", "Confirmation", Alert.YES|Alert.NO, this, confirmHandler, null, Alert.NO); 
+  		var a:Alert = Alert.show("Resetting RapidLearn will clear ALL contents for this course. Are you sure you want to reset?", "Confirmation", Alert.YES|Alert.NO, this, confirmHandler, null, Alert.NO); 
   	} 	
   
     ]]>
