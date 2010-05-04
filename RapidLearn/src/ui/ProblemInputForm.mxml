@@ -31,10 +31,19 @@
 				validatorArr = new Array();
 				validatorArr.push(pname_validator);
 				validatorArr.push(ptext_validator);
-			
+				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
 			}
 			
-			private function validateForm():void {
+			//keyboard listener for enter key
+		    public function enterKeyListener(event: KeyboardEvent):void{
+		    	trace("enter in keyboard listner");
+		    	if (event.charCode==13){
+		    		this.validateForm();
+		    		trace("fired keyboard listner");
+		    	}
+		    } 
+			
+			public function validateForm():void {
 				trace("validating...")
 				var validatorErrorArray:Array = Validator.validateAll(validatorArr);
 				var isValidForm:Boolean = validatorErrorArray.length == 0;
