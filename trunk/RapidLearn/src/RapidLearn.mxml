@@ -2,10 +2,10 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
-    	import model.TaggedExistingEvent;
-    	import model.Problem;
-    	import model.NewProblemEvent;
-    	import model.Concept;
+	import model.TaggedExistingEvent;
+	import model.Problem;
+	import model.NewProblemEvent;
+	import model.Concept;
     import mx.states.SetStyle;
     import DrawingClasses.Designer;
     import mx.core.DragSource;
