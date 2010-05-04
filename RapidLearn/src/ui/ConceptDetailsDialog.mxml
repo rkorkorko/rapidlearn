@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:TitleWindow xmlns:mx="http://www.adobe.com/2006/mxml" 
+	layout="absolute" 
+	width="500" height="300"
+	showCloseButton="true" 
+	backgroundColor="#C9DEEF"
+	close="titleWindow_close(event);">
+	<mx:Script>
+		<![CDATA[
+			import model.Problem;
+			import mx.collections.ArrayCollection;
+			
+			import mx.events.CloseEvent;
+            import mx.managers.PopUpManager;
+            import DrawingClasses.Designer;
+            import model.TaggedExistingEvent;
+            
+			[Bindable]
+            public var selectedItem:Object;
+            private var designer:Designer;
+            
+            [Bindable]
+            private var problemNames:ArrayCollection;
+            
+            [Bindable]
+            private var titleString:String;
+
+			public function init():void{
+				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
+			}
+			
+			public function setDesigner(d:Designer):void {
+				this.designer = d;
+				this.problemNames = new ArrayCollection();
+				
+				var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
+				var p:Problem;
+				for each (p in probs) {
+					if(p.getConcepts().contains(this.designer.currentSelectedBox.getConcept())) {
+						this.problemNames.addItem(p.getName());
+					}
+				}
+				
+				this.titleString = "Details for Concept: "+this.designer.currentSelectedBox.getConcept().getName();
+			}
+			
+			public function refreshProblemList():void {
+				this.problemNames.removeAll();
+				
+				var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
+				var p:Problem;
+				for each (p in probs) {
+					if(p.getConcepts().contains(this.designer.currentSelectedBox.getConcept())) {
+						this.problemNames.addItem(p.getName());
+					}
+				}
+			}
+
+            public function titleWindow_close(evt:CloseEvent):void {
+                PopUpManager.removePopUp(this);
+            }
+            
+            public function untagProblem():void {
+            	if(this.selectedItem != null) {
+            		var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
+					var p:Problem;
+					for each (p in probs) {
+						if(String(selectedItem) == p.getName()) {
+							p.removeConcept(this.designer.currentSelectedBox.getConcept());
+							refreshProblemList();
+						}
+					}
+            	}
+            }
+            
+            
+            
+            //keyboard listener for enter key
+		    public function enterKeyListener(event: KeyboardEvent):void{
+		    	trace("entered in keyboard listner in tag existing problem");
+		    	if (event.charCode==13){
+		    		PopUpManager.removePopUp(this);
+		    		trace("fired keyboard listner");
+		    	}
+		    } 
+		    
+		    private function doneHandler():void {
+		    	PopUpManager.removePopUp(this);
+		    }
+            
+            ]]>
+            </mx:Script>
+	
+
+	
+	<mx:Form width="100%" height="100%" creationComplete="init()">
+		<mx:FormHeading label="{this.titleString}"/>
+		<mx:FormItem label="Tagged Problems:">
+			<mx:List width="228"
+				dataProvider="{this.problemNames}"
+            change="this.selectedItem=List(event.target).selectedItem"/>
+
+		</mx:FormItem>
+		
+	<!-- submit button -->
+		<mx:FormItem height="34">
+            <mx:HRule width="200" height="1"/>
+            <mx:Button label="Untag" click="untagProblem()"/>
+            <mx:Button label="Done" click="doneHandler()"/>
+        </mx:FormItem>
+	</mx:Form>
+</mx:TitleWindow>
