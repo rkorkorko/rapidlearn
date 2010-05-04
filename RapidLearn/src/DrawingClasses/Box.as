@@ -1,7 +1,7 @@
 package DrawingClasses
 {
-  import flash.events.Event;
-  import flash.events.MouseEvent;
+  import flash.events.*;
+ 
   
   import model.Concept;
   
@@ -23,7 +23,7 @@ package DrawingClasses
 	private var endY;
 	public var text:Text;
 	
-	private var concept:Concept;
+	public var concept:Concept;
 	
 	
 	private var isMouseDown:Boolean=false;
@@ -99,6 +99,8 @@ package DrawingClasses
       this.text.addEventListener(MouseEvent.MOUSE_UP,mouseUp);
     }
   
+
+    
     // mouse down event define start drawing line or draging box 
     //if line button click before, it sets mouse coordinate as firt points of line
     //if line button dosen't click it sets dragable of box

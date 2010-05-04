@@ -56,6 +56,34 @@ package DrawingClasses
     public function setLineButton(value:Button):void{
       this.lineButton = value;      
     }
+    
+    public function deleteSelectedLines(){
+    	var linesToRemove:ArrayCollection = new ArrayCollection();
+    	for(var i=0;i<lines.length;i++){
+    		if(lines[i].isSelect){
+    			trace("selected line found");
+    			this.courseMap.getRelations().removeItemAt(getConceptRelationIndexFromLine(lines[i]));
+    			designArea.removeChild(lines[i]);
+    			linesToRemove.addItem(lines[i]);
+    			//lines.removeItemAt(i);
+    		}
+    	}
+    	for(var j=0;j<linesToRemove.length;j++){
+    		lines.removeItemAt(lines.getItemIndex(linesToRemove[j]));
+    	}
+    }
+    
+    public function getConceptRelationIndexFromLine(line:Line):int{
+    	for(var i=0;i<courseMap.getRelations();i++){
+    		if(courseMap.getRelations()[i].getPrevious() == line.fromBox.concept && courseMap.getRelations()[i].getNext() == line.toBox.concept){
+    			return i;
+    		}
+    	}
+    	return null;
+    }
+    public function deleteSelectedBoxes(){
+    	
+    }
     // create guide line for first time drawing
     public function createTemplateLine():void{
       templateLine = new Line();
