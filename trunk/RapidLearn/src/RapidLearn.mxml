@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
+    import ui.ConceptDetailsDialog;
 	import model.TaggedExistingEvent;
 	import model.Problem;
 	import model.NewProblemEvent;
@@ -40,6 +41,8 @@
     private var win: ProblemInputForm;
     //pop up manager for tagging existing problems
     private var win2:TagExistingProbsForm;
+    //pop up manager for concept details
+    private var win3:ConceptDetailsDialog;
     
     //to enable listener for enter key
     private var enableEnterLstnr: Boolean = false;
@@ -77,6 +80,12 @@
 		win2.setDesigner(this.designer);
 		win2.addEventListener("taggedExistingProblem",taggedExistingProblemHandler);
 		PopUpManager.centerPopUp(win2);
+	}
+	
+	private function showConceptDetails():void {
+		win3=PopUpManager.createPopUp(this,ConceptDetailsDialog,true) as ConceptDetailsDialog;
+		win3.setDesigner(this.designer);
+		PopUpManager.centerPopUp(win3);
 	}
 	
 	private function taggedExistingProblemHandler(event:TaggedExistingEvent):void {
@@ -161,11 +170,13 @@
     	if(this.selectedConcept() == null) {
     		this.addProblemButton.enabled = false;
     		this.tagProblemButton.enabled = false;
+    		this.conceptDetailsButton.enabled = false;
     		this.statusNotification.text = "No Concept Selected - Click Once to Select";
     	}
     	else {
     		this.addProblemButton.enabled = true;
     		this.tagProblemButton.enabled = true;
+    		this.conceptDetailsButton.enabled = true;
     		
     		var probNum:int = 0;
     		
@@ -248,6 +259,7 @@
     <mx:Button x="403" y="9" label="Reset" height="50" click="reset()"/>
     <mx:Button x="503" y="9" label="Add Problem" height="50" id="addProblemButton" click="showAddProblemForm();" enabled="false"/>
     <mx:Button x="633" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton" click="showTagExistingProbsForm();" enabled="false"/>
+    <mx:Button x="803" y="9" label="Concept Details" height="50" id="conceptDetailsButton" click="showConceptDetails();" enabled="false"/>
   </mx:Canvas>
   
 </mx:Application>
