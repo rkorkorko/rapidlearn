@@ -77,7 +77,10 @@ package model
 		}
 		
 		public function removeConcept(c:Concept):void {
-			// NEED TO IMPLEMENT LATER
+			if(c!=null && this.concepts.contains(c)){
+				this.concepts.removeItemAt(this.concepts.getItemIndex(c));
+				//add stuff to repaint the pane that vijay is creating
+			}
 		}
 		
 
