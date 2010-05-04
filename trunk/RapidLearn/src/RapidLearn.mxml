@@ -33,12 +33,28 @@
     [Embed("/assets/grab.gif")]
     private var customCursor:Class;
     private var cursorID:int;
+    
+    //pop-up manager for for add problem form. 
+    var win: ProblemInputForm;
+    //to enable listener for enter key
+    private var enableEnterLstnr: Boolean = false;
+   
+   //keyboard listener for enter key
+    public function enterKeyListener(event: KeyboardEvent):void{
+    	trace("enter in keyboard listner");
+    	if (event.charCode==13 && enableEnterLstnr==true){
+    		win.validateForm();
+    		trace("fired keyboard listner");
+    		enableEnterLstnr = false;
+    	}
+    } 
    
     private function showAddProblemForm():void{
-		var win:ProblemInputForm=PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
+		win =PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
 		win.addEventListener("newProblem",newProblemHandler);
 		win.init();
-		PopUpManager.centerPopUp(win);
+		PopUpManager.centerPopUp(win);		
+		enableEnterLstnr = true;	
 	}
 	
 	private function showTagExistingProbsForm():void{
@@ -79,6 +95,7 @@
       designer.setDesignArea(designArea);
       designer.addEventListener("selectionChanged",conceptSelectionChanged);
        ViewSource.addMenuItem(this, "SourceViews/index.html");
+      this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
     }
     
 
