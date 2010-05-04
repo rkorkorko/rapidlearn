@@ -192,20 +192,24 @@ package DrawingClasses
     private var newBox:Box;
     private var win:NameDialog;
     private var enterKey:Boolean = false;
+    
     public function addBox(x:int, y:int):void{
       newBox = new Box(this);
       var id:String = getId("Box");
       newBox.setDesigner(this);
       newBox.create(x,y,id);
       newBox.addEventListener("selectionChanged",selectionChangedHandler);
-      boxes.addItem(newBox);     
+      boxes.addItem(newBox);
+  	  designArea.addChild(newBox);      
       
       win=PopUpManager.createPopUp(this.flexDrawing,NameDialog,true) as NameDialog;
       enterKey =true;
+      win.init(courseMap);
       win.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
       win.addEventListener("addCName", setConceptName);
+      win.addEventListener("invalidCName",removeInvalidConceptBox);
 	  PopUpManager.centerPopUp(win);
-      designArea.addChild(newBox);      
+          
     } 
     
     public function enterKeyListener(event: KeyboardEvent):void{
@@ -216,19 +220,35 @@ package DrawingClasses
     	}
     } 
     
+    
+    public function removeInvalidConceptBox(event:Event):void {
+    	if(newBox != null) {
+    		trace("Removing invalid concept box");
+    		boxes.removeItemAt(boxes.length-1);
+    		designArea.removeChild(newBox);
+    		newBox = null;
+    	}
+    }
+    
+    
     public function setConceptName(event:Event):void{
     	trace("name:", win.getName());
+    	
+    	 
+    	
     	var name:String = win.getName();
+    	
     	newBox.setConceptName(name);
+    	
     	newBox.text.text=name;
-    	designArea.addChild(newBox);
+    	
     	
     	
       	designArea.addChild(newBox.text);
       	newBox.text.x = newBox.x+newBox.width/2-newBox.text.text.length*4;
     	newBox.text.y = newBox.y+newBox.height/2-9;
     	//trace("redraw");
-   //   	newBox.addMouseUpEventListenerToText();
+   		//newBox.addMouseUpEventListenerToText();
       	   	
 	    courseMap.addConcept(newBox.getConcept());
 	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");

@@ -7,38 +7,82 @@
 	close="titleWindow_close(event);">
 	<mx:Script>
 		<![CDATA[
+			import model.Problem;
 			import mx.effects.effectClasses.DissolveInstance;
 			
 			import mx.events.CloseEvent;
             import mx.managers.PopUpManager;
             import flash.events.Event;
+            import mx.validators.Validator;
+            import mx.controls.Alert;
+            import mx.events.ValidationResultEvent;
+            import model.CourseMap;
+            import model.Concept;
             
 			[Bindable]
             public var selectedItem:Object;
+            private var validatorArr:Array;
 
 			private var conceptName:String;
+			private var courseMap:CourseMap
+			
+			public function init(map:CourseMap):void {
+				validatorArr = new Array();
+				validatorArr.push(cname_validator);
+				this.courseMap = map;
+			}
 			
 			public function getName():String{
 				return this.conceptName;
 			}
             private function titleWindow_close(evt:CloseEvent):void {
                 PopUpManager.removePopUp(this);
-                
+                dispatchEvent(new Event("invalidCName"));
             
             }
             
             public function handleNameDialogClick():void{
-            	//if (inputName.text!=null || inputName.text!=""){
-            		this.conceptName = inputName.text; 
-            		PopUpManager.removePopUp(this);
-            		trace("firing event");  	
-            		dispatchEvent(new Event("addCName"));	
+            		
             	
             }
+            
+            public function validateName():void {
+				trace("validating name...")
+				var validatorErrorArray:Array = Validator.validateAll(validatorArr);
+				var isValidForm:Boolean = validatorErrorArray.length == 0;
+				if(isValidForm && validateNameUnique()) {
+					trace("form is valid");
+					// Handle new concept creation
+					this.conceptName = inputName.text; 
+            		PopUpManager.removePopUp(this);
+            		dispatchEvent(new Event("addCName"));	
+				}
+				else {
+                    var errorMessageArray:Array = [];
+                    errorMessageArray.push("Make sure the concept name is not empty or the same as an existing name.");
+                    Alert.show(errorMessageArray.join("\n\n"), "Invalid Concept Name...", Alert.OK);
+				}
+				
+			}
+			
+			private function validateNameUnique():Boolean {
+				var c:Concept;
+				
+				for each (c in this.courseMap.getConcepts()) {
+					if(inputName.text == c.getName()) {
+						return false;
+					}
+				}
+				return true;
+			}
+            
             ]]>
             </mx:Script>
 
-
+		<mx:StringValidator id="cname_validator"
+        	source="{inputName}"
+        	property="text"
+        	minLength="1" />
 	
 		<mx:FormHeading label="Enter Concept Name" x="10" y="10"/>
 		<mx:Label text="Max 7 characters" x="44.5" y="24"/>
@@ -51,7 +95,7 @@
             
             <mx:Button label="OK" labelPlacement="left" 
             	textAlign="center" x="72.5" y="68"
-            	click="handleNameDialogClick()"/>
+            	click="validateName()"/>
         
 	
 </mx:TitleWindow>

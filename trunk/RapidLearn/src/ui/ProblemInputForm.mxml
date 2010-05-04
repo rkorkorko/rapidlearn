@@ -27,7 +27,6 @@
 			[Bindbale] private var validatorArr:Array;
 			
 			public function init():void {
-				trace("initializing..."); 
 				validatorArr = new Array();
 				validatorArr.push(pname_validator);
 				validatorArr.push(ptext_validator);
