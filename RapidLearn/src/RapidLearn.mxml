@@ -239,7 +239,7 @@
     <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="130" width="100%" height="100%" backgroundColor="#ffffff" click="designer.whitespaceClickHandler()" >      
     </mx:Canvas>    
     <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);"/>
-    <mx:Label x="10" y="75" text="the gray area to draw a box" height="20"/>
+    <mx:Label x="10" y="75" text="the white area to draw a box" height="20"/>
     <mx:Label x="225" y="75" text="draw a line between two boxes."/>
     <mx:Button x="403" y="9" label="Reset" height="50" click="reset()"/>
     <mx:Button x="503" y="9" label="Add Problem" height="50" id="addProblemButton" click="showAddProblemForm();" enabled="false"/>

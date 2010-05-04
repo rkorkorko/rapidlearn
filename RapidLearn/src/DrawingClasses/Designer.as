@@ -80,6 +80,7 @@ package DrawingClasses
     	}
     	return null;
     }
+    
     public function deleteSelectedBoxes(){
     	if(currentSelectedBox!=null){
     		var concept:Concept = Concept(this.courseMap.getConcepts().getItemAt(getConceptIndexFromBox(currentSelectedBox)));
@@ -123,6 +124,7 @@ package DrawingClasses
     	}
     	return null;
     }
+    
     
     // create guide line for first time drawing
     public function createTemplateLine():void{
