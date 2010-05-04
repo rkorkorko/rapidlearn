@@ -25,6 +25,11 @@
             [Bindable]
             private var titleString:String;
 
+			public function init():void{
+				trace("added keyboard listener");
+				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
+			}
+			
 			public function setDesigner(d:Designer):void {
 				this.designer = d;
 				this.problemNames = new ArrayCollection();
@@ -41,7 +46,7 @@
                 PopUpManager.removePopUp(this);
             }
             
-            private function submitExistingProblem():void {
+            public function submitExistingProblem():void {
             	if(this.selectedItem != null) {
             		var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
 					for(var i:int = 0; i < probs.length; i++) {
@@ -54,12 +59,21 @@
             	}
             }
             
+            //keyboard listener for enter key
+		    public function enterKeyListener(event: KeyboardEvent):void{
+		    	trace("entered in keyboard listner in tag existing problem");
+		    	if (event.charCode==13){
+		    		this.submitExistingProblem();
+		    		trace("fired keyboard listner");
+		    	}
+		    } 
+            
             ]]>
             </mx:Script>
 	
 
 	
-	<mx:Form width="100%" height="100%">
+	<mx:Form width="100%" height="100%" creationComplete="init()">
 		<mx:FormHeading label="{this.titleString}"/>
 		<mx:FormItem label="Select Problems">
 			<mx:List width="228"
