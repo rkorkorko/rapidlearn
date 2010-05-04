@@ -198,7 +198,13 @@
    	  designer.setIsDrawEnable(true);
    	  line.setStyle("icon",lineOnPicture); 
    	}
-   	
+  	
+  	private function reset():void{
+  		this.addProblemButton.enabled = false;
+  		this.tagProblemButton.enabled = false; 
+  		trace("disabled buttons");
+  		designer.reset();
+  	} 	
   
     ]]>
   </mx:Script>
@@ -215,7 +221,7 @@
     <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);"/>
     <mx:Label x="10" y="75" text="the gray area to draw a box" height="20"/>
     <mx:Label x="225" y="75" text="draw a line between two boxes."/>
-    <mx:Button x="403" y="9" label="Reset" height="50" click="designer.reset()"/>
+    <mx:Button x="403" y="9" label="Reset" height="50" click="reset()"/>
     <mx:Button x="503" y="9" label="Add Problem" height="50" id="addProblemButton" click="showAddProblemForm();" enabled="false"/>
     <mx:Button x="633" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton" click="showTagExistingProbsForm();" enabled="false"/>
   </mx:Canvas>

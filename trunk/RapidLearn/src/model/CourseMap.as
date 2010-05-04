@@ -47,7 +47,12 @@ package model
 		public function addProblem(p:Problem):void{
 			this.problems.addItem(p);
 		}
-	
+		
+		public function clear():void{
+			concepts.removeAll();
+			relations.removeAll();
+			problems.removeAll();
+		}
 				
 	}
 }
