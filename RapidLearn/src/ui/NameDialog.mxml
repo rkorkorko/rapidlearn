@@ -42,7 +42,7 @@
             }
             
             public function handleNameDialogClick():void{
-            		
+            		validateName();
             	
             }
             
