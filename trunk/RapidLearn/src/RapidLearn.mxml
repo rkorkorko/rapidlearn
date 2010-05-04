@@ -146,6 +146,8 @@
    	  designer.setIsDrawEnable(true);
    	  line.setStyle("icon",lineOnPicture); 
    	}
+   	
+  
     ]]>
   </mx:Script>
   <mx:Canvas id="MainArea" width="100%" height="100%">

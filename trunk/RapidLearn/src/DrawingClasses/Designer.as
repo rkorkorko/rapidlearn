@@ -261,6 +261,7 @@ package DrawingClasses
 			if(currentSelectedBox!=null){
     			currentSelectedBox.source=currentSelectedBox.boxPicture;
     			currentSelectedBox = null;
+    			dispatchEvent(new Event("selectionChanged"));
    			}
     	
     }
