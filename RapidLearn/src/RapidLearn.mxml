@@ -113,9 +113,10 @@
        application.addEventListener(KeyboardEvent.KEY_UP,keyPressHandler);
 		application.setFocus();
       this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
-    }
+      this.addEventListener(MouseEvent.MOUSE_OVER, mouseOverListener);
+    } 
     
-    public function keyPressHandler(event:KeyboardEvent){
+    public function keyPressHandler(event:KeyboardEvent):void{
     	trace("fired");
     	trace(event.keyCode);
     	if(event.keyCode == 8 || event.keyCode == 46){
@@ -182,9 +183,19 @@
     	}
     }
     
+    private var dragInitiator:Image;
+    
+    private function mouseOverListener(event:MouseEvent):void{
+    	trace("entered mouse over listener");
+    	if (event.currentTarget!=dragInitiator){
+    		CursorManager.removeAllCursors();
+    		trace("cursors removed in mouse over listner");   
+    	} 	
+    }
+    
     // this method supply drag box when mose move on the design area 
     private function dragPicture(event:MouseEvent, img1:Image,format:String):void{
-      var dragInitiator:Image=Image(event.currentTarget);
+      dragInitiator=Image(event.currentTarget);
       var ds:DragSource = new DragSource();
       ds.addData(img1,format);
       var imageProxy:Image = new Image();
