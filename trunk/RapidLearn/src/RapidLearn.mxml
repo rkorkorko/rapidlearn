@@ -36,32 +36,45 @@
     
     //pop-up manager for for add problem form. 
     var win: ProblemInputForm;
+    //pop up manager for tagging existing problems
+    private var win2:TagExistingProbsForm;
+    
     //to enable listener for enter key
     private var enableEnterLstnr: Boolean = false;
-   
+    private var enableEnterLstnrTag:Boolean = false;
+    
    //keyboard listener for enter key
     public function enterKeyListener(event: KeyboardEvent):void{
     	trace("enter in keyboard listner");
-    	if (event.charCode==13 && enableEnterLstnr==true){
+    	if (event.charCode==13){
+    		if (enableEnterLstnr==true){
     		win.validateForm();
     		trace("fired keyboard listner");
     		enableEnterLstnr = false;
+    		}
+    		else if (enableEnterLstnrTag==true){
+    			win2.submitExistingProblem();
+    			enableEnterLstnrTag = false; 
+    			trace("in rapid learn lstnr");
+    		}
+    	
     	}
     } 
    
     private function showAddProblemForm():void{
-		win =PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
+		win = PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
 		win.addEventListener("newProblem",newProblemHandler);
 		win.init();
 		PopUpManager.centerPopUp(win);		
 		enableEnterLstnr = true;	
 	}
 	
+	
 	private function showTagExistingProbsForm():void{
-		var win:TagExistingProbsForm=PopUpManager.createPopUp(this,TagExistingProbsForm,true) as TagExistingProbsForm;
-		win.setDesigner(this.designer);
-		win.addEventListener("taggedExistingProblem",taggedExistingProblemHandler);
-		PopUpManager.centerPopUp(win);
+		win2=PopUpManager.createPopUp(this,TagExistingProbsForm,true) as TagExistingProbsForm;
+		win2.setDesigner(this.designer);
+		win2.addEventListener("taggedExistingProblem",taggedExistingProblemHandler);
+		PopUpManager.centerPopUp(win2);
 	}
 	
 	private function taggedExistingProblemHandler(event:TaggedExistingEvent):void {
