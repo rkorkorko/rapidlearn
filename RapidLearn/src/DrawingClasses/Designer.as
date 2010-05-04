@@ -65,7 +65,6 @@ package DrawingClasses
     			this.courseMap.getRelations().removeItemAt(getConceptRelationIndexFromLine(lines[i]));
     			designArea.removeChild(lines[i]);
     			linesToRemove.addItem(lines[i]);
-    			//lines.removeItemAt(i);
     		}
     	}
     	for(var j=0;j<linesToRemove.length;j++){
@@ -82,8 +81,39 @@ package DrawingClasses
     	return null;
     }
     public function deleteSelectedBoxes(){
-    	
+    	if(currentSelectedBox!=null){
+    		this.courseMap.getConcepts().removeItemAt(getConceptIndexFromBox(currentSelectedBox));
+    		designArea.removeChild(currentSelectedBox);
+    		designArea.removeChild(currentSelectedBox.text);
+    		boxes.removeItemAt(boxes.getItemIndex(currentSelectedBox));
+    		
+    		//need to remove all arrows into and out of this box
+    		var linesToRemove:ArrayCollection = new ArrayCollection();
+    		for(var i=0;i<lines.length;i++){
+    			if(lines[i].fromBox == currentSelectedBox || lines[i].toBox == currentSelectedBox){
+    				this.courseMap.getRelations().removeItemAt(getConceptRelationIndexFromLine(lines[i]));
+    				designArea.removeChild(lines[i]);
+    				linesToRemove.addItem(lines[i]);
+    			}
+    		}
+    		    	for(var j=0;j<linesToRemove.length;j++){
+    		lines.removeItemAt(lines.getItemIndex(linesToRemove[j]));
+    	}
+    		
+    		
+    		currentSelectedBox=null;
+    	}
     }
+    
+    public function getConceptIndexFromBox(box:Box):int{
+    	for(var i=0;i<courseMap.getConcepts();i++){
+    		if(courseMap.getConcepts()[i] == box.concept){
+    			return i;
+    		}
+    	}
+    	return null;
+    }
+    
     // create guide line for first time drawing
     public function createTemplateLine():void{
       templateLine = new Line();
