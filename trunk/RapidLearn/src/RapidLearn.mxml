@@ -37,7 +37,7 @@
     private var cursorID:int;
     
     //pop-up manager for for add problem form. 
-    var win: ProblemInputForm;
+    private var win: ProblemInputForm;
     //pop up manager for tagging existing problems
     private var win2:TagExistingProbsForm;
     
