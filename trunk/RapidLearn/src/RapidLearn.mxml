@@ -108,7 +108,19 @@
       designer.setDesignArea(designArea);
       designer.addEventListener("selectionChanged",conceptSelectionChanged);
        ViewSource.addMenuItem(this, "SourceViews/index.html");
+       application.addEventListener(KeyboardEvent.KEY_UP,keyPressHandler);
+		application.setFocus();
       this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
+    }
+    
+    public function keyPressHandler(event:KeyboardEvent){
+    	trace("fired");
+    	trace(event.keyCode);
+    	if(event.keyCode == 8 || event.keyCode == 46){
+    		trace("going into delete");
+    		designer.deleteSelectedLines();
+    		designer.deleteSelectedBoxes();
+    	}
     }
     
 
@@ -190,7 +202,7 @@
   
     ]]>
   </mx:Script>
-  <mx:Canvas id="MainArea" width="100%" height="100%">
+  <mx:Canvas id="MainArea" width="100%" height="100%" click="MainArea.setFocus()">
       <mx:Image id="box" source="@Embed(source='assets/add.png')" mouseMove="dragPicture(event, box, 'img');myoffset(box);" x="10" y="10"></mx:Image>
       <mx:Label text="Drag and drop this picture on " x="10" y="60"></mx:Label>
       <mx:Label text="Click the button above to" x="225" y="60"></mx:Label>
@@ -198,7 +210,7 @@
     	<mx:Label id="statusNotification" textAlign="center" fontSize="12" text="No Concept Selected" paddingLeft="10"/>
     </mx:Canvas>
     
-    <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="130" width="100%" height="100%" backgroundColor="#ffffff" click="designer.whitespaceClickHandler()">      
+    <mx:Canvas id="designArea" dragEnter="pictureDragEnter(event)" dragDrop="pictureDragDrop(event)" top="130" width="100%" height="100%" backgroundColor="#ffffff" click="designer.whitespaceClickHandler()" >      
     </mx:Canvas>    
     <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);"/>
     <mx:Label x="10" y="75" text="the gray area to draw a box" height="20"/>

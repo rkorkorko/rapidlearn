@@ -17,10 +17,10 @@ package DrawingClasses
     private var y2:int;
     private var color:uint = 0x000000;
 //  this box referance for find line distance
-    private var fromBox:Box;
-    private var toBox:Box;
+    public var fromBox:Box;
+    public var toBox:Box;
 //  this boolean variable understand selection on,off    
-    private var isSelect:Boolean=false;
+    public var isSelect:Boolean=false;
     
     public function Line(){
       super();
