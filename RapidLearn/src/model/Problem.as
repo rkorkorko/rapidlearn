@@ -31,6 +31,7 @@ package model
 		
 		public function getName():String {
 			return this.name;
+			
 		}
 		
 		public function getText():String {
