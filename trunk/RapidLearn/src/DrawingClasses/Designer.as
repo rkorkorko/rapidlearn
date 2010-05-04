@@ -82,6 +82,16 @@ package DrawingClasses
     }
     public function deleteSelectedBoxes(){
     	if(currentSelectedBox!=null){
+    		var concept:Concept = Concept(this.courseMap.getConcepts().getItemAt(getConceptIndexFromBox(currentSelectedBox)));
+    		for(var k = 0;k<courseMap.getProblems().length;k++){
+    			if(courseMap.getProblems()[k].getConcepts().contains(concept)){
+    				trace(courseMap.getProblems()[k].getConcepts());
+    				courseMap.getProblems()[k].getConcepts().removeItemAt(courseMap.getProblems()[k].getConcepts().getIndexOf(concept));
+    				trace(courseMap.getProblems()[k].getConcepts());
+    			}
+    			
+    		}
+    		
     		this.courseMap.getConcepts().removeItemAt(getConceptIndexFromBox(currentSelectedBox));
     		designArea.removeChild(currentSelectedBox);
     		designArea.removeChild(currentSelectedBox.text);
