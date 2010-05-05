@@ -79,6 +79,7 @@
 		win = PopUpManager.createPopUp(this,ProblemInputForm,true) as ProblemInputForm;
 		win.addEventListener("newProblem",newProblemHandler);
 		win.init();
+		win.heading.label = "Add New Problem to "+this.selectedConcept().getName();
 		PopUpManager.centerPopUp(win);		
 		enableEnterLstnr = true;
 		win.pname.setFocus();
@@ -277,7 +278,9 @@
   		if (event.detail == Alert.YES) {
 			// what to do if user selected “yes”
 			this.addProblemButton.enabled = false;
-	  		this.tagProblemButton.enabled = false; 
+	  		this.tagProblemButton.enabled = false;
+	  		this.conceptDetailsButton.enabled = false;
+	  		this.deleteButton.enabled = false; 
 	  		trace("disabled buttons");
 	  		designer.reset();
 	  		this.statusNotification.text = "Course map has been reset"

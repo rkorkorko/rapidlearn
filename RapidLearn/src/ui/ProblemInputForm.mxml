@@ -248,7 +248,7 @@
 	
 	
 	<mx:Form x="10" y="10" width="450" height="450" >
-		<mx:FormHeading label="Add New Problem"/>
+		<mx:FormHeading id="heading" label="Add New Problem"/>
 		
 		
 		<!-- problem name -->
