@@ -122,6 +122,8 @@
     public function initApp():void{
       designer.setDesignArea(designArea);
       designer.addEventListener("selectionChanged",conceptSelectionChanged);
+      designer.addEventListener("lineSelected",lineSelected);
+      designer.addEventListener("lineDeselected",lineDeselected);
        ViewSource.addMenuItem(this, "SourceViews/index.html");
        application.addEventListener(KeyboardEvent.KEY_UP,keyPressHandler);
 		application.setFocus();
@@ -170,17 +172,27 @@
 		return null;
     }
     
+    public function lineSelected(event:Event):void {
+    	this.deleteButton.enabled = true;
+    }
+    
+    public function lineDeselected(event:Event):void {
+    	this.deleteButton.enabled = false;
+    }
+    
     public function conceptSelectionChanged(event:Event):void {
     	if(this.selectedConcept() == null) {
     		this.addProblemButton.enabled = false;
     		this.tagProblemButton.enabled = false;
     		this.conceptDetailsButton.enabled = false;
+    		this.deleteButton.enabled = false;
     		this.statusNotification.text = "No Concept Selected - Click Once to Select";
     	}
     	else {
     		this.addProblemButton.enabled = true;
     		this.tagProblemButton.enabled = true;
     		this.conceptDetailsButton.enabled = true;
+    		this.deleteButton.enabled = true;
     		
     		var probNum:int = 0;
     		

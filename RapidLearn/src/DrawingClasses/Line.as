@@ -1,6 +1,8 @@
 package DrawingClasses
 {
+  import flash.events.Event;
   import flash.events.MouseEvent;
+  
   import mx.core.UIComponent;
   
   public class Line extends UIComponent
@@ -73,10 +75,12 @@ package DrawingClasses
       if (!this.isSelect){
         this.color = 0xff0000;
         this.isSelect = true;
+        dispatchEvent(new Event("lineSelected"));
       }
       else{
         this.color = 0x000000;
         this.isSelect = false;
+        dispatchEvent(new Event("lineDeselected"));
       }
       draw();
     }

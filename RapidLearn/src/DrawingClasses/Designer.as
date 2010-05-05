@@ -314,6 +314,8 @@ package DrawingClasses
         newLine.setId(getId("Line"));
         newLine.setFromBox(currentFromBox);
         newLine.setToBox(currentToBox);
+        newLine.addEventListener("lineSelected",lineSelectedHandler);
+        newLine.addEventListener("lineDeselected",lineDeselectedHandler);
         newLine.draw();        
         currentFromBox.addFromLine(newLine);
         currentToBox.addToLine(newLine);          
@@ -335,6 +337,14 @@ package DrawingClasses
         cancelDrawing(); 
       }
     }  
+ 
+ 	public function lineSelectedHandler(event:Event):void {
+ 		dispatchEvent(new Event("lineSelected"));
+ 	}
+ 	
+ 	public function lineDeselectedHandler(event:Event):void {
+ 		dispatchEvent(new Event("lineDeselected"));
+ 	}
  
     // this methods cancel drawing
     public function cancelDrawing():void{
