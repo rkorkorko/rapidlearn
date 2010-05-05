@@ -4,7 +4,10 @@
 	showCloseButton="true" 
 	backgroundColor="#C9DEEF"
 	close="titleWindow_close(event);"
-	 width="500"> 
+	 width="500"
+	 initialize="stage.focus=pname;"
+	 
+	 > 
 
 	<!-- Need to script:  -->
 	<!--	1. number of choices to display after dropdown  - I THINK this works,just need to validate data now -->
@@ -31,7 +34,7 @@
 				validatorArr.push(pname_validator);
 				validatorArr.push(ptext_validator);
 				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
-				pname.setFocus();
+				
 			}
 			
 			//keyboard listener for enter key
@@ -244,12 +247,12 @@
 	
 	
 	
-	<mx:Form x="10" y="10" width="450" height="450">
+	<mx:Form x="10" y="10" width="450" height="450" >
 		<mx:FormHeading label="Add New Problem"/>
 		
 		
 		<!-- problem name -->
-		<mx:FormItem label="Problem Name" required="true">
+		<mx:FormItem id="pnameformitem" label="Problem Name" required="true" >
             <mx:TextInput id="pname" width="250"/>
         </mx:FormItem>
         	

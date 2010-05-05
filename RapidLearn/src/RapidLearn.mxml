@@ -80,7 +80,8 @@
 		win.addEventListener("newProblem",newProblemHandler);
 		win.init();
 		PopUpManager.centerPopUp(win);		
-		enableEnterLstnr = true;	
+		enableEnterLstnr = true;
+		win.pname.setFocus();
 	}
 	
 	
