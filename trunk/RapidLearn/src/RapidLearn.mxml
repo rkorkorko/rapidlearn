@@ -271,7 +271,8 @@
     // it is make enable to draw line
    	public function doDrawEnable():void{
    	  designer.setIsDrawEnable(true);
-   	  line.setStyle("icon",lineOnPicture); 
+   	  line.setStyle("icon",lineOnPicture);
+   	  this.statusNotification.text="Click and hold from start concept to end concept"; 
    	}
   	 
   	private function confirmHandler(event:CloseEvent):void {
