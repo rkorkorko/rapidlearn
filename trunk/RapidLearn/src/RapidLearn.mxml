@@ -319,7 +319,7 @@
     	<mx:Label id="statusNotification" textAlign="center" color="#000000" width="100%" paddingTop="3" fontSize="14" text="Start by dragging a Concept to the Course Map" paddingLeft="10"/>
     </mx:Box>
      
-    <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);"/>
+    <mx:Button x="229" y="10"  id="line" icon="@Embed(source='assets/arrow_black.png')" click="doDrawEnable()" height="50" width="70" creationComplete="designer.setLineButton(line);" enabled="false"/>
     <mx:Label x="10" y="75" text="the white area to draw a box" height="20"/>
     <mx:Label x="225" y="75" text="draw a line between two boxes."/>
     <mx:Button x="403" y="9" label="Reset" height="50" click="reset()"/>

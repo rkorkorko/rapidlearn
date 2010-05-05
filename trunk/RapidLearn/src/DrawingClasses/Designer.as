@@ -78,6 +78,13 @@ package DrawingClasses
     	}if(count>1){
     		flexDrawing.statusNotification.text=count + " relations successfully deleted";
     	}
+    	
+    	if(this.courseMap.getConcepts().length >= 2) {
+    		flexDrawing.line.enabled = true;
+    	}
+    	else {
+    		flexDrawing.line.enabled = false;
+    	}
     }
     
     public function getConceptRelationIndexFromLine(line:Line):int{
@@ -122,15 +129,19 @@ package DrawingClasses
     			}
     			
     		}
-    		    	for(var j=0;j<linesToRemove.length;j++){
-    		lines.removeItemAt(lines.getItemIndex(linesToRemove[j]));
-    		
-    	}
-    		
-    		
+    		    	
+    		for(var j=0;j<linesToRemove.length;j++){
+    			lines.removeItemAt(lines.getItemIndex(linesToRemove[j]));
+    		}	
     		currentSelectedBox=null;
-    		
-    		
+
+    	}
+    	
+    	if(this.courseMap.getConcepts().length >= 2) {
+    		flexDrawing.line.enabled = true;
+    	}
+    	else {
+    		flexDrawing.line.enabled = false;
     	}  	
     	 
     }
@@ -287,6 +298,13 @@ package DrawingClasses
     	
     	//updating status bar
     	flexDrawing.statusNotification.text = "Concept Added: " + name + " - Click to select";
+    	
+    	if(this.courseMap.getConcepts().length >= 2) {
+    		flexDrawing.line.enabled = true;
+    	}
+    	else {
+    		flexDrawing.line.enabled = false;
+    	}
     } 
     
     
