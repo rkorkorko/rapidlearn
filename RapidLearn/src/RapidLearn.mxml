@@ -271,6 +271,10 @@
     	designer.deleteSelectedBoxes();
   	}
   
+  	private function help():void{
+  		
+  	}
+  	
     ]]>
   </mx:Script>
   <mx:Canvas id="MainArea" width="100%" height="100%" click="MainArea.setFocus()">
@@ -295,6 +299,7 @@
     <mx:Button x="633" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton" click="showTagExistingProbsForm();" enabled="false"/>
     <mx:Button x="803" y="9" label="View Tagged Problems" height="50" id="conceptDetailsButton" click="showConceptDetails();" enabled="false"/>
     <mx:Button x="1003" y="9" label="Delete" height="50" id="deleteButton" click="deleteBoxorLine();" enabled="false"/>
+    <mx:Button x="1203" y="9" label="Help" height="50" id="helpButton" click="help();" enabled="true"/>
   </mx:Canvas>
   
 </mx:Application>
