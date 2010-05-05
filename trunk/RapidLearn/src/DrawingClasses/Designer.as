@@ -91,9 +91,12 @@ package DrawingClasses
     public function deleteSelectedBoxes():void{
     	if(currentSelectedBox!=null){
     		trace(currentSelectedBox.text.text);
+    		//update status bar
+    		flexDrawing.statusNotification.text = currentSelectedBox.text.text + " is deleted";
     		
     		var concept:Concept = Concept(this.courseMap.getConcepts().getItemAt(getConceptIndexFromBox(currentSelectedBox)));
     		var cnametodisplay:String = concept.getName();
+    		trace(cnametodisplay);
     		for(var k:int = 0;k<courseMap.getProblems().length;k++){
     			if(courseMap.getProblems()[k].getConcepts().contains(concept)){
     				trace(courseMap.getProblems()[k].getConcepts());
@@ -126,8 +129,7 @@ package DrawingClasses
     		
     		currentSelectedBox=null;
     		
-    		//update status bar
-    		flexDrawing.statusNotification.text = cnametodisplay + " is deleted";
+    		
     	}  	
     	 
     }
