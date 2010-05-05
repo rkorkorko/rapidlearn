@@ -73,7 +73,7 @@ package DrawingClasses
     }
     
     public function getConceptRelationIndexFromLine(line:Line):int{
-    	for(var i=0;i<courseMap.getRelations();i++){
+    	for(var i =0;i<courseMap.getRelations();i++){
     		if(courseMap.getRelations()[i].getPrevious() == line.fromBox.concept && courseMap.getRelations()[i].getNext() == line.toBox.concept){
     			return i;
     		}
@@ -81,10 +81,10 @@ package DrawingClasses
     	return null;
     }
     
-    public function deleteSelectedBoxes(){
+    public function deleteSelectedBoxes():void{
     	if(currentSelectedBox!=null){
     		var concept:Concept = Concept(this.courseMap.getConcepts().getItemAt(getConceptIndexFromBox(currentSelectedBox)));
-    		for(var k = 0;k<courseMap.getProblems().length;k++){
+    		for(var k:int = 0;k<courseMap.getProblems().length;k++){
     			if(courseMap.getProblems()[k].getConcepts().contains(concept)){
     				trace(courseMap.getProblems()[k].getConcepts());
     				courseMap.getProblems()[k].getConcepts().removeItemAt(courseMap.getProblems()[k].getConcepts().getIndexOf(concept));
@@ -106,14 +106,20 @@ package DrawingClasses
     				designArea.removeChild(lines[i]);
     				linesToRemove.addItem(lines[i]);
     			}
+    			
     		}
     		    	for(var j=0;j<linesToRemove.length;j++){
     		lines.removeItemAt(lines.getItemIndex(linesToRemove[j]));
+    		
     	}
     		
     		
     		currentSelectedBox=null;
-    	}
+    		
+    		//update status bar
+    		flexDrawing.statusNotification.text = concept.getName() + " is deleted";
+    	}  	
+    	 
     }
     
     public function getConceptIndexFromBox(box:Box):int{
@@ -220,8 +226,7 @@ package DrawingClasses
       win.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
       win.addEventListener("addCName", setConceptName);
       win.addEventListener("invalidCName",removeInvalidConceptBox);
-	  PopUpManager.centerPopUp(win);
-          
+	  PopUpManager.centerPopUp(win);     
     } 
     
     public function enterKeyListener(event: KeyboardEvent):void{
@@ -266,6 +271,9 @@ package DrawingClasses
 	    trace("concept", newBox.getConcept().getName(), "added to CourseMap");
 	    enterKey=false;trace(newBox.text.height);
     	trace(newBox.text.width);
+    	
+    	//updating status bar
+    	flexDrawing.statusNotification.text = "Concept Added: " + name;
     } 
     
     
@@ -308,6 +316,9 @@ package DrawingClasses
         var toConcept:Concept = currentToBox.getConcept();
         courseMap.addRelation(new ConceptRelation(fromConcept, toConcept)); 
         trace("relation from", fromConcept.getName(), "to", toConcept.getName());  
+        
+        //update status bar
+        flexDrawing.statusNotification.text = currentFromBox.name + " is a prerequisite to " + currentToBox.name;
          
       }
       else{
