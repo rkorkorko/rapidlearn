@@ -8,6 +8,7 @@ package DrawingClasses
   import model.Concept;
   import model.ConceptRelation;
   import model.CourseMap;
+  import model.RelationEvent;
   
   import mx.collections.ArrayCollection;
   import mx.containers.Canvas;
@@ -328,7 +329,8 @@ package DrawingClasses
         //update model
         var fromConcept:Concept = currentFromBox.getConcept();
         var toConcept:Concept = currentToBox.getConcept();
-        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept)); 
+        courseMap.addRelation(new ConceptRelation(fromConcept, toConcept));
+        dispatchEvent(new RelationEvent("newRelation",fromConcept,toConcept));
         trace("relation from", fromConcept.getName(), "to", toConcept.getName());  
         
         //update status bar
