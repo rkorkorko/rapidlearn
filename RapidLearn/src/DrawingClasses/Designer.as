@@ -58,6 +58,7 @@ package DrawingClasses
     }
     
     public function deleteSelectedLines(){
+    	var count:int =0;
     	var linesToRemove:ArrayCollection = new ArrayCollection();
     	for(var i=0;i<lines.length;i++){
     		if(lines[i].isSelect){
@@ -67,8 +68,14 @@ package DrawingClasses
     			linesToRemove.addItem(lines[i]);
     		}
     	}
+    	count = linesToRemove.length;
     	for(var j=0;j<linesToRemove.length;j++){
     		lines.removeItemAt(lines.getItemIndex(linesToRemove[j]));
+    	}
+    	if(count==1){
+    		flexDrawing.statusNotification.text="1 relation successfully deleted";
+    	}if(count>1){
+    		flexDrawing.statusNotification.text=count + " relations successfully deleted";
     	}
     }
     
