@@ -286,7 +286,7 @@ package DrawingClasses
     	trace(newBox.text.width);
     	
     	//updating status bar
-    	flexDrawing.statusNotification.text = "Concept Added: " + name;
+    	flexDrawing.statusNotification.text = "Concept Added: " + name + " - Click to select";
     } 
     
     
