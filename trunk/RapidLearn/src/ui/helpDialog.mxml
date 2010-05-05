@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute">
+
+	<mx:Script>
+		<![CDATA[
+			import mx.managers.PopUpManager;
+			import mx.events.CloseEvent;
+			
+			 private function titleWindow_close(evt:CloseEvent):void {
+                PopUpManager.removePopUp(this);
+            }
+		]]>
+	</mx:Script>
+	 <mx:XMLList id="treeData">
+	        <node label="RapidLearn">
+	            <node label="What is Rapid Learn?">
+	                <node label="RapidLearn is a system for Physics instructors to organize the courses they teach."/>
+	                <node label="Instructors upload courses based on the topics taught, called Concepts."/>
+	                <node label="They establish prerequisite Relations between them by drawing arrows"/>
+	                <node label="Problems are added to the system and tagged with Concepts."/>
+	            </node>
+	            <node label="How To?">
+		            <node label="Add a Concept">
+	            		<node label="Click on the button Add Concept and hold the mouse down."/>
+	            		<node label="Drag the concept to a location on the coursemap and release the mouse."/>
+	            		<node label="Enter a concept name which has no more than 15 characters."/>
+ 						<node label="Press ok or click the enter key on your keyboard."/>
+		            </node>
+		            <node label="Add an Arrow or a Relation">
+	            		<node label="Click the Arrow button in the Menu Bar. It should turn green."/>
+						<node label="Click down on the prerequisite concept."/> 
+						<node label="Drag the mouse to the target concept. An arrow should appear and follow the cursor."/>
+						<node label="Release the mouse on the target concept. The arrow should snap to the two concepts."/> 
+		            </node>
+		             <node label="Delete a Concept">
+	            		<node label="Click on a concept to select it."/>
+	            		<node label="Then press the delete button or the delete key."/>
+                		<node label="All relations to and from that concept will be deleted as well."/>
+                		<node label="Note that any selected arrows will also be deleted."/>	            		 
+		            </node>
+		            
+		             <node label="Add a Practice Problem to a Concept">
+	            		<node label="Select a concept by clicking on it."/>
+	            		<node label="Then click the button Add Problem"/>
+	            		<!--Escape Char-->
+	            		<node label="Add the Problem Name and Text."/>
+	            		<node label="Select the number of answer choices and type them in."/>
+	            		<node label="Select the answer by clicking the correct radio button."/>
+	            		<node label="Click ok or the enter key to add the problem to the selected concept."/>
+	            		<node label="See the status bar update."/>
+		            </node>
+		      
+		             <node label="Tag a Concept with Existing Problems">
+	            		<node label="Select a concept by clicking on it."/>
+	            		<node label="Then click the button Tag Existing Problem."/>
+	            			            		<!--Escape Char-->
+	            		<node label="Select the problem that you want to tag the concept with, and click ok."/>
+		            </node>
+		            
+		             <node label="Untag Problems from a Concept">
+	            		<node label="Select a concept by clicking on it."/>
+	            		<node label="Click the View Tagged Problems Button"/>
+	            		<node label="Select the problems to untag."/>
+	            		<node label="Press the untag button when finished."/>
+		            </node>
+		             <node label="Reset Coursemap">
+	            		<node label="press the Reset button."/>
+	            		<node label="The interface will prompt you to verify that you want to reset the course map. "/>
+		            </node>
+		            
+		             <node label="Delete or Remove a Relation">
+	            		<node label="Click on the arrow representing the concept."/>
+	            		<node label="The arrow will turn red. You can click on more than one arrow at a time."/>
+	            		<node label="Press the delete key, backspace key, or the Delete button."/>
+	            		<node label="Note that if a concept is selected, it will be deleted as well."/>
+		            </node>
+		        </node>	            	
+	        </node>    
+	    </mx:XMLList>
+	    
+	<mx:TitleWindow title="Help and Documentation" layout="absolute" width="575" height="500" 
+		showCloseButton="true" horizontalCenter="0" close="titleWindow_close(event);"
+	backgroundColor="#C9DEEF">
+		 <mx:Tree id="myTree" width="100%" height="100%" labelField="@label" showRoot="false" dataProvider="{treeData}"/>
+  	</mx:TitleWindow>
+</mx:Application>
