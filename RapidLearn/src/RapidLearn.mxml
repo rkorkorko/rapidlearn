@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
+    	import model.RelationEvent;
     	import model.UntaggedEvent;
     import ui.ConceptDetailsDialog;
 	import model.TaggedExistingEvent;
@@ -32,6 +33,9 @@
     private var xOff:Number;
     private var yOff:Number;	  
     private var designer:Designer = new Designer(RapidLearn(this));  
+    private var newRelEvent:Boolean = false;
+    private var newRelStart:Concept = null;
+    private var newRelEnd:Concept = null;
    
    	//cursor manager
     [Embed("/assets/grab.png")]
@@ -134,12 +138,19 @@
       designer.addEventListener("selectionChanged",conceptSelectionChanged);
       designer.addEventListener("lineSelected",lineSelected);
       designer.addEventListener("lineDeselected",lineDeselected);
+      designer.addEventListener("newRelation",relationHandler);
        ViewSource.addMenuItem(this, "SourceViews/index.html");
        application.addEventListener(KeyboardEvent.KEY_UP,keyPressHandler);
 		application.setFocus();
       this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
       this.addEventListener(MouseEvent.MOUSE_OVER, mouseOverListener);
     } 
+    
+    public function relationHandler(event:RelationEvent):void {
+		this.newRelEvent = true;    
+		this.newRelStart = event.getStart();
+		this.newRelEnd = event.getEnd();
+    }
     
     public function keyPressHandler(event:KeyboardEvent):void{
     	trace("fired");
@@ -218,6 +229,12 @@
 				this.statusNotification.text = "Selected Concept: "+selectedConcept().getName()+" tagged with "+probNum+" problem";
 			else this.statusNotification.text = "Selected Concept: "+selectedConcept().getName()+" tagged with "+probNum+" problems";
     		
+    		if(this.newRelEvent) {
+    			this.statusNotification.text = this.newRelStart.getName()+" is a prerequisite to "+this.newRelEnd.getName();
+    			this.newRelEvent = false;
+    			this.newRelStart = null;
+    			this.newRelEnd = null;
+    		}
     		
     	}
     }
