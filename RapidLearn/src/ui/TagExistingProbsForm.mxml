@@ -58,6 +58,9 @@
 						}
 					}
             	}
+            	else {
+            		PopUpManager.removePopUp(this);
+            	}
             }
             
             //keyboard listener for enter key
