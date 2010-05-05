@@ -239,6 +239,10 @@
   	private function reset():void{
   		var a:Alert = Alert.show("Resetting RapidLearn will clear ALL contents for this course. Are you sure you want to reset?", "Confirmation", Alert.YES|Alert.NO, this, confirmHandler, null, Alert.NO); 
   	} 	
+  	
+  	private function deleteBoxorLine():void{
+  		
+  	}
   
     ]]>
   </mx:Script>
@@ -263,6 +267,7 @@
     <mx:Button x="503" y="9" label="Add Problem" height="50" id="addProblemButton" click="showAddProblemForm();" enabled="false"/>
     <mx:Button x="633" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton" click="showTagExistingProbsForm();" enabled="false"/>
     <mx:Button x="803" y="9" label="Concept Details" height="50" id="conceptDetailsButton" click="showConceptDetails();" enabled="false"/>
+    <mx:Button x="1003" y="9" label="Delete" height="50" id="deleteButton" click="deleteBoxorLine();" enabled="false"/>
   </mx:Canvas>
   
 </mx:Application>
