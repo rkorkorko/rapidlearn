@@ -241,7 +241,8 @@
   	} 	
   	
   	private function deleteBoxorLine():void{
-  		
+  		designer.deleteSelectedLines();
+    	designer.deleteSelectedBoxes();
   	}
   
     ]]>
