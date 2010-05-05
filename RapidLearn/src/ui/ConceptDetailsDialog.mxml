@@ -61,9 +61,10 @@
             }
             
             public function untagProblem():void {
-            	
-            	if (selectedProblems.selectedItems!=null){
-            		for (var listpname:String in selectedProblems.selectedItems){
+            	if (selectedProblems.selectedItems!=null) {
+            		
+            		for (var i:int; i< selectedProblems.selectedItems.length; i++) {
+            			var listpname:String = String(selectedProblems.selectedItems[i]);
             			var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
 						var p:Problem;
 						for each (p in probs) {
