@@ -44,10 +44,70 @@
 		    } 
 			
 			public function validateForm():void {
-				trace("validating...")
+				trace("validating new problem...")
 				var validatorErrorArray:Array = Validator.validateAll(validatorArr);
 				var isValidForm:Boolean = validatorErrorArray.length == 0;
 				if(isValidForm) {
+					// 2 CHOICES
+					if(String(this.numChoices.selectedItem.valueOf()) == String(2)) {
+                    	var errorMessageArray2:Array = [];
+                    	if(this.choice1.text=="" || this.choice2.text=="") {
+                    		errorMessageArray2.push("Choices: One or more answer choices is blank");
+                    	}
+                    	if(!this.ch1.selected && !this.ch2.selected) {
+                    		errorMessageArray2.push("Choices: Need to have one choice selected as the answer");	
+                    	}	
+                    	if(errorMessageArray2.length > 0) {
+                    		Alert.show(errorMessageArray2.join("\n\n"), "Invalid Problem...", Alert.OK);
+                    		return;
+                    	}	
+                    }
+                    
+                    // 3 CHOICES
+					else if(String(this.numChoices.selectedItem.valueOf()) == String(3)) {
+                    	var errorMessageArray3:Array = [];
+                    	if(this.choice1.text=="" || this.choice2.text=="" || this.choice3.text=="") {
+                    		errorMessageArray3.push("Choices: One or more answer choices is blank");
+                    	}
+                    	if(!this.ch1.selected && !this.ch2.selected && !this.ch3.selected) {
+                    		errorMessageArray3.push("Choices: Need to have one choice selected as the answer");	
+                    	}	
+                    	if(errorMessageArray3.length > 0) {
+                    		Alert.show(errorMessageArray3.join("\n\n"), "Invalid Problem...", Alert.OK);
+                    		return;
+                    	}	
+                    }
+					
+					// 4 CHOICES
+					else if(String(this.numChoices.selectedItem.valueOf()) == String(4)) {
+                    	var errorMessageArray4:Array = [];
+                    	if(this.choice1.text=="" || this.choice2.text=="" || this.choice3.text=="" || this.choice4.text=="") {
+                    		errorMessageArray4.push("Choices: One or more answer choices is blank");
+                    	}
+                    	if(!this.ch1.selected && !this.ch2.selected && !this.ch3.selected && !this.ch4.selected) {
+                    		errorMessageArray4.push("Choices: Need to have one choice selected as the answer");	
+                    	}	
+                    	if(errorMessageArray4.length > 0) {
+                    		Alert.show(errorMessageArray4.join("\n\n"), "Invalid Problem...", Alert.OK);
+                    		return;
+                    	}	
+                    }
+                    
+                    // 5 CHOICES
+					else if(String(this.numChoices.selectedItem.valueOf()) == String(5)) {
+                    	var errorMessageArray5:Array = [];
+                    	if(this.choice1.text=="" || this.choice2.text=="" || this.choice3.text=="" || this.choice4.text=="" || this.choice5.text=="") {
+                    		errorMessageArray5.push("Choices: One or more answer choices is blank");
+                    	}
+                    	if(!this.ch1.selected && !this.ch2.selected && !this.ch3.selected && !this.ch4.selected && !this.ch5.selected) {
+                    		errorMessageArray5.push("Choices: Need to have one choice selected as the answer");	
+                    	}	
+                    	if(errorMessageArray5.length > 0) {
+                    		Alert.show(errorMessageArray5.join("\n\n"), "Invalid Problem...", Alert.OK);
+                    		return;
+                    	}	
+                    }
+					
 					trace("form is valid");
 					saveProblem();
 				}
@@ -58,6 +118,9 @@
                         var errField:String = FormItem(err.currentTarget.source.parent).label
                         errorMessageArray.push(errField + ": " + err.message);
                     }
+                    
+                    
+                    
                     Alert.show(errorMessageArray.join("\n\n"), "Invalid Problem...", Alert.OK);
 				}
 				
