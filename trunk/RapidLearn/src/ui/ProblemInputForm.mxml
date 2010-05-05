@@ -31,6 +31,7 @@
 				validatorArr.push(pname_validator);
 				validatorArr.push(ptext_validator);
 				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
+				pname.setFocus();
 			}
 			
 			//keyboard listener for enter key
