@@ -61,6 +61,20 @@
             }
             
             public function untagProblem():void {
+            	
+            	if (selectedProblems.selectedItems!=null){
+            		for (var listpname:String in selectedProblems.selectedItems){
+            			var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
+						var p:Problem;
+						for each (p in probs) {
+							if (listpname==p.getName()){
+								p.removeConcept(this.designer.currentSelectedBox.getConcept());
+							}
+						}													
+            		}
+            		refreshProblemList();
+            	}
+            	
             	if(this.selectedItem != null) {
             		var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
 					var p:Problem;
@@ -96,9 +110,9 @@
 	<mx:Form width="100%" height="100%" creationComplete="init()">
 		<mx:FormHeading label="{this.titleString}"/>
 		<mx:FormItem label="Tagged Problems:">
-			<mx:List width="228"
-				dataProvider="{this.problemNames}"
-            change="this.selectedItem=List(event.target).selectedItem"/>
+			<mx:List id="selectedProblems" width="228"
+				dataProvider="{this.problemNames}" allowMultipleSelection="true"/>
+            <!--change="this.selectedItem=List(event.target).selectedItem"/>-->
 
 		</mx:FormItem>
 		
@@ -106,7 +120,7 @@
 		<mx:FormItem height="34">
             <mx:HRule width="200" height="1"/>
             <mx:Button label="Untag" click="untagProblem()"/>
-            <mx:Button label="Done" click="doneHandler()"/>
+            <!--<mx:Button label="Done" click="doneHandler()"/>-->
         </mx:FormItem>
 	</mx:Form>
 </mx:TitleWindow>

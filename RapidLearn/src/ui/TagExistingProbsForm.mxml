@@ -76,9 +76,9 @@
 	<mx:Form width="100%" height="100%" creationComplete="init()">
 		<mx:FormHeading label="{this.titleString}"/>
 		<mx:FormItem label="Select Problems">
-			<mx:List width="228"
-				dataProvider="{this.problemNames}"
-            change="this.selectedItem=List(event.target).selectedItem"/>
+			<mx:List id="selectedProblems" width="228"
+				dataProvider="{this.problemNames}" allowMultipleSelection="true"
+			    change="this.selectedItem=List(event.target).selectedItem"/>
 
 		</mx:FormItem>
 		
