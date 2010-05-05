@@ -2,6 +2,7 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
+    	import model.UntaggedEvent;
     import ui.ConceptDetailsDialog;
 	import model.TaggedExistingEvent;
 	import model.Problem;
@@ -85,11 +86,20 @@
 	private function showConceptDetails():void {
 		win3=PopUpManager.createPopUp(this,ConceptDetailsDialog,true) as ConceptDetailsDialog;
 		win3.setDesigner(this.designer);
+		win3.addEventListener("untaggedProblem",untaggedProblemHandler);
 		PopUpManager.centerPopUp(win3);
-		
-		if (win3.getNumberSelectedProblems() == 1)
-			this.statusNotification.text = win3.getNumberSelectedProblems() + " Problem untagged";
-		else this.statusNotification.text = win3.getNumberSelectedProblems() + " Problems untagged";
+	}
+	
+	private function untaggedProblemHandler(event:UntaggedEvent):void {
+		if(selectedConcept() != null && event != null) {
+			if(event.getNumUntagged() == 1) {
+				this.statusNotification.text = "1 Problem Untagged";
+			}
+			else {
+				this.statusNotification.text = ""+event.getNumUntagged()+" Problems Untagged";
+			}
+			
+		}
 	}
 	
 	private function taggedExistingProblemHandler(event:TaggedExistingEvent):void {

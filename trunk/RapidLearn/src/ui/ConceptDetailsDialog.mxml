@@ -14,6 +14,7 @@
             import mx.managers.PopUpManager;
             import DrawingClasses.Designer;
             import model.TaggedExistingEvent;
+            import model.UntaggedEvent;
             
 			[Bindable]
             public var selectedItem:Object;
@@ -67,6 +68,8 @@
             }
             
             public function untagProblem():void {
+            	var untagCount:int = 0;
+            	
             	if (selectedProblems.selectedItems!=null) {
             		noProbsSelected = selectedProblems.selectedItems.length;
             		for (var i:int; i< selectedProblems.selectedItems.length; i++) {
@@ -76,10 +79,13 @@
 						for each (p in probs) {
 							if (listpname==p.getName()){
 								p.removeConcept(this.designer.currentSelectedBox.getConcept());
+								untagCount += 1;
 							}
 						}													
             		}
             		refreshProblemList();
+            		dispatchEvent(new UntaggedEvent("untaggedProblem",untagCount));
+            		PopUpManager.removePopUp(this);
             	}
             	
             	if(this.selectedItem != null) {
