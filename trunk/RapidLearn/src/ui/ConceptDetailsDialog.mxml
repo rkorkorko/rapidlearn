@@ -24,6 +24,8 @@
             
             [Bindable]
             private var titleString:String;
+            
+            private var noProbsSelected:int;
 
 			public function init():void{
 				this.addEventListener(KeyboardEvent.KEY_DOWN, enterKeyListener);
@@ -60,9 +62,13 @@
                 PopUpManager.removePopUp(this);
             }
             
+            public function getNumberSelectedProblems():int{
+            	return noProbsSelected;
+            }
+            
             public function untagProblem():void {
             	if (selectedProblems.selectedItems!=null) {
-            		
+            		noProbsSelected = selectedProblems.selectedItems.length;
             		for (var i:int; i< selectedProblems.selectedItems.length; i++) {
             			var listpname:String = String(selectedProblems.selectedItems[i]);
             			var probs:ArrayCollection = this.designer.getCourseMap().getProblems();

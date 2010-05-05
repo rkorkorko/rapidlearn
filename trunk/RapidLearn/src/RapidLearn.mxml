@@ -86,6 +86,10 @@
 		win3=PopUpManager.createPopUp(this,ConceptDetailsDialog,true) as ConceptDetailsDialog;
 		win3.setDesigner(this.designer);
 		PopUpManager.centerPopUp(win3);
+		
+		if (win3.getNumberSelectedProblems() == 1)
+			this.statusNotification.text = win3.getNumberSelectedProblems() + " Problem untagged";
+		else this.statusNotification.text = win3.getNumberSelectedProblems() + " Problems untagged";
 	}
 	
 	private function taggedExistingProblemHandler(event:TaggedExistingEvent):void {
@@ -267,7 +271,7 @@
     <mx:Button x="403" y="9" label="Reset" height="50" click="reset()"/>
     <mx:Button x="503" y="9" label="Add Problem" height="50" id="addProblemButton" click="showAddProblemForm();" enabled="false"/>
     <mx:Button x="633" y="9" label="Tag Existing Problem" height="50" id="tagProblemButton" click="showTagExistingProbsForm();" enabled="false"/>
-    <mx:Button x="803" y="9" label="Concept Details" height="50" id="conceptDetailsButton" click="showConceptDetails();" enabled="false"/>
+    <mx:Button x="803" y="9" label="View Tagged Problems" height="50" id="conceptDetailsButton" click="showConceptDetails();" enabled="false"/>
     <mx:Button x="1003" y="9" label="Delete" height="50" id="deleteButton" click="deleteBoxorLine();" enabled="false"/>
   </mx:Canvas>
   
