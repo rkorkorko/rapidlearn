@@ -30,6 +30,7 @@
 				validatorArr = new Array();
 				validatorArr.push(cname_validator);
 				this.courseMap = map;
+				inputName.setFocus();
 			}
 			
 			public function getName():String{
