@@ -28,11 +28,11 @@ package DrawingClasses
 	
 	private var isMouseDown:Boolean=false;
     [Bindable]
-    [Embed(source="/assets/box.png")] 
+    [Embed(source="/assets/oval_blank.png")] 
     public var boxPicture:Class; 
     
     [Bindable]
-    [Embed(source="/assets/box_selected.png")] 
+    [Embed(source="/assets/oval_golden.png")] 
     public var boxSelectedPicture:Class; 
     
     public function Box(d:Designer){
@@ -41,7 +41,9 @@ package DrawingClasses
       this.concept = new Concept();
       text = new Text();
       text.selectable = false;
-      
+      text.setStyle("color","#FFFFFF");
+      text.setStyle("fontFamily","Helvetica");
+      text.setStyle("fontSize","12");
       this.designer=d;
       
     }
