@@ -36,7 +36,8 @@
 				
 				var probs:ArrayCollection = this.designer.getCourseMap().getProblems();
 				for(var i:int = 0; i < probs.length; i++) {
-					problemNames.addItem(Problem(probs.getItemAt(i)).getName());
+					if (!Problem(probs.getItemAt(i)).getConcepts().contains(this.designer.currentSelectedBox.getConcept()))					
+						problemNames.addItem(Problem(probs.getItemAt(i)).getName());
 				}
 				
 				this.titleString = "Tag Existing Problems for Concept: "+this.designer.currentSelectedBox.getConcept().getName();
