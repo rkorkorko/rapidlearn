@@ -2,7 +2,11 @@
 <mx:Application xmlns:mx="http://www.adobe.com/2006/mxml" layout="absolute" creationComplete="initApp()">
   <mx:Script>
     <![CDATA[
+
+    	import ui.helpDialog;
+
     	import model.RelationEvent;
+
     	import model.UntaggedEvent;
     import ui.ConceptDetailsDialog;
 	import model.TaggedExistingEvent;
@@ -289,7 +293,8 @@
   	}
   
   	private function help():void{
-  		
+  		var helpWin:helpDialog=PopUpManager.createPopUp(this,helpDialog,true) as helpDialog;
+  		PopUpManager.centerPopUp(helpWin);
   	}
   	
     ]]>
