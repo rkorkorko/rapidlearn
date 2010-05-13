@@ -265,7 +265,7 @@
       imageProxy.height= 100;
       imageProxy.width= 100;
       DragManager.doDrag(dragInitiator, ds, event,imageProxy, 0, 0, 1.00);
-	  cursorID = CursorManager.setCursor(customCursor);
+	  //cursorID = CursorManager.setCursor(customCursor);
     }      
     // this method works when click on the line button 
     // it is make enable to draw line
